@@ -1,0 +1,1 @@
+self.__MIDDLEWARE_MANIFEST=(function(a){return [["\u002Flk\u002Fcoworking",a],["\u002Flk\u002Fmaster",a]]}(false));self.__MIDDLEWARE_MANIFEST_CB&&self.__MIDDLEWARE_MANIFEST_CB()
