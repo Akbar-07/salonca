@@ -619,7 +619,7 @@
                 (0, n.jsx)("div", {
                   className: "grid justify-center",
                   children: (0, n.jsx)(i.default, {
-                    href: "/search",
+                    href: "/search.html",
                     passHref: !0,
                     children: (0, n.jsx)(c.Z, {
                       className: "w-[234px] lg:w-[378px]",
