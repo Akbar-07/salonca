@@ -626,18 +626,17 @@
       <header class="header_outer__oC_jP sticky top-0 bg-white">
         <div class="container">
           <div class="header_header__dliyZ flex items-center justify-between">
-            <a aria-label="Салонка" href="index.htm"
-              ><svg class="header_logo__BC0sp">
-                <use xlink:href="/sprites/icons.svg#logo"></use></svg
-            ></a>
+            <a aria-label="Салонка" target="_top" href="index.html"
+              ><strong style="font-size:20px;" class="header_logo__BC0sp">The Suites</strong></a>
             <div class="grid grid-flow-col items-center">
               <style data-emotion="css 3l99kw">
                 @media (min-width: 768px) {
                   .css-3l99kw {
                     display: none;
                   }
-                }</style
-              ><style data-emotion="css q3v77a">
+                }
+              </style>
+              <style data-emotion="css q3v77a">
                 .css-q3v77a {
                   text-align: center;
                   -webkit-flex: 0 0 auto;
@@ -655,24 +654,29 @@
                   padding: 5px;
                   font-size: 1.125rem;
                 }
+
                 .css-q3v77a:hover {
                   background-color: rgba(0, 0, 0, 0.04);
                 }
+
                 @media (hover: none) {
                   .css-q3v77a:hover {
                     background-color: transparent;
                   }
                 }
+
                 .css-q3v77a.Mui-disabled {
                   background-color: transparent;
                   color: rgba(0, 0, 0, 0.26);
                 }
+
                 @media (min-width: 768px) {
                   .css-q3v77a {
                     display: none;
                   }
-                }</style
-              ><style data-emotion="css vwcu3s">
+                }
+              </style>
+              <style data-emotion="css vwcu3s">
                 .css-vwcu3s {
                   display: -webkit-inline-box;
                   display: -webkit-inline-flex;
@@ -722,31 +726,38 @@
                   padding: 5px;
                   font-size: 1.125rem;
                 }
+
                 .css-vwcu3s::-moz-focus-inner {
                   border-style: none;
                 }
+
                 .css-vwcu3s.Mui-disabled {
                   pointer-events: none;
                   cursor: default;
                 }
+
                 @media print {
                   .css-vwcu3s {
                     -webkit-print-color-adjust: exact;
                     color-adjust: exact;
                   }
                 }
+
                 .css-vwcu3s:hover {
                   background-color: rgba(0, 0, 0, 0.04);
                 }
+
                 @media (hover: none) {
                   .css-vwcu3s:hover {
                     background-color: transparent;
                   }
                 }
+
                 .css-vwcu3s.Mui-disabled {
                   background-color: transparent;
                   color: rgba(0, 0, 0, 0.26);
                 }
+
                 @media (min-width: 768px) {
                   .css-vwcu3s {
                     display: none;
@@ -758,55 +769,62 @@
                 type="button"
                 aria-label="Войти или зарегистрироваться"
               >
-                <svg class="w-6 h-6 text-primary">
-                  <use xlink:href="/sprites/icons.svg#person"></use>
-                </svg>
+              <i style="font-size: 23px;margin-bottom: -8px;" class='bx bx-user w-6 h-6'></i>
+              <!-- <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-primary" viewBox="0 0 24 24"><path style="color: #3d5a80;" d="M19 7.001c0 3.865-3.134 7-7 7s-7-3.135-7-7c0-3.867 3.134-7.001 7-7.001s7 3.134 7 7.001zm-1.598 7.18c-1.506 1.137-3.374 1.82-5.402 1.82-2.03 0-3.899-.685-5.407-1.822-4.072 1.793-6.593 7.376-6.593 9.821h24c0-2.423-2.6-8.006-6.598-9.819z"/></svg> -->
+                <!-- <svg class="w-6 h-6 text-primary">
+                  <use target="_top" xlink:href="/sprites/icons.svg#person"></use>
+                </svg> -->
               </button>
               <div class="menu_menu___6ZHp">
                 <div class="menu_desktop__FzdBD">
                   <div class="menu_menuBody__IfST1">
                     <nav class="menu_nav__GLRQp">
                       <ul class="menu_list__5oxIP">
-                        <button class="menu_link__7Prly">
-                          Связаться с нами</button
-                        ><a class="menu_link__7Prly" href="coworking.html"
-                          >Салонам</a
+                        <button onclick="ConnectOpen()" class="menu_link__7Prly">Connect with us</button
+                        ><a class="menu_link__7Prly" href="coworking.html" target="_top"
+                          >Salons</a
                         >
                       </ul>
                     </nav>
                     <button
+                    onclick="LoginOpen()"
                       class="menu_button__0ReSs inline-flex relative justify-center items-center disabled:opacity-50 min-h-sm lg:min-h-md p-2 text-xl md:text-3xl bg-secondary text-primary font-semibold hover:bg-blue-100 hover:bg-opacity-50 rounded-lg"
                       tabindex="0"
                       type="button"
                     >
-                      Войти
+                      Sign in
                     </button>
                   </div>
                 </div>
                 <div class="menu_mobile__H2YeT">
                   <button class="menu_menuBtn__OsNOM" aria-label="Открыть меню">
-                    <svg class="w-6 h-6">
-                      <use xlink:href="/sprites/icons.svg#dehaze"></use>
-                    </svg></button
-                  ><style data-emotion="css f101zn">
+                    <!-- <i class='bx bx-menu w-6 h-6'></i> -->
+                    <i style="font-size: 30px;" class='bx bx-menu w-6 h-6' ></i>
+                  </button>
+                  <style data-emotion="css f101zn">
                     .css-f101zn {
                       z-index: 1201;
                     }
+
                     .css-f101zn .MuiBackdrop-root {
                       background-color: rgba(41, 50, 65, 0.5);
                     }
+
                     .css-f101zn .MuiPaper-root {
                       border-radius: 0 0 12px 12px;
                       box-shadow: 0px 6px 24px rgba(26, 61, 107, 0.16);
-                    }</style
-                  ><style data-emotion="css i4xtmq">
+                    }
+                  </style>
+                  <style data-emotion="css i4xtmq">
                     .css-i4xtmq {
                       z-index: 1200;
                       z-index: 1201;
                     }
+
                     .css-i4xtmq .MuiBackdrop-root {
                       background-color: rgba(41, 50, 65, 0.5);
                     }
+
                     .css-i4xtmq .MuiPaper-root {
                       border-radius: 0 0 12px 12px;
                       box-shadow: 0px 6px 24px rgba(26, 61, 107, 0.16);
@@ -821,18 +839,22 @@
           .css-1h8e8xi .MuiBackdrop-root {
             background-color: rgba(41, 50, 65, 0.5);
           }
+
           .css-1h8e8xi .MuiPaper-root {
             border-radius: 0 0 12px 12px;
             box-shadow: 0px 6px 24px rgba(26, 61, 107, 0.16);
             overflow-y: visible;
-          }</style
-        ><style data-emotion="css 179d0mj">
+          }
+        </style>
+        <style data-emotion="css 179d0mj">
           .css-179d0mj {
             z-index: 1200;
           }
+
           .css-179d0mj .MuiBackdrop-root {
             background-color: rgba(41, 50, 65, 0.5);
           }
+
           .css-179d0mj .MuiPaper-root {
             border-radius: 0 0 12px 12px;
             box-shadow: 0px 6px 24px rgba(26, 61, 107, 0.16);

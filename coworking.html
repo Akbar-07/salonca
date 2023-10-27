@@ -19,7 +19,7 @@
   <meta name="description"
     content="Зарегистрируйте свои рабочие места и получите стабильный поток мастеров. Мы работаем со всеми направлениями индустрии красоты." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://salonca.ru/coworking" />
+  <meta property="og:url" content="./coworking" />
   <link href="coworking.html" rel="canonical" as="" />
   <meta property="og:site_name" content="salonca.ru" />
   <meta property="og:image" content="https://salonca.ru/coworking-hero-bg.png" />
@@ -547,9 +547,8 @@
     <header class="header_outer__oC_jP sticky top-0 bg-white">
       <div class="container">
         <div class="header_header__dliyZ flex items-center justify-between">
-          <a aria-label="Салонка" href="index.htm"><svg class="header_logo__BC0sp">
-              <use xlink:href="/sprites/icons.svg#logo"></use>
-            </svg></a>
+          <a aria-label="Салонка" target="_top" href="index.html"
+            ><strong style="font-size:20px;" class="header_logo__BC0sp">The Suites</strong></a>
           <div class="grid grid-flow-col items-center">
             <style data-emotion="css 3l99kw">
               @media (min-width: 768px) {
@@ -569,8 +568,10 @@
                 border-radius: 50%;
                 overflow: visible;
                 color: rgba(0, 0, 0, 0.54);
-                -webkit-transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-                transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+                -webkit-transition: background-color 150ms
+                  cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+                transition: background-color 150ms
+                  cubic-bezier(0.4, 0, 0.2, 1) 0ms;
                 padding: 5px;
                 font-size: 1.125rem;
               }
@@ -639,8 +640,10 @@
                 border-radius: 50%;
                 overflow: visible;
                 color: rgba(0, 0, 0, 0.54);
-                -webkit-transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-                transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+                -webkit-transition: background-color 150ms
+                  cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+                transition: background-color 150ms
+                  cubic-bezier(0.4, 0, 0.2, 1) 0ms;
                 padding: 5px;
                 font-size: 1.125rem;
               }
@@ -680,34 +683,45 @@
                 .css-vwcu3s {
                   display: none;
                 }
-              }
-            </style><button class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall css-vwcu3s"
-              tabindex="0" type="button" aria-label="Войти или зарегистрироваться">
-              <svg class="w-6 h-6 text-primary">
-                <use xlink:href="/sprites/icons.svg#person"></use>
-              </svg>
+              }</style
+            ><button
+              class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall css-vwcu3s"
+              tabindex="0"
+              type="button"
+              aria-label="Войти или зарегистрироваться"
+            >
+            <i style="font-size: 23px;margin-bottom: -8px;" class='bx bx-user w-6 h-6'></i>
+            <!-- <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-primary" viewBox="0 0 24 24"><path style="color: #3d5a80;" d="M19 7.001c0 3.865-3.134 7-7 7s-7-3.135-7-7c0-3.867 3.134-7.001 7-7.001s7 3.134 7 7.001zm-1.598 7.18c-1.506 1.137-3.374 1.82-5.402 1.82-2.03 0-3.899-.685-5.407-1.822-4.072 1.793-6.593 7.376-6.593 9.821h24c0-2.423-2.6-8.006-6.598-9.819z"/></svg> -->
+              <!-- <svg class="w-6 h-6 text-primary">
+                <use target="_top" xlink:href="/sprites/icons.svg#person"></use>
+              </svg> -->
             </button>
             <div class="menu_menu___6ZHp">
               <div class="menu_desktop__FzdBD">
                 <div class="menu_menuBody__IfST1">
                   <nav class="menu_nav__GLRQp">
                     <ul class="menu_list__5oxIP">
-                      <button class="menu_link__7Prly">
-                        Связаться с нами</button><a class="menu_link__7Prly" href="index.htm">Мастерам</a>
+                      <button onclick="ConnectOpen()" class="menu_link__7Prly">Connect with us</button
+                      ><a class="menu_link__7Prly" href="coworking.html" target="_top"
+                        >Salons</a
+                      >
                     </ul>
                   </nav>
                   <button
+                  onclick="LoginOpen()"
                     class="menu_button__0ReSs inline-flex relative justify-center items-center disabled:opacity-50 min-h-sm lg:min-h-md p-2 text-xl md:text-3xl bg-secondary text-primary font-semibold hover:bg-blue-100 hover:bg-opacity-50 rounded-lg"
-                    tabindex="0" type="button">
-                    Войти
+                    tabindex="0"
+                    type="button"
+                  >
+                    Sign in
                   </button>
                 </div>
               </div>
               <div class="menu_mobile__H2YeT">
                 <button class="menu_menuBtn__OsNOM" aria-label="Открыть меню">
-                  <svg class="w-6 h-6">
-                    <use xlink:href="/sprites/icons.svg#dehaze"></use>
-                  </svg></button>
+                  <!-- <i class='bx bx-menu w-6 h-6'></i> -->
+                  <i style="font-size: 30px;" class='bx bx-menu w-6 h-6' ></i>
+                </button>
                 <style data-emotion="css f101zn">
                   .css-f101zn {
                     z-index: 1201;
@@ -937,10 +951,10 @@
                 <button class="text-lg sm:text-2xl">Связаться с нами</button>
               </li>
               <li>
-                <a class="text-lg sm:text-2xl" href="confidentiality.html">Политика конфиденциальности</a>
+                <a class="text-lg sm:text-2xl" target="_top" href="confidentiality.html">Политика конфиденциальности</a>
               </li>
               <li>
-                <a class="text-lg sm:text-2xl" href="offer.html">Условия использования</a>
+                <a class="text-lg sm:text-2xl" target="_top" href="offer.html">Условия использования</a>
               </li>
             </ul>
           </nav>
