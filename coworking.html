@@ -19,7 +19,7 @@
   <meta name="description"
     content="Зарегистрируйте свои рабочие места и получите стабильный поток мастеров. Мы работаем со всеми направлениями индустрии красоты." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="./coworking" />
+  <meta property="og:url" content="./coworking.html" />
   <link href="coworking.html" rel="canonical" as="" />
   <meta property="og:site_name" content="salonca.ru" />
   <meta property="og:image" content="https://salonca.ru/coworking-hero-bg.png" />
@@ -35,7 +35,7 @@
   <link rel="preload" href="_next/static/css/93655c4277a52658.css" as="style" />
   <link rel="stylesheet" href="_next/static/css/93655c4277a52658.css" data-n-p="" />
   <noscript data-n-css=""></noscript>
-  <script defer="" nomodule="" src="_next/static/chunks/polyfills-5cd94c89d3acac5f.js"></script>
+  <!-- <script defer="" nomodule="" src="_next/static/chunks/polyfills-5cd94c89d3acac5f.js"></script>
   <script defer="" src="_next/static/chunks/5675-cdb0bc19536f4f90.js"></script>
   <script defer="" src="_next/static/chunks/5495.a7c33beb300cb569.js"></script>
   <script defer="" src="_next/static/chunks/1677.580905f7e827c809.js"></script>
@@ -48,7 +48,7 @@
   <script src="_next/static/chunks/pages/coworking-1df9321999e8c18e.js" defer=""></script>
   <script src="_next/static/G6UULUO7CzhXqobddKZQh/_buildManifest.js" defer=""></script>
   <script src="_next/static/G6UULUO7CzhXqobddKZQh/_ssgManifest.js" defer=""></script>
-  <script src="_next/static/G6UULUO7CzhXqobddKZQh/_middlewareManifest.js" defer=""></script>
+  <script src="_next/static/G6UULUO7CzhXqobddKZQh/_middlewareManifest.js" defer=""></script> -->
   <style data-href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap">
     @font-face {
       font-family: "Open Sans";
@@ -871,7 +871,7 @@
                 max-height: 100%;
                 object-fit: cover;
                 object-position: center;
-                filter: blur(20px);
+                filter: none;
                 background-size: cover;
                 background-image: url('data:image/jpeg;base64,/9j/2wBDAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIfIiEmKzcvJik0KSEiMEExNDk7Pj4+JS5ESUM8SDc9Pjv/2wBDAQoLCw4NDhwQEBw7KCIoOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozv/wAARCAADAAgDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAf/xAAcEAEAAQQDAAAAAAAAAAAAAAABAAIEERITFFH/xAAUAQEAAAAAAAAAAAAAAAAAAAAD/8QAFREBAQAAAAAAAAAAAAAAAAAAAQD/2gAMAwEAAhEDEQA/AKIXlx1K6+V2Bw4PCIiErKBf/9k=');
                 background-position: center;
@@ -948,7 +948,7 @@
           <nav>
             <ul class="grid gap-4 mb-6 sm:flex md:gap-8 lg:mb-0">
               <li>
-                <button class="text-lg sm:text-2xl">Связаться с нами</button>
+                <button onclick="ConnectOpen()" class="text-lg sm:text-2xl">Связаться с нами</button>
               </li>
               <li>
                 <a class="text-lg sm:text-2xl" target="_top" href="confidentiality.html">Политика конфиденциальности</a>
@@ -966,6 +966,36 @@
       </div>
     </footer>
   </div>
+  <div id="connectModal" class="connect_with_us">
+    <div class="connect_with_us_div">
+    <div class="connect_with_us_div_close"><i onclick="ConnectOpen()" class='bx bx-x'></i></div>
+    <h1>Connect with us</h1>
+    <a href="https://wa.clck.bar/79938950829"><button class="connect_with_us_div_buuton1">Write to chat</button></a>
+    <a href="tel:+739832332232"><button class="connect_with_us_div_buuton2">Call</button></a>
+    </div>
+  </div>
+  <div id="loginModal" class="connect_with_us">
+    <div class="connect_with_us_div">
+    <div class="connect_with_us_div_close"><i onclick="LoginOpen()" class='bx bx-x'></i></div>
+    <h1>Login or register</h1>
+    <label>
+      <div><p>Phone number</p><p id="numberEdit" onclick="LoginClose()" class="nomerEdit">Изменить номер</p></div>
+      <input type="text" placeholder="+7 (" /> 
+    </label>
+    <label id="sms_login">
+      <br/>
+      <div><p>Код из sms</p></div>
+      <input type="text" /> 
+      <p style="margin-left: auto !important;margin: 0;margin-top: 10px;margin-bottom: 10px;" class="link_mas">Salon entrance</p> 
+    </label>
+    
+    <button onclick="Login()" class="connect_with_us_div_buuton1">Salon entrance</button>
+    <p id="login_p" class="link_mas">Salon entrance</p>
+    </div>
+  </div>
+  <link rel="stylesheet" href="./allstyle.css">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <script src="./script.js"></script>
   <script id="__NEXT_DATA__" type="application/json">
       {
         "props": {

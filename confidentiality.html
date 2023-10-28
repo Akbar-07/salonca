@@ -48,6 +48,7 @@
       href="_next/static/css/a76b542af14572ab.css"
       as="style"
     />
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link
       rel="stylesheet"
       href="_next/static/css/a76b542af14572ab.css"
@@ -70,7 +71,7 @@
     />
     <link rel="stylesheet" href="_next/static/css/f05ef3f553606fd9.css" />
     <noscript data-n-css=""></noscript>
-    <script
+    <!-- <script
       defer=""
       nomodule=""
       src="_next/static/chunks/polyfills-5cd94c89d3acac5f.js"
@@ -115,7 +116,9 @@
     <script
       src="_next/static/G6UULUO7CzhXqobddKZQh/_middlewareManifest.js"
       defer=""
-    ></script>
+    ></script> -->
+    <link rel="stylesheet" href="./allstyle.css">
+    <script src="./script.js"></script>
     <style
       data-href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap"
     >
@@ -1146,7 +1149,7 @@
             <nav>
               <ul class="grid gap-4 mb-6 sm:flex md:gap-8 lg:mb-0">
                 <li>
-                  <button class="text-lg sm:text-2xl">Связаться с нами</button>
+                  <button onclick="ConnectOpen()" class="text-lg sm:text-2xl">Связаться с нами</button>
                 </li>
                 <li>
                   <a class="text-lg sm:text-2xl" target="_top" href="confidentiality.html"
@@ -1167,6 +1170,33 @@
           </div>
         </div>
       </footer>
+    </div>
+    <div id="connectModal" class="connect_with_us">
+      <div class="connect_with_us_div">
+      <div class="connect_with_us_div_close"><i onclick="ConnectOpen()" class='bx bx-x'></i></div>
+      <h1>Connect with us</h1>
+      <a href="https://wa.clck.bar/79938950829"><button class="connect_with_us_div_buuton1">Write to chat</button></a>
+      <a href="tel:+739832332232"><button class="connect_with_us_div_buuton2">Call</button></a>
+      </div>
+    </div>
+    <div id="loginModal" class="connect_with_us">
+      <div class="connect_with_us_div">
+      <div class="connect_with_us_div_close"><i onclick="LoginOpen()" class='bx bx-x'></i></div>
+      <h1>Login or register</h1>
+      <label>
+        <div><p>Phone number</p><p id="numberEdit" onclick="LoginClose()" class="nomerEdit">Изменить номер</p></div>
+        <input type="text" placeholder="+7 (" /> 
+      </label>
+      <label id="sms_login">
+        <br/>
+        <div><p>Код из sms</p></div>
+        <input type="text" /> 
+        <p style="margin-left: auto !important;margin: 0;margin-top: 10px;margin-bottom: 10px;" class="link_mas">Salon entrance</p> 
+      </label>
+      
+      <button onclick="Login()" class="connect_with_us_div_buuton1">Salon entrance</button>
+      <p id="login_p" class="link_mas">Salon entrance</p>
+      </div>
     </div>
     <script id="__NEXT_DATA__" type="application/json">
       {
