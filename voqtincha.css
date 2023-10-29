@@ -1,0 +1,42 @@
+#login_info{
+    display: none;
+    } 
+
+    #login_info{
+        margin-bottom: 10px !important;
+    }
+#login_info_p p{
+    margin-top: 22px !important;
+}
+#sdadsdad{
+    width: 18px;
+    height: 18px;
+    margin-top: 0px;
+}
+.login-ttt{
+    display: flex;
+    gap: 10px;
+}
+.login-ichi-sozla{
+    position: relative;
+    right: 70px;
+}
+.login-ichi-sozla a{
+    color: inherit;
+    text-decoration: inherit;
+    width: 100% ;
+    font-size: 13px !important;
+    border-bottom: 1px solid #3d5a80;
+    margin: auto;
+    margin-top: 10px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+.login-ichi-sozla a:hover{
+    border-bottom: 1px solid white !important;
+}
+.login-ichi-sozla1{
+    position: relative;
+    right: 28px;
+    top: -8px;
+}

@@ -57,6 +57,7 @@
       href="_next/static/css/a76b542af14572ab.css"
       as="style"
     />
+    <link rel="stylesheet" href="./voqtincha.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link
       rel="stylesheet"
@@ -4205,7 +4206,7 @@
     <div id="loginModal" class="connect_with_us">
       <div class="connect_with_us_div">
       <div class="connect_with_us_div_close"><i onclick="LoginOpen()" class='bx bx-x'></i></div>
-      <h1>Login or register</h1>
+      <h1 class="bla">Login or register</h1>
       <label>
         <div><p>Phone number</p><p id="numberEdit" onclick="LoginClose()" class="nomerEdit">Изменить номер</p></div>
         <input type="text" placeholder="+7 (" /> 
@@ -4215,6 +4216,22 @@
         <div><p>Код из sms</p></div>
         <input type="text" /> 
         <p style="margin-left: auto !important;margin: 0;margin-top: 10px;margin-bottom: 10px;" class="link_mas">Salon entrance</p> 
+      </label>
+      <label id="login_info">
+        <label  id="login_info_p">
+          <p class="register-p">*Имя</p>
+         <input type="text">
+         <p class="register-p">*Email</p>
+         <input type="email">
+         <p class="register-p">Специализация</p>
+         <input type="text">
+         <div class="login-ttt">
+          <div class="login-var-inoput"><input type="checkbox" id="sdadsdad"> </div><div class="login-ichi-sozla"> <p>Я согласен с <a href="#">политикой конфиденциальности и <br> условиями использования</a></p> </div> 
+          </div>
+          <div class="login-ttt">
+          <div class="login-var-inoput"><input type="checkbox" id="sdadsdad"> </div><div class="login-ichi-sozla1"> <p>Я согласен получать рассылку с новостями и акциями</p> </div> 
+          </div>
+         </label>
       </label>
       
       <button onclick="Login()" class="connect_with_us_div_buuton1">Salon entrance</button>

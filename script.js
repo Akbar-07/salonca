@@ -1,6 +1,12 @@
 function Login(){
     if(document.querySelector("#sms_login").style.display=="block"){
-    window.location="./master.html"
+      if (document.querySelector("#login_info").style.display=="block") {
+        alert("dawdaddad")
+      // }else{
+        document.querySelector("#login_info").style.display="block"
+        // document.querySelector(".bla").innerHTML=`Registration`
+        // document.querySelector("#sms_login").style.display="none"
+      }
     }else{
       document.querySelector("#sms_login").style.display="block"
       document.querySelector("#login_p").style.display="none"
