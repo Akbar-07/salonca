@@ -65,3 +65,15 @@ function SelectOpen(id){
     document.querySelector("#select_index").style.display="block"
   }
 }
+function SelectOpen2(id){
+  if(document.querySelector("#select_index").style.display=="block"){
+    if(id){
+      document.querySelector("#reg-select").innerHTML=document.querySelectorAll("#select_index_h1")[id].innerHTML
+      document.querySelector("#select_index").style.display="none"
+      }else{
+      document.querySelector("#select_index").style.display="none"
+    }
+  }else{
+    document.querySelector("#select_index").style.display="block"
+  }
+}
