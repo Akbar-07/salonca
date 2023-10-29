@@ -27,3 +27,18 @@ function Login(){
         document.querySelector("#loginModal").style.display="flex"
       }
     }
+
+function FilterOpen(){
+  if(document.querySelector("#Filtir_big").style.top=="0px"){
+    document.querySelector("#Filtir_big").style="top:-100%"
+    document.querySelector("body").style="overflow: scroll;"
+    document.querySelector(".Filter_big_div_search").style="display:none"
+  }else{
+    document.querySelector("#Filtir_big").style="top:0px"
+    document.querySelector("body").style="overflow: hidden;"
+    
+    setTimeout(()=>{
+      document.querySelector(".Filter_big_div_search").style="display:block"
+    },400)
+  }
+}
