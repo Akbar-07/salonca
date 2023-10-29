@@ -1,16 +1,20 @@
 function Login(){
     if(document.querySelector("#sms_login").style.display=="block"){
       if (document.querySelector("#login_info").style.display=="block") {
-        alert("dawdaddad")
-      // }else{
+        window.location="dashboard.html"
+      }else{
         document.querySelector("#login_info").style.display="block"
-        // document.querySelector(".bla").innerHTML=`Registration`
-        // document.querySelector("#sms_login").style.display="none"
+        document.querySelector(".bla").innerHTML=`Registration`
+        document.querySelector("#sms_login").style.display="none"
       }
     }else{
+      if(document.querySelector("#login_info").style.display=="block"){
+        window.location="dashboard.html"
+      }else{
       document.querySelector("#sms_login").style.display="block"
       document.querySelector("#login_p").style.display="none"
       document.querySelector("#numberEdit").style.display="block"
+      }
     }
     }
     function LoginClose(){
