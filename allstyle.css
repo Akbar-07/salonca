@@ -259,3 +259,23 @@ font-size: 25px;
 display: none;
 /* margin-bottom: 100px; */
 }
+.select_index{
+  display: none;
+  width: 100%;
+  position: absolute;
+  top: -10px;
+  border-radius: 15px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  box-shadow: 0 6px 24px rgb(26 61 107/16%);
+  background-color: #fff;
+}
+.select_index h1{
+  padding-left: 18px;
+  padding-bottom: 8px;
+  padding-top: 8px;
+  cursor: pointer;
+}
+.select_index h1:hover{
+  background-color: rgba(61, 90, 128, 0.12);
+}

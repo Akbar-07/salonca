@@ -48,3 +48,16 @@ function FilterOpen(){
     },400)
   }
 }
+
+function SelectOpen(id){
+  if(document.querySelector("#select_index").style.display=="block"){
+    if(id){
+      document.querySelector("#home-specialization").innerHTML=document.querySelectorAll("#select_index_h1")[id].innerHTML
+      document.querySelector("#select_index").style.display="none"
+      }else{
+      document.querySelector("#select_index").style.display="none"
+    }
+  }else{
+    document.querySelector("#select_index").style.display="block"
+  }
+}
