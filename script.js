@@ -90,6 +90,14 @@ function SelectOpenMedia(id){
       document.querySelector("#select_index_media").style.display="none"
     }
   }else{
-    document.querySelector("#select_index_media").style.display="block !important"
+    document.querySelector("#select_index_media").style.display="block"
   }
 }
+function DataOpen(){
+  if(document.querySelector("#data_div").style.display=="none"){
+    document.querySelector("#data_div").style.display="block"
+  }else{
+    document.querySelector("#data_div").style.display="none"
+  }
+}
+

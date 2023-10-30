@@ -282,3 +282,12 @@ display: none;
 .select_index h1:hover{
   background-color: rgba(61, 90, 128, 0.12);
 }
+.data_div{
+  position:absolute;
+  top:0px;
+  left:0px;
+  right:0px;
+  bottom:0px;
+  display:none;
+  z-index:1000;
+}
