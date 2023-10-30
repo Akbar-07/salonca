@@ -260,7 +260,7 @@ display: none;
 /* margin-bottom: 100px; */
 }
 .select_index{
-  display: none !important;
+  display: none;
   width: 100% !important;
   position: absolute;
   top: -10px;
