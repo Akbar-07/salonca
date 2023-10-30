@@ -26,15 +26,19 @@ function Login(){
     function ConnectOpen(){
       if(document.querySelector("#connectModal").style.display=="flex"){
         document.querySelector("#connectModal").style.display="none"
+        document.querySelector("body").style="overflow: scroll;"
       }else{
         document.querySelector("#connectModal").style.display="flex"
+        document.querySelector("body").style="overflow: hidden;"
       }
     }
     function LoginOpen(){
       if(document.querySelector("#loginModal").style.display=="flex"){
         document.querySelector("#loginModal").style.display="none"
+        document.querySelector("body").style="overflow: scroll;"
       }else{
         document.querySelector("#loginModal").style.display="flex"
+        document.querySelector("body").style="overflow: hidden;"
       }
     }
 
