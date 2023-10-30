@@ -260,16 +260,18 @@ display: none;
 /* margin-bottom: 100px; */
 }
 .select_index{
-  display: none;
-  width: 100%;
+  display: none !important;
+  width: 100% !important;
   position: absolute;
   top: -10px;
-  border-radius: 15px;
+  border-radius: 15px !important;
   padding-top: 8px;
   padding-bottom: 8px;
   box-shadow: 0 6px 24px rgb(26 61 107/16%);
   background-color: #fff;
   z-index:100;
+  border:none !important;
+  height:auto !important;
 }
 .select_index h1{
   padding-left: 18px;

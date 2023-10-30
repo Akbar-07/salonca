@@ -81,3 +81,15 @@ function SelectOpen2(id){
     document.querySelector("#select_index").style.display="block"
   }
 }
+function SelectOpenMedia(id){
+  if(document.querySelector("#select_index_media").style.display=="block"){
+    if(id){
+      document.querySelector("#reg-select_media").innerHTML=document.querySelectorAll("#select_index_h1_media")[id].innerHTML
+      document.querySelector("#select_index_media").style.display="none"
+      }else{
+      document.querySelector("#select_index_media").style.display="none"
+    }
+  }else{
+    document.querySelector("#select_index_media").style.display="block !important"
+  }
+}
