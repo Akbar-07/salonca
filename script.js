@@ -26,15 +26,19 @@ function Login(){
     function ConnectOpen(){
       if(document.querySelector("#connectModal").style.display=="flex"){
         document.querySelector("#connectModal").style.display="none"
+        document.querySelector("body").style="overflow: scroll;"
       }else{
         document.querySelector("#connectModal").style.display="flex"
+        document.querySelector("body").style="overflow: hidden;"
       }
     }
     function LoginOpen(){
       if(document.querySelector("#loginModal").style.display=="flex"){
         document.querySelector("#loginModal").style.display="none"
+        document.querySelector("body").style="overflow: scroll;"
       }else{
         document.querySelector("#loginModal").style.display="flex"
+        document.querySelector("body").style="overflow: hidden;"
       }
     }
 
@@ -57,6 +61,18 @@ function SelectOpen(id){
   if(document.querySelector("#select_index").style.display=="block"){
     if(id){
       document.querySelector("#home-specialization").innerHTML=document.querySelectorAll("#select_index_h1")[id].innerHTML
+      document.querySelector("#select_index").style.display="none"
+      }else{
+      document.querySelector("#select_index").style.display="none"
+    }
+  }else{
+    document.querySelector("#select_index").style.display="block"
+  }
+}
+function SelectOpen2(id){
+  if(document.querySelector("#select_index").style.display=="block"){
+    if(id){
+      document.querySelector("#reg-select").innerHTML=document.querySelectorAll("#select_index_h1")[id].innerHTML
       document.querySelector("#select_index").style.display="none"
       }else{
       document.querySelector("#select_index").style.display="none"

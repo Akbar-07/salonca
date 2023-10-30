@@ -136,7 +136,7 @@ margin-bottom: 10px;
   align-items: center;
   justify-content: center;
   padding-top: 70px; 
-  z-index: 100;
+  z-index: 100
 }
 .Filtir_big_div{
   width: 67%;
@@ -269,6 +269,7 @@ display: none;
   padding-bottom: 8px;
   box-shadow: 0 6px 24px rgb(26 61 107/16%);
   background-color: #fff;
+  z-index:100;
 }
 .select_index h1{
   padding-left: 18px;
