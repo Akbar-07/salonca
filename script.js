@@ -2,7 +2,7 @@
 function Login() {
   if (document.querySelector("#sms_login").style.display == "block") {
     if (document.querySelector("#login_info").style.display == "block") {
-      window.location = "dashboard.html";
+      window.location = "user.html";
     } else {
       document.querySelector("#login_info").style.display = "block";
       document.querySelector(".bla").innerHTML = `Registration`;
@@ -10,7 +10,7 @@ function Login() {
     }
   } else {
     if (document.querySelector("#login_info").style.display == "block") {
-      window.location = "dashboard.html";
+      window.location = "user.html";
     } else {
       document.querySelector("#sms_login").style.display = "block";
       document.querySelector("#login_p").style.display = "none";

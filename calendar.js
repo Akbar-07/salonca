@@ -263,3 +263,17 @@ jQuery(document).ready(function () {
     });
   });
 })(jQuery);
+
+function SelectOpenUser(id) {
+  if (document.querySelector("#select_index_user").style.display == "block") {
+    if (id) {
+      document.querySelector("#user_h1_").innerHTML =
+      document.querySelectorAll("#select_index_h1_user")[id].innerHTML;
+      document.querySelector("#select_index_user").style = "display:none";
+    } else {
+      document.querySelector("#select_index_user").style = "display:none";
+    }
+  } else {
+    document.querySelector("#select_index_user").style = "display:block";
+  }
+}
