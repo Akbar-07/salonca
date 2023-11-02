@@ -101,3 +101,20 @@ function DataOpen(){
   }
 }
 
+function navbarModal(){
+  document.querySelector(".navbar__modal").style=`top:0 !important`
+  document.querySelector(".menu_mobile__H2YeT").style=`display:none`
+  document.querySelector("#seukasasa").style=`display:none`
+  document.querySelector("#seukasasa1").style=`display:block`
+  document.querySelector(".qora-oyna-navbar").style=`display:block`
+  document.querySelector("body").style=`overflow: hidden;`
+
+}
+function closeNavbarMolad(){
+  document.querySelector(".navbar__modal").style=`top:-100% !important`
+  document.querySelector(".menu_mobile__H2YeT").style=`display:block`
+  document.querySelector("#seukasasa").style=`display:block`
+  document.querySelector("#seukasasa1").style=`display:none`
+  document.querySelector(".qora-oyna-navbar").style=`display:none`
+  document.querySelector("body").style=`overflow: scroll;`
+}
