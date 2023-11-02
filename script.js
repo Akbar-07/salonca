@@ -7,6 +7,7 @@ function Login() {
       document.querySelector("#login_info").style.display = "block";
       document.querySelector(".bla").innerHTML = `Registration`;
       document.querySelector("#sms_login").style.display = "none";
+      document.querySelector(".nomerEdit").style.display="none"
     }
   } else {
     if (document.querySelector("#login_info").style.display == "block") {
