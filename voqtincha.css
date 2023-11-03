@@ -41,8 +41,6 @@
     top: -8px;
 }
 .navbar__modal{
-    position: absolute;
-    top: 0 !important;
     background-color: #fff;
     z-index: 1290;
     border-bottom-left-radius: 20px !important;
@@ -64,8 +62,9 @@
     left: 0px;
     right: 0px;
     max-height: 100%;
-position: absolute;
-top: -100% !important;
+position: fixed;
+top: -100%;
+
 }
 
 
@@ -80,8 +79,7 @@ top: -100% !important;
     background-color: rgba(0, 0, 0, 0.5);
     -webkit-tap-highlight-color: transparent;
     z-index: -1;
-    position: absolute;
+    position: fixed;
     top: 0;
     z-index: 1100;
-    
 }

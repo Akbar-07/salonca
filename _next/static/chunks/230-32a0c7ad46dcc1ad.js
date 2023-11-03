@@ -2195,7 +2195,7 @@
                     }),
                     (0, r.jsxs)("div", {
                       className: "text-lg sm:text-2xl font-bold",
-                      children: ["@SALONCA, ", new Date().getFullYear()],
+                      children: ["@The Suites, ", new Date().getFullYear()],
                     }),
                   ],
                 }),
