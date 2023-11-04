@@ -124,3 +124,6 @@ function DataOpen() {
     document.querySelector("#data_div").style.display = "none";
   }
 }
+function map(){
+  document.querySelector(".qora-oyna-indi").style=`display:block`
+}
