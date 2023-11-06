@@ -115,7 +115,7 @@ function DataOpen() {
 function map(){
   document.querySelector(".qora-oyna-indi").style=`display:block`
 }
-fetch('https://salonca.onrender.com/api/filyal', {
+fetch('http://localhost:5002/api/filyal', {
   method: 'GET'
 })
 .then(response => response.json())
@@ -143,14 +143,14 @@ fetch('https://salonca.onrender.com/api/filyal', {
                   <div class="flex gap-1 h-[26px]">
                     <p class="text-xl leading-5 text-primary">from ${item.master.length>0?item.master[0].price:"0"} ₽/hour</p>
                     <div class="text-xl leading-5 text-blue-100">
-                      · from 1 hour
+                      · from ${item.min_time} hour
                     </div>
                   </div>
                 </div>
                 <a
                   aria-label='${item.name}'
                   class="grid before:content-[&quot;&quot;] before:absolute before:top-0 before:left-0 before:z-10 before:w-full before:h-full image-placeholder"
-                  href="coworking/indi.html"
+                  href="/filial.html"
                   target="_top"
                   ><span
                     style="
@@ -238,20 +238,21 @@ fetch('https://salonca.onrender.com/api/filyal', {
    })
 })
 .catch(error => {
-  console.error('Xatolik yuz berdi:', error);
+  console.error(error);
 });
-
-fetch('https://salonca.onrender.com/api/category', {
+var category=[]
+fetch('http://localhost:5002/api/category', {
   method: 'GET'
 })
 .then(response => response.json())
 .then(data => {
-   data.map((item,key)=>{
+  category.push(data)
+  data.map((item,key)=>{
     document.querySelector("#select_index").innerHTML+=`<h1 onclick="SelectOpen('${item.id}','${item.category}')" id="select_index_h1" value='${item.id}'>${item.category}</h1>`
    })
 })
 .catch(error => {
-  console.error('Xatolik yuz berdi:', error);
+  console.error(error);
 });
 
 function SelectOpen(id,name) {
@@ -265,4 +266,163 @@ function SelectOpen(id,name) {
   } else {
     document.querySelector("#select_index").style.display = "block";
   }
+}
+
+
+var masterMas=[]
+fetch('http://localhost:5002/api/filyal', {
+  method: 'GET'
+})
+.then(response => response.json())
+.then(data => {
+   data.map((item,key)=>{
+   if(item.id==localStorage.getItem("FilialId")){
+    category.map(category2=>{
+      for (let i = 0; i < category2.length; i++) {
+        for (let j = 0; j < item.master.length; j++) {
+         if(category2[i].id==item.master[j].category){
+           item.master[j].categoryName=category2[i].category
+         }  
+        }
+       }
+    })
+    item.master.map(item=>{
+      masterMas.push(item)
+    })
+    document.querySelector("#title_filial").innerHTML=item.name
+    document.querySelector("#address_filial").innerHTML=item.address
+    document.querySelector("#swiper_filial_one").innerHTML=`<div class="swiper-slide">
+    <img src='${item.image}' />
+    </div>`
+    document.querySelector("#swiper_filial_two").innerHTML=`<div class="swiper-slide">
+    <img src='${item.image}' />
+    </div>`
+    item.images.map(image=>{
+    document.querySelector("#swiper_filial_one").innerHTML+=`<div class="swiper-slide">
+    <img src='${image.image}' />
+    </div>`
+    document.querySelector("#swiper_filial_two").innerHTML+=`<div class="swiper-slide">
+    <img src='${image.image}' />
+    </div>`
+    var swiper = new Swiper(".mySwiper", {
+      spaceBetween: 10,
+      slidesPerView: 4,
+      freeMode: true,
+      watchSlidesProgress: true,
+      autoplay: {
+       delay: 5000,
+      },
+      });
+      var swiper2 = new Swiper(".mySwiper2", {
+      spaceBetween: 10,
+      navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+      },
+      autoplay: {
+       delay: 5000,
+      },
+      thumbs: {
+      swiper: swiper,
+      },
+      });
+    })
+    item.min_time?document.querySelector("#filial_min-time").innerHTML+=`from ${item.min_time} hour`:document.querySelector("#filial_min-time").innerHTML=`from 0 hour`
+
+    document.querySelector("#description_filial").innerHTML=item.description?item.description:"No description"
+    if(item.xususiyat.length>0){
+      item.xususiyat.map(xususiyat=>{
+        document.querySelector("#xususiyat_filial").innerHTML+=`
+        <li class="text-black-900 font-light flex text-xl md:text-4xl"><i style="font-size: 25px;" class='bx bx-check-double text-success w-4 h-4 mr-2 lg:w-6 lg:h-6 lg:mr-3'></i> ${xususiyat.title.length}</li>
+        `
+      })
+    }else{
+      document.querySelector("#xususiyat_filial").innerHTML="No Peculiarities"
+    }
+    if(item.master.length>0){
+     item.master.map(master=>{
+      document.querySelector("#master_description_all").innerHTML+=master.description
+     })
+    }else{
+      document.querySelector("#master_description_all").innerHTML="No Requirements for a master"
+    }
+    setTimeout(() => {
+      console.log('====================================');
+      console.log(masterMas);
+      console.log('====================================');
+      if(item.master.length>0){
+        masterMas.map(master=>{
+          document.querySelector(`#Filial_get`).innerHTML+=`<div id="filial_big">
+          <div>
+              <p class="filial_big_title">Photo</p>
+              <div class="filial_master_big_img_div">
+                  <img src='${master.mutahasis_image[0].image}' alt="">
+                  <div class="filial_master_big_img_div_text">
+                  <p>More details</p>
+                  </div>
+              </div></div>
+              <div class="filial_big_Specialization">
+              <p class="filial_big_title">Specialization</p>
+              <div class="filial_master_big_div_text">${master.categoryName}</div>
+          </div>
+          <div class="filial_big_time_div">
+              <p class="filial_big_title">date:<input type="date" class="filial_big_input"></p>
+              <div class="filial_master_big_div_time">
+                  <div class="filial_master_big_div_time_number">10:00</div>
+                  <div class="filial_master_big_div_time_number">10:00</div>
+                  <div class="filial_master_big_div_time_number">10:00</div>
+                  <div class="filial_master_big_div_time_number">10:00</div>
+                  <div class="filial_master_big_div_time_number">10:00</div>
+                  <div class="filial_master_big_div_time_number">10:00</div>
+                  <div class="filial_master_big_div_time_number">10:00</div>
+                  <div class="filial_master_big_div_time_number">10:00</div>
+                  <div class="filial_master_big_div_time_number">10:00</div>
+                  <div class="filial_master_big_div_time_number">10:00</div>
+                  <div class="filial_master_big_div_time_number">10:00</div>
+                  <div class="filial_master_big_div_time_number">10:00</div>
+              </div>
+          </div>
+          <div>
+              <p class="filial_big_title">Price per hour</p>
+              <p class="filial_master_big_div_money">250 ₽</p>
+          </div>
+              <button class="filial_master_big_div_button">Choose</button>
+          </div>`
+        })
+      }else{
+         document.querySelector("#Filial_get").innerHTML=`<p class="text-xl leading-5 md:text-4xl md:leading-7 text-black">No places found
+         </p>`
+      }
+      
+    }, 100);
+   }
+   })
+})
+.catch(error => {
+  console.error(error);
+});
+
+function Filtir_filial(){
+  var value=document.querySelector("#filial_input").value;
+  fetch('http://localhost:5002/api/filyal', {
+    method: 'GET'
+  })
+  .then(response => response.json())
+  .then(res=>{
+    res.map(item=>{
+      if(item.id==localStorage.getItem("FilialId")){
+         var Filter=item.master.filter(item=>item.time_create.slice(0,10)==value)
+         Filter.map(filter=>{
+         console.log(filter,'fsdfghjk');
+         masterMas.push(filter)
+        })
+          console.log('====================================');
+          console.log(Filter);
+          console.log('===================================='); 
+      }
+    })
+   
+  }).catch(err=>{
+    console.log(err);
+  })
 }
