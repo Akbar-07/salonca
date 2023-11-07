@@ -268,6 +268,7 @@ function SelectOpen(id,name) {
   }
 }
 
+var filial_masterM=[]
 
 fetch('http://localhost:5002/api/filyal', {
   method: 'GET'
@@ -307,7 +308,7 @@ fetch('http://localhost:5002/api/filyal', {
       freeMode: true,
       watchSlidesProgress: true,
       autoplay: {
-       delay: 1000,
+       delay: 5000,
       },
       });
       var swiper2 = new Swiper(".mySwiper2", {
@@ -317,7 +318,7 @@ fetch('http://localhost:5002/api/filyal', {
       prevEl: ".swiper-button-prev",
       },
       autoplay: {
-       delay: 1000,
+       delay: 5000,
       },
       thumbs: {
       swiper: swiper,
@@ -345,12 +346,14 @@ fetch('http://localhost:5002/api/filyal', {
     }
     if(item.master.length>0){
         item.master.map(master=>{
-          document.querySelector(`#Filial_get`).innerHTML+=`<div id="filial_big">
+          filial_masterM.push(master)
+          document.querySelector("#Filial_get").innerHTML+=`<div id="filial_big">
           <div>
               <p class="filial_big_title">Photo</p>
-              <div class="filial_master_big_img_div">
+              <div  class="filial_master_big_img_div">
                   <img src='${master.mutahasis_image.length>0?master.mutahasis_image[0].image:"salom"}' alt=${master.tavsif}>
-                  <div class="filial_master_big_img_div_text">
+                  <div onclick="filial_master('${master.id}')"
+                  class="filial_master_big_img_div_text">
                   <p>More details</p>
                   </div>
               </div></div>
@@ -359,102 +362,184 @@ fetch('http://localhost:5002/api/filyal', {
               <div class="filial_master_big_div_text">${master.categoryName}</div>
           </div>
           <div class="filial_big_time_div">
-              <p class="filial_big_title">date:<input type="date" class="filial_big_input"></p>
+              <p class="filial_big_title">date:<input id="filial_input" type="date" class="filial_big_input"></p>
               <div class="filial_master_big_div_time">
-                  <div class="filial_master_big_div_time_number">10:00</div>
-                  <div class="filial_master_big_div_time_number">10:00</div>
-                  <div class="filial_master_big_div_time_number">10:00</div>
-                  <div class="filial_master_big_div_time_number">10:00</div>
-                  <div class="filial_master_big_div_time_number">10:00</div>
-                  <div class="filial_master_big_div_time_number">10:00</div>
-                  <div class="filial_master_big_div_time_number">10:00</div>
-                  <div class="filial_master_big_div_time_number">10:00</div>
-                  <div class="filial_master_big_div_time_number">10:00</div>
-                  <div class="filial_master_big_div_time_number">10:00</div>
-                  <div class="filial_master_big_div_time_number">10:00</div>
-                  <div class="filial_master_big_div_time_number">10:00</div>
               </div>
           </div>
           <div>
               <p class="filial_big_title">Price per hour</p>
-              <p class="filial_master_big_div_money">250 ₽</p>
+              <p class="filial_master_big_div_money">${master.price} ₽</p>
           </div>
               <button class="filial_master_big_div_button">Choose</button>
           </div>`
+          master.mutahasis_time.map(item=>{
+            document.querySelector(".filial_master_big_div_time").innerHTML+=`<div class="filial_master_big_div_time_number">${item.time}</div>`
+          })
         })
     }else{
          document.querySelector("#Filial_get").innerHTML=`<p class="text-xl leading-5 md:text-4xl md:leading-7 text-black">No places found
          </p>`
     }
-   })
+  })
 })
 .catch(error => {
   console.error(error);
 });
 
-function Filtir_filial(){
-  var value=document.querySelector("#filial_input").value;
-  fetch('http://localhost:5002/api/filyal', {
-    method: 'GET'
-  })
-  .then(response => response.json())
-  .then(res=>{
-    document.querySelector(`#Filial_get`).innerHTML=""
-    const data=res.filter(item=>item.id==localStorage.getItem("FilialId"))
-    console.log(value,"filial");
-    data.map(item=>{
-         var Filter=item.master.filter(item2=>item2.time_create.slice(0,10)==value)
-         console.log(Filter,"filtr ishladi");
-         category.map(category2=>{
-          for (let i = 0; i < category2.length; i++) {
-            for (let j = 0; j < Filter.length; j++) {
-             if(category2[i].id==Filter[j].category){
-               Filter[j].categoryName=category2[i].category
-             }  
-            }
-           }
-        })
-         Filter.map(filter=>{
-          document.querySelector(`#Filial_get`).innerHTML+=`<div id="filial_big">
-          <div>
-              <p class="filial_big_title">Photo</p>
-              <div class="filial_master_big_img_div">
-              <img src='${filter.mutahasis_image.length>0?filter.mutahasis_image[0].image:"salom"}' alt=${filter.tavsif}>
-                  <div class="filial_master_big_img_div_text">
-                  <p>More details</p>
-                  </div>
-              </div></div>
-              <div class="filial_big_Specialization">
-              <p class="filial_big_title">Specialization</p>
-              <div class="filial_master_big_div_text">${filter.categoryName}</div>
-          </div>
-          <div class="filial_big_time_div">
-              <p class="filial_big_title">date:<input type="date" class="filial_big_input"></p>
-              <div class="filial_master_big_div_time">
-                  <div class="filial_master_big_div_time_number">10:00</div>
-                  <div class="filial_master_big_div_time_number">10:00</div>
-                  <div class="filial_master_big_div_time_number">10:00</div>
-                  <div class="filial_master_big_div_time_number">10:00</div>
-                  <div class="filial_master_big_div_time_number">10:00</div>
-                  <div class="filial_master_big_div_time_number">10:00</div>
-                  <div class="filial_master_big_div_time_number">10:00</div>
-                  <div class="filial_master_big_div_time_number">10:00</div>
-                  <div class="filial_master_big_div_time_number">10:00</div>
-                  <div class="filial_master_big_div_time_number">10:00</div>
-                  <div class="filial_master_big_div_time_number">10:00</div>
-                  <div class="filial_master_big_div_time_number">10:00</div>
-              </div>
-          </div>
-          <div>
-              <p class="filial_big_title">Price per hour</p>
-              <p class="filial_master_big_div_money">250 ₽</p>
-          </div>
-              <button class="filial_master_big_div_button">Choose</button>
-          </div>`
-        })
-    })
+
+
+// function Filtir_filial(){
+//   var value=document.querySelector("#filial_input").value;
+//   fetch('http://localhost:5002/api/filyal', {
+//     method: 'GET'
+//   })
+//   .then(response => response.json())
+//   .then(res=>{
+//     document.querySelector(`#Filial_get`).innerHTML=""
+//     const data=res.filter(item=>item.id==localStorage.getItem("FilialId"))
+//     console.log(value,"filial");
+//     if(value){
+//     data.map(item=>{
+//          var Filter=item.master.filter(item2=>item2.time_create.slice(0,10)==value)
+//          console.log(Filter,"filtr ishladi");
+//          category.map(category2=>{
+//           for (let i = 0; i < category2.length; i++) {
+//             for (let j = 0; j < Filter.length; j++) {
+//              if(category2[i].id==Filter[j].category){
+//                Filter[j].categoryName=category2[i].category
+//              }  
+//             }
+//            }
+//         })
+//          Filter.map(filter=>{
+//           document.querySelector(`#Filial_get`).innerHTML+=`<div id="filial_big">
+//           <div>
+//               <p class="filial_big_title">Photo</p>
+//               <div class="filial_master_big_img_div">
+//               <img src='${filter.mutahasis_image.length>0?filter.mutahasis_image[0].image:"salom"}' alt=${filter.tavsif}>
+//                   <div class="filial_master_big_img_div_text">
+//                   <p>More details</p>
+//                   </div>
+//               </div></div>
+//               <div class="filial_big_Specialization">
+//               <p class="filial_big_title">Specialization</p>
+//               <div class="filial_master_big_div_text">${filter.categoryName}</div>
+//           </div>
+//           <div class="filial_big_time_div">
+//               <p class="filial_big_title">date:<input id="filial_input" type="date" class="filial_big_input"></p>
+//               <div class="filial_master_big_div_time">
+//               </div>
+//           </div>
+//           <div>
+//               <p class="filial_big_title">Price per hour</p>
+//               <p class="filial_master_big_div_money">${filter.price} ₽</p>
+//           </div>
+//               <button class="filial_master_big_div_button">Choose</button>
+//           </div>`
+//           filter.mutahasis_time.map(time=>{
+//             document.querySelector(".filial_master_big_div_time").innerHTML+=`<div class="filial_master_big_div_time_number">${time.time}</div>`
+//           })
+//         })
+//     })
+//     }else{
+//       data.map(item=>{
+//         category.map(category2=>{
+//          for (let i = 0; i < category2.length; i++) {
+//            for (let j = 0; j < item.master.length; j++) {
+//             if(category2[i].id==item.master[j].category){
+//               item.master[j].categoryName=category2[i].category
+//             }  
+//            }
+//           }
+//        })
+//        item.master.map(filter=>{
+//          document.querySelector(`#Filial_get`).innerHTML+=`<div id="filial_big">
+//          <div>
+//              <p class="filial_big_title">Photo</p>
+//              <div class="filial_master_big_img_div">
+//              <img src='${filter.mutahasis_image.length>0?filter.mutahasis_image[0].image:"salom"}' alt=${filter.tavsif}>
+//                  <div class="filial_master_big_img_div_text">
+//                  <p>More details</p>
+//                  </div>
+//              </div></div>
+//              <div class="filial_big_Specialization">
+//              <p class="filial_big_title">Specialization</p>
+//              <div class="filial_master_big_div_text">${filter.categoryName}</div>
+//          </div>
+//          <div class="filial_big_time_div">
+//              <p class="filial_big_title">date:<input id="filial_input"  type="date" class="filial_big_input"></p>
+//              <div class="filial_master_big_div_time">
+//              </div>
+//          </div>
+//          <div>
+//              <p class="filial_big_title">Price per hour</p>
+//              <p class="filial_master_big_div_money">${filter.price} ₽</p>
+//          </div>
+//              <button class="filial_master_big_div_button">Choose</button>
+//          </div>`
+//          filter.mutahasis_time.map(time=>{
+//           document.querySelector(".filial_master_big_div_time").innerHTML+=`<div class="filial_master_big_div_time_number">${time.time}</div>`
+//         })
+//        })
+//    })
+//     }
+    
    
-  }).catch(err=>{
-    console.log(err);
+//   }).catch(err=>{
+//     console.log(err);
+//   })
+// }
+
+
+function filial_master(id){
+  const Filter=filial_masterM.filter(item=>item.id==id)
+  document.querySelector("#filial_master").style="display:flex;"
+  Filter.map(item=>{
+      document.querySelector("#filial_master_title").innerHTML=item.categoryName
+      item.mutahasis_image.map(mutahasis_image=>{
+      document.querySelector("#filial_master_swiper_one").innerHTML+=`
+      <div class="swiper-slide">
+          <img src='${mutahasis_image.image}' />
+      </div>`
+      document.querySelector("#filial_master_swiper_two").innerHTML+=`
+      <div class="swiper-slide">
+          <img src='${mutahasis_image.image}' />
+      </div>`
+      var swiper = new Swiper(".mySwiper4", {
+        spaceBetween: 10,
+        slidesPerView: 4,
+        freeMode: true,
+        watchSlidesProgress: true,
+        autoplay: {
+         delay: 5000,
+        },
+        });
+        var swiper2 = new Swiper(".mySwiper3", {
+        spaceBetween: 10,
+        navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+        },
+        autoplay: {
+         delay: 5000,
+        },
+        thumbs: {
+        swiper: swiper,
+        },
+        });
+      })
+      document.querySelector("#filial_master_destcription").innerHTML=item.description
+      item.mutahasis_time.map(mutahasis_time=>{
+      document.querySelector("#filial_master_time").innerHTML+=`<div class="filial_master_big_div_time_number">${mutahasis_time.time}</div>`
+      })
   })
+}
+
+function filial_master_close(){
+  document.querySelector("#filial_master").style="display:none;"
+  document.querySelector("#filial_master_title").innerHTML=""
+  document.querySelector("#filial_master_swiper_one").innerHTML=""
+  document.querySelector("#filial_master_swiper_two").innerHTML=""
+  document.querySelector("#filial_master_destcription").innerHTML=""
+  document.querySelector("#filial_master_time").innerHTML=""
 }
