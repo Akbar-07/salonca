@@ -1,6 +1,6 @@
 
 
-// const API ='https://salonca.onrender.com/api/filials' 
+// const API ='http://localhost:5002/api/filials' 
 // const getData =(resource)=>{
 //   return new Promise((resolve,reject)=>{
 //     const request = new XMLHttpRequest()
@@ -22,7 +22,7 @@
 
 
 
-fetch('https://salonca.onrender.com/api/filyal', {
+fetch('http://localhost:5002/api/filyal', {
   method: 'GET'
 }).catch(err=>{
  
