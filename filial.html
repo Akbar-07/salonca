@@ -4,21 +4,19 @@
 <head>
     <link rel="icon" href="../favicon.ico">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="true">
-    <link rel="preconnect" href="https://mc.yandex.ru">
     <link rel="preconnect" href="https://vk.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <meta name="viewport" content="width=device-width">
     <meta charset="utf-8">
-    <title>Арендуйте рабочее место в INDI</title>
-    <meta name="yandex-verification" content="159cb0b667293f58">
-    <meta property="og:title" content="Арендуйте рабочее место в INDI">
+    <title></title>
+    <meta property="og:title" content="">
     <meta property="og:description"
         content="Арендуйте рабочее место в INDI. Никаких скрытых платежей. Вы платите только за аренду. От одного часа">
     <meta name="description"
         content="Арендуйте рабочее место в INDI. Никаких скрытых платежей. Вы платите только за аренду. От одного часа">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://salonca.ru/coworking/indi">
-    <link href="indi.html" rel="canonical" as="">
+    <meta property="og:url" content="./filial.html">
+    <link href="filial.html" rel="canonical" as="">
     <meta property="og:site_name" content="salonca.ru">
     <meta property="og:image"
         content="https://salonca.ruhttps://salonca.ru/RciCrM7yeH7QFKEaJYTsW2sI8o28qvCVr0IDKjM8W-0/rs:fill:437:340:1/mh:420/dpr:2/g:ce/czM6Ly9zYWxvbmNhLWRldi1idWNrZXQvaW1hZ2VzLzEyMmEwNjgzLWVlYWEtNGMxMy05YjRlLTNhYTE1ZDlhM2EwMS9iMzRhNzU3NS1iOTM3LTRhZDEtODNkMi1mODlmOWE2ZDA1N2YuanBn.jpg">
@@ -921,7 +919,7 @@
                                             text-decoration: none;
                                         }
                                     </style><button class="MuiButtonBase-root css-1l4z0yi" tabindex="0"
-                                        type="button" onclick="map()">View on map</button>
+                                        type="button" onclick="filial_map_open()">View on map</button>
                                 </div>
                             </div><a
                                 class="hidden md:inline-flex inline-flex relative justify-center items-center disabled:opacity-50 min-h-sm lg:min-h-md p-2 text-xl md:text-3xl bg-primary text-white font-bold hover:bg-blue-300 disabled:hover:bg-primary rounded-lg"
@@ -3624,13 +3622,59 @@
         </div>
         <h1  class="filial_big_div_mutahasis_div_title_small">Description</h1> 
         <p id="filial_master_destcription"></p>
+        <h1 id="filail_xususiyat_title" class="filial_big_div_mutahasis_div_title_small">Peculiarities</h1>
+        <div id="filail_xususiyat">
+        </div>
         <h1 class="filial_big_div_mutahasis_div_title_small">Date:  <input class="filial_big_input" type="date"></h1>
         <div id="filial_master_time" class="filial_master_big_div_time">
         </div>
         <button class="filial_big_div_mutahasis_div_button">Book</button>
      </div>
     </div>
+    <style>
+        #map {
+            width: 60%;
+            height: 100%;
+            z-index: 100000000;
+        }
+    </style>
+        <script src="https://api-maps.yandex.com/2.1/?lang=en_US" type="text/javascript"></script>
+        <script type="text/javascript">
+            ymaps.ready(init);
+    
+            function init() {
+                fetch("https://salonca.onrender.com/api/filyal",{
+                    method:'GET'
+                }).
+                then(response=>response.json())
+                .then(data=>{
+                const Filter=data.filter(item=>item.id==localStorage.getItem("FilialId"))
+                setTimeout(() => {
+                Filter.map(item=>{
+                var map = new ymaps.Map("map", {
+                center: [item.location, item.longuage],
+                zoom: 12 
+                });
+    
+                var placemark = new ymaps.Placemark([item.location, item.longuage], {
+                    // hintContent: 'To\'shkent'
+                });
+    
+                map.geoObjects.add(placemark);    
+                })
+                }, 1000);
+                })
+            }
+        </script>
 
+    <div id="filial_map_modal" class="filial_big_map">
+    <div class="filial_big_map_div">
+        <div class="filial_big_map_div_close"><i onclick="filial_map_close()" class='bx bx-x'></i></div>
+        <div id="filial_big_map_div_one" class="filial_big_map_div_one">
+        </div>
+        <div id="map"></div>
+    </div>
+    </div>
 
     <!-- <div class="mpdal-oyna-map">
         <div class="MuiBackdrop-root css-919eu4">
@@ -3772,9 +3816,8 @@
     </div>
  -->
 
-        
+
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <!-- Initialize Swiper -->
     <script>
       var swiper = new Swiper(".mySwiper", {
         spaceBetween: 10,
@@ -3799,10 +3842,7 @@
         },
       });
     </script>
-                                  <!-- Swiper -->
    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-                            
-                                  <!-- Initialize Swiper -->
     <script>
                                   var swiper = new Swiper(".mySwiper", {
                                   spaceBetween: 10,

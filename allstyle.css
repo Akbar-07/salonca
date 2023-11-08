@@ -136,6 +136,21 @@ margin-bottom: 10px;
     margin-right: -5px !important;
     margin-top: -5px !important;
   }
+  .filial_big_map_div{
+    flex-wrap: wrap;
+    /* flex-direction: column-reverse; */
+  }
+  .filial_big_map_div_one{
+    width: 100%;
+    padding-top: 15px !important;
+    padding-left: 10px !important;
+    padding-right: 10px;
+    padding-bottom: 15px;
+  }
+  #map{
+    width: 100% !important;
+    height: 50% !important;
+  }
 }
 .Filtir_big{
   width: 100%;
@@ -491,4 +506,55 @@ margin-bottom: 30px;
   color: #3d5a80;
   margin-top: 10px;
   margin-bottom: 10px;
+}
+.filial_big_map{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background-color: #2932419b;
+  z-index:10000;
+}
+.filial_big_map_div{
+  width:870px;
+  max-width:100%;
+  border-radius:10px;
+  background-color:white;
+  height:93vh;
+  display:flex;
+  align-items: start;
+  gap:20px;
+  overflow: hidden;
+  overflow-y: scroll;
+  margin: 10px;
+  position: relative;
+}
+.filial_big_map_div::-webkit-scrollbar{
+  display: none;
+}
+.filial_big_map_div_one{
+  /* width: 50%; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 20px;
+  padding-left: 15px;
+}
+.filial_big_map_div_close i{
+  padding: 2px;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  cursor: pointer;
+  font-size: 20px;
+  background-color: #dcdcdc;
+  border-radius: 50%;
+  color: #fff;
+  z-index: 10000000000000;
 }

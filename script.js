@@ -115,7 +115,7 @@ function DataOpen() {
 function map(){
   document.querySelector(".qora-oyna-indi").style=`display:block`
 }
-fetch('http://localhost:5002/api/filyal', {
+fetch('https://salonca.onrender.com/api/filyal', {
   method: 'GET'
 })
 .then(response => response.json())
@@ -241,7 +241,7 @@ fetch('http://localhost:5002/api/filyal', {
   console.error(error);
 });
 var category=[]
-fetch('http://localhost:5002/api/category', {
+fetch('https://salonca.onrender.com/api/category', {
   method: 'GET'
 })
 .then(response => response.json())
@@ -270,13 +270,12 @@ function SelectOpen(id,name) {
 
 var filial_masterM=[]
 
-fetch('http://localhost:5002/api/filyal', {
+fetch('https://salonca.onrender.com/api/filyal', {
   method: 'GET'
 })
 .then(response => response.json())
 .then(data => {
   const Filter1=data.filter(item=>item.id==localStorage.getItem("FilialId"))
-  console.log(Filter1,"salom");
   Filter1.map((item,key)=>{
     category.map(category2=>{
       for (let i = 0; i < category2.length; i++) {
@@ -380,6 +379,120 @@ fetch('http://localhost:5002/api/filyal', {
          document.querySelector("#Filial_get").innerHTML=`<p class="text-xl leading-5 md:text-4xl md:leading-7 text-black">No places found
          </p>`
     }
+    document.querySelector("#filial_big_map_div_one").innerHTML=`
+    <div
+                class="grid relative grid-rows-[1fr,152px] rounded-xl overflow-hidden bg-white shadow"
+                onclick='localStorage.setItem("FilialId",${item.id})'
+              >
+                <div class="grid gap-1 px-4 pt-3 pb-1.5">
+                  <h2 class="text-xl leading-5 truncate text-black font-bold">
+                    ${item.name}
+                  </h2>
+                  <div class="grid gap-2 grid-flow-col justify-start">
+                    <div
+                      class="w-2.5 h-2.5 rounded-full mt-[5px]"
+                      style="background-color: #915133"
+                    ></div>
+                    <div
+                      class="text-xl font-light leading-5 text-black-900 truncate"
+                      itemprop="address"
+                    >${item.address}</div>
+                  </div>
+                  <div class="flex gap-1 h-[26px]">
+                    <p class="text-xl leading-5 text-primary">from ${item.master.length>0?item.master[0].price:"0"} ₽/hour</p>
+                    <div class="text-xl leading-5 text-blue-100">
+                      · from ${item.min_time} hour
+                    </div>
+                  </div>
+                </div>
+                <a
+                  aria-label='${item.name}'
+                  class="grid before:content-[&quot;&quot;] before:absolute before:top-0 before:left-0 before:z-10 before:w-full before:h-full image-placeholder"
+                  href="/filial.html"
+                  target="_top"
+                  ><span
+                    style="
+                      box-sizing: border-box;
+                      display: block;
+                      overflow: hidden;
+                      width: initial;
+                      height: initial;
+                      background: none;
+                      opacity: 1;
+                      border: 0;
+                      margin: 0;
+                      padding: 0;
+                      position: relative;
+                    "
+                    ><span
+                      style="
+                        box-sizing: border-box;
+                        display: block;
+                        width: initial;
+                        height: initial;
+                        background: none;
+                        opacity: 1;
+                        border: 0;
+                        margin: 0;
+                        padding: 0;
+                        padding-top: 60.97560975609756%;
+                      "
+                    ></span
+                    ><img
+                      alt='${item.name}'
+                      src='${item.image}'
+                      decoding="async"
+                      data-nimg="responsive"
+                      style="
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        bottom: 0;
+                        right: 0;
+                        box-sizing: border-box;
+                        padding: 0;
+                        border: none;
+                        margin: auto;
+                        display: block;
+                        width: 0;
+                        height: 0;
+                        min-width: 100%;
+                        max-width: 100%;
+                        min-height: 100%;
+                        max-height: 100%;
+                        object-fit: cover;
+                        object-position: center;
+                      " /><noscript
+                      ><img
+                        alt='${item.name}'
+                        sizes="100vw"
+                        src="_next/czM6Ly9zYWxvbmNhLWRldi1idWNrZXQvaW1hZ2VzLzEyMmEwNjgzLWVlYWEtNGMxMy05YjRlLTNhYTE1ZDlhM2EwMS9iMzRhNzU3NS1iOTM3LTRhZDEtODNkMi1mODlmOWE2ZDA1N2YuanBn.jpeg?url=https%3A%2F%2Fsalonca.ru%2Fimages%2Fy9Nqkao9c_fgHkVORA5Q8ivq8yqs8zTBBj2FlA9ZBf8%2Frs%3Afill%3A327%3A200%3A1%2Fmh%3A420%2Fdpr%3A2%2Fg%3Ace%2FczM6Ly9zYWxvbmNhLWRldi1idWNrZXQvaW1hZ2VzLzEyMmEwNjgzLWVlYWEtNGMxMy05YjRlLTNhYTE1ZDlhM2EwMS9iMzRhNzU3NS1iOTM3LTRhZDEtODNkMi1mODlmOWE2ZDA1N2YuanBn.jpg&amp;w=3840&amp;q=75"
+                        decoding="async"
+                        data-nimg="responsive"
+                        style="
+                          position: absolute;
+                          top: 0;
+                          left: 0;
+                          bottom: 0;
+                          right: 0;
+                          box-sizing: border-box;
+                          padding: 0;
+                          border: none;
+                          margin: auto;
+                          display: block;
+                          width: 0;
+                          height: 0;
+                          min-width: 100%;
+                          max-width: 100%;
+                          min-height: 100%;
+                          max-height: 100%;
+                          object-fit: cover;
+                          object-position: center;
+                        "
+                        loading="lazy" /></noscript></span
+                ></a>
+              </div>
+    `
   })
 })
 .catch(error => {
@@ -390,7 +503,7 @@ fetch('http://localhost:5002/api/filyal', {
 
 // function Filtir_filial(){
 //   var value=document.querySelector("#filial_input").value;
-//   fetch('http://localhost:5002/api/filyal', {
+//   fetch('https://salonca.onrender.com/api/filyal', {
 //     method: 'GET'
 //   })
 //   .then(response => response.json())
@@ -493,6 +606,7 @@ fetch('http://localhost:5002/api/filyal', {
 
 function filial_master(id){
   const Filter=filial_masterM.filter(item=>item.id==id)
+  document.querySelector("body").style="overflow:none;"
   document.querySelector("#filial_master").style="display:flex;"
   Filter.map(item=>{
       document.querySelector("#filial_master_title").innerHTML=item.categoryName
@@ -532,14 +646,37 @@ function filial_master(id){
       item.mutahasis_time.map(mutahasis_time=>{
       document.querySelector("#filial_master_time").innerHTML+=`<div class="filial_master_big_div_time_number">${mutahasis_time.time}</div>`
       })
+      item.xususiyat_mutahasis.map(xusuyat=>{
+        fetch("https://salonca.onrender.com/api/xususiyatlar",{
+          method:'GET'
+        }).then(response=>response.json()).then(res=>{
+          const Filter10=res.filter(res1=>res1.id==xusuyat.xususiyat_id)
+          if(Filter10){
+              Filter10.map(item=>{
+                document.querySelector("#filail_xususiyat").innerHTML+=`<li style="font-size: 15px;font-weight: 500;color: #3D5A80;" class="text-black-900 font-light flex text-xl md:text-4xl"><i style="line-height: 1.9;margin-right: 0;"  class='bx bx-check-double text-success w-4 h-4 mr-2 lg:w-6 lg:h-6 lg:mr-3'></i>${item.title}</li>`  
+              })
+          }else{
+             document.querySelector("#filail_xususiyat").innerHTML="No Peculiarities"
+          }
+        })
+        
+      })
   })
 }
 
 function filial_master_close(){
+  document.querySelector("body").style="overflow:scroll;"
   document.querySelector("#filial_master").style="display:none;"
   document.querySelector("#filial_master_title").innerHTML=""
   document.querySelector("#filial_master_swiper_one").innerHTML=""
   document.querySelector("#filial_master_swiper_two").innerHTML=""
   document.querySelector("#filial_master_destcription").innerHTML=""
   document.querySelector("#filial_master_time").innerHTML=""
+}
+
+function filial_map_open(){
+document.querySelector("#filial_map_modal").style="display:flex"
+}
+function filial_map_close(){
+  document.querySelector("#filial_map_modal").style="display:none"
 }
