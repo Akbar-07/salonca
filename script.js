@@ -380,7 +380,8 @@ fetch('https://salonca.onrender.com/api/filyal', {
     if(item.master.length>0){
         item.master.map(master=>{
           filial_masterM.push(master)
-          document.querySelector("#Filial_get").innerHTML+=`<div id="filial_big">
+          document.querySelector("#Filial_get").innerHTML+=`
+          <div id="filial_big">
           <div>
               <p class="filial_big_title">Photo</p>
               <div  class="filial_master_big_img_div">
@@ -404,7 +405,7 @@ fetch('https://salonca.onrender.com/api/filyal', {
               <p class="filial_master_big_div_money">${master.price} ₽</p>
           </div>
               <button class="filial_master_big_div_button">Choose</button>
-          </div>`
+          </div><hr/>`
           master.mutahasis_time.map(item=>{
             document.querySelector(".filial_master_big_div_time").innerHTML+=`<div class="filial_master_big_div_time_number">${item.time}</div>`
           })
@@ -643,58 +644,72 @@ function filial_master(id){
   document.querySelector("body").style="overflow:none;"
   document.querySelector("#filial_master").style="display:flex;"
   Filter.map(item=>{
-      document.querySelector("#filial_master_title").innerHTML=item.categoryName
-      item.mutahasis_image.map(mutahasis_image=>{
-      document.querySelector("#filial_master_swiper_one").innerHTML+=`
-      <div class="swiper-slide">
-          <img src='${mutahasis_image.image}' />
-      </div>`
-      document.querySelector("#filial_master_swiper_two").innerHTML+=`
-      <div class="swiper-slide">
-          <img src='${mutahasis_image.image}' />
-      </div>`
-      var swiper = new Swiper(".mySwiper4", {
-        spaceBetween: 10,
-        slidesPerView: 4,
-        freeMode: true,
-        watchSlidesProgress: true,
-        autoplay: {
-         delay: 5000,
-        },
-        });
-        var swiper2 = new Swiper(".mySwiper3", {
-        spaceBetween: 10,
-        navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-        },
-        autoplay: {
-         delay: 5000,
-        },
-        thumbs: {
-        swiper: swiper,
-        },
-        });
-      })
-      document.querySelector("#filial_master_destcription").innerHTML=item.description
-      item.mutahasis_time.map(mutahasis_time=>{
-      document.querySelector("#filial_master_time").innerHTML+=`<div class="filial_master_big_div_time_number">${mutahasis_time.time}</div>`
-      })
+      document.querySelector("#filial_master_title").innerHTML=item.categoryName?item.categoryName:"No name"
+      if (item.mutahasis_image.length>0) {
+        item.mutahasis_image.map(mutahasis_image=>{
+          document.querySelector("#filial_master_swiper_one").innerHTML+=`
+          <div class="swiper-slide">
+              <img src='${mutahasis_image.image}' />
+          </div>`
+          document.querySelector("#filial_master_swiper_two").innerHTML+=`
+          <div class="swiper-slide">
+              <img src='${mutahasis_image.image}' />
+          </div>`
+          var swiper = new Swiper(".mySwiper4", {
+            spaceBetween: 10,
+            slidesPerView: 4,
+            freeMode: true,
+            watchSlidesProgress: true,
+            autoplay: {
+             delay: 5000,
+            },
+            });
+          var swiper2 = new Swiper(".mySwiper3", {
+            spaceBetween: 10,
+            navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+            },
+            autoplay: {
+             delay: 5000,
+            },
+            thumbs: {
+            swiper: swiper,
+            },
+          });
+        })
+      }else{
+        document.querySelector("#filial_master_swiper_one").innerHTML=`<div class="swiper-slide">
+        <img src='No img' alt="No img"/>
+    </div>`
+        document.querySelector("#filial_master_swiper_two").innerHTML=`<div class="swiper-slide">
+        <img src='No img' alt="No img"/>
+    </div>`
+      }
+      document.querySelector("#filial_master_destcription").innerHTML=item.description?item.description:"No description"
+      if(item.mutahasis_time.length>0){
+        item.mutahasis_time.map(mutahasis_time=>{
+          document.querySelector("#filial_master_time").innerHTML+=`<div class="filial_master_big_div_time_number">${mutahasis_time.time}</div>`
+          })
+      }else{
+        document.querySelector("#filial_master_time").innerHTML="No time"
+      }
+      if(item.xususiyat_mutahasis.length>0){
       item.xususiyat_mutahasis.map(xusuyat=>{
         fetch("https://salonca.onrender.com/api/xususiyatlar",{
           method:'GET'
         }).then(response=>response.json()).then(res=>{
           const Filter10=res.filter(res1=>res1.id==xusuyat.xususiyat_id)
-          if(Filter10){
               Filter10.map(item=>{
                 document.querySelector("#filail_xususiyat").innerHTML+=`<li style="font-size: 15px;font-weight: 500;color: #3D5A80;" class="text-black-900 font-light flex text-xl md:text-4xl"><i style="line-height: 1.9;margin-right: 0;"  class='bx bx-check-double text-success w-4 h-4 mr-2 lg:w-6 lg:h-6 lg:mr-3'></i>${item.title}</li>`  
               })
-          }else{
-             document.querySelector("#filail_xususiyat").innerHTML="No Peculiarities"
-          }
         })
         
       })
+      }else{
+        document.querySelector("#filail_xususiyat").innerHTML="No Peculiarities"
+      }
+     
   })
 }
 
@@ -706,6 +721,7 @@ function filial_master_close(){
   document.querySelector("#filial_master_swiper_two").innerHTML=""
   document.querySelector("#filial_master_destcription").innerHTML=""
   document.querySelector("#filial_master_time").innerHTML=""
+  document.querySelector("#filail_xususiyat").innerHTML=""
 }
 
 function filial_map_open(){

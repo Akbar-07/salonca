@@ -359,12 +359,18 @@ display: none;
   margin-bottom: 10px;
   height: 12px;
 }
+#Filial_get{
+border-bottom: 1px solid #e5e7eb;
+border-top: 1px solid #e5e7eb;
+border-right: 1px solid #e5e7eb;
+}
 #filial_big{
 width: 90%;
 display: flex;
 align-items: start;
 gap: 17px;
 margin-bottom: 30px;
+margin-top: 30px;
 }
 .filial_master_big_div_money{
   color: #3d5a80;
@@ -560,7 +566,6 @@ margin-bottom: 30px;
 }
 
 
-
 .select_index1{
   display: none;
   width: 100% !important;
@@ -584,4 +589,51 @@ margin-bottom: 30px;
 }
 .select_index1 h1:hover{
   background-color: rgba(61, 90, 128, 0.12);
+}
+.filial_big_div_sharh{
+  width: 100%;
+}
+.mySwiperFilial {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.mySwiperFilial .swiper-slide {
+width: 300px !important;  
+padding: 10px;
+border-radius: 10px;
+}
+.filial_sharh_div{
+  width: 100%;
+}
+.filial_sharh_div_text_one{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.filial_sharh_div_text_one_stars{
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.filial_sharh_div_text_one_stars{
+  color: #fa6000;
+  cursor: pointer;
+}
+.filial_sharh_div p{
+  --tw-text-opacity: 1;
+  color: rgb(41 50 65/var(--tw-text-opacity));
+  font-weight: 300;
+  font-size: 15px;
+  text-align: start;
+}
+.filial_sharh_div h1{
+  font-weight: 800;
+  color: #3d5a80;
+  font-size: 17px;
+  text-align: start;
+}
+.filial_sharh_div_text_one p{
+  font-weight: 600;
+
 }
