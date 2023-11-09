@@ -593,18 +593,21 @@ margin-top: 30px;
 .filial_big_div_sharh{
   width: 100%;
 }
-.mySwiperFilial {
+.swiper1 {
   width: 100% !important;
   height: 100% !important;
 }
 
-.mySwiperFilial .swiper-slide {
+.swiper1 .swiper-slide {
 width: 300px !important;  
 padding: 10px;
 border-radius: 10px;
+background: #fff;
 }
 .filial_sharh_div{
   width: 100%;
+  margin: auto;
+  padding: 15px;
 }
 .filial_sharh_div_text_one{
   display: flex;
