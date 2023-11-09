@@ -90,8 +90,42 @@ function SelectOpen2(id) {
     }
   } else {
     document.querySelector("#select_index").style.display = "block";
+    document.querySelector("#select_index1").style.display = "none";
   }
 }
+
+// function SelectOpen3(id) {
+//   if (document.querySelector("#select_index1").style.display == "block") {
+//     if (id) {
+//       document.querySelector("#reg-select").innerHTML =
+//         document.querySelectorAll("#select_index_h11")[id].innerHTML;
+//       document.querySelector("#select_index1").style.display = "none";
+//       document.querySelector("#select_index1").style.display = "none";
+//     } else {
+//       document.querySelector("#select_index").style.display = "none";
+//       document.querySelector("#select_index1").style.display = "none";
+//     }
+//   } else {
+//     document.querySelector("#select_index1").style.display = "block";
+//     document.querySelector("#select_index").style.display = "none";
+//   }
+// }
+
+
+function SelectOpen3(id) {
+  if (document.querySelector("#select_index1").style.display == "block") {
+    if (id) {
+      document.querySelector("#reg-select1").innerHTML =
+        document.querySelectorAll("#select_index_h11")[id].innerHTML;
+      document.querySelector("#select_index1").style.display = "none";
+    } else {
+      document.querySelector("#select_index1").style.display = "none";
+    }
+  } else {
+    document.querySelector("#select_index1").style.display = "block";
+  }
+}
+
 function SelectOpenMedia(id) {
   if (document.querySelector("#select_index_media").style.display == "block") {
     if (id) {
