@@ -32,6 +32,8 @@ fetch('https://salonca.onrender.com/api/filyal', {
    data.map(item=>{
     document.querySelector("#seacrhmapjoy").innerHTML+=`
     <div
+    id="search_card"
+    onclick='localStorage.setItem("FilialId",${item.id})'
                 class="grid relative grid-rows-[1fr,152px] rounded-xl overflow-hidden bg-white shadow"
               >
                 <div class="grid gap-1 px-4 pt-3 pb-1.5">
@@ -58,7 +60,7 @@ fetch('https://salonca.onrender.com/api/filyal', {
                 <a
                   aria-label='${item.name}'
                   class="grid before:content-[&quot;&quot;] before:absolute before:top-0 before:left-0 before:z-10 before:w-full before:h-full image-placeholder"
-                  href="coworking/indi.html"
+                  href="/filial.html"
                   target="_top"
                   ><span
                     style="

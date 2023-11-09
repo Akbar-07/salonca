@@ -1392,7 +1392,7 @@
                                     }
                                 </style>
                                 <div  tabindex="0" role="button" aria-expanded="false" aria-haspopup="listbox"
-                                    aria-labelledby="reg-select-label reg-select" id="reg-select"
+                                    aria-labelledby="reg-select-label reg-select" id="home-specialization"
                                     class="MuiSelect-select MuiSelect-standard MuiInputBase-input css-1qlt8rc">Выберите
                                     специализацию</div>
                                 <style data-emotion="css 1k3x8v3">
@@ -1459,15 +1459,6 @@
                             </div>
                         </div>
                         <div id="select_index" class="select_index">
-                            <h1 onclick="SelectOpen3(0)" id="select_index_h1">Your specialization</h1>
-                            <h1 onclick="SelectOpen3(1)" id="select_index_h1">Hair stylist</h1>
-                            <h1 onclick="SelectOpen3(2)" id="select_index_h1">Visagiste</h1>
-                            <h1 onclick="SelectOpen3(3)" id="select_index_h1">Cosmetologist</h1>
-                            <h1 onclick="SelectOpen3(4)" id="select_index_h1">Мастер ногтевого сервиса</h1>
-                            <h1 onclick="SelectOpen3(5)" id="select_index_h1">Eyelash extension specialist</h1>
-                            <h1 onclick="SelectOpen3(6)" id="select_index_h1">Masseur</h1>
-                            <h1 onclick="SelectOpen3(7)" id="select_index_h1">Permanent Makeup Master</h1>
-                            <h1 onclick="SelectOpen3(8)" id="select_index_h1">Barber</h1>
                           </div>
                         </div>
                         <div>
@@ -3171,10 +3162,8 @@
                                             -webkit-animation-name: mui-auto-fill;
                                             animation-name: mui-auto-fill;
                                         }
-                                    </style><input type="text" aria-invalid="false"
-                                        aria-describedby="filter-date-1241-helper-text" id="filter-date-1241"
-                                        placeholder="" readonly="" value="26.10.2023"
-                                        class="MuiInput-input MuiInputBase-input css-mnn31">
+                                    </style>
+                                    <input class="MuiInput-input MuiInputBase-input css-mnn31" type="date">
                                 </div>
                     </div>
                         </div>
@@ -7777,12 +7766,63 @@
                     <div>
                         <script src="./search.js"></script>
                         <div class="card-list_list__kV3IG grid gap-4 sm:gap-x-3 my-4 sm:mb-8 sm:mt-0" id="seacrhmapjoy">
-
+                        
 
                         </div>
                         <div>
                             <nav aria-label="Навигация по страницам поиска"
-                                class="flex justify-between lg:grid lg:grid-flow-col lg:justify-center gap-2"><button
+                                class="flex justify-between lg:grid lg:grid-flow-col lg:justify-center gap-2">
+                                <div class="d_f">
+                                    <div id="pagination-container"  >
+                                        <!-- <span class="font-light border rounded-md border-blue-100 inline-flex text-primary h-12 w-12 justify-center items-center text-white bg-blue-100"></span> -->
+                                    </div>
+                                </div>
+                            </nav>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <style>
+            .light-theme{
+                display: flex;
+                gap: 10px !important;
+            }
+            #pagination-container .current{
+                display: inline-flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                width: 50px !important;
+                height: 50px !important;
+                color: white !important;
+                border-radius: 10px !important;
+                border: 1px solid #98c1d9 !important;
+                cursor: pointer !important;
+                background-color: #98c1d9 !important;
+            }
+            #pagination-container a{
+                display: inline-flex  !important;
+                align-items: center !important;
+                justify-content: center !important;
+                width: 50px !important;
+                height: 50px !important;
+                color: black !important;
+                border-radius: 10px !important;
+                border: 1px solid #98c1d9 !important;
+                cursor: pointer !important;
+            }
+            .d_f{
+                display: flex !important;
+            }
+            #pagination-container .prev,#pagination-container .next{
+               background: none !important;
+               border: none !important;
+               color:#98c1d9 !important ;
+            }
+        </style>
+        <!-- <button
                                     class="uppercase font-light rounded-md inline-flex text-blue-100 h-12 w-12 justify-center items-center text-blue-100/50"
                                     disabled="" tabindex="-1" aria-label="Перейти на предыдущую страницу"><svg
                                         class="h-5 w-5">
@@ -7795,28 +7835,40 @@
                                         class="font-light border rounded-md border-blue-100 inline-flex text-primary h-12 w-12 justify-center items-center"
                                         aria-label="Перейти на страницу 2" href="search-2.html?page=2" target=" _top"
                                         target="_top" target="_top">2</a>
-                                        <!-- <a
-                                        class="font-light border rounded-md border-blue-100 inline-flex text-primary h-12 w-12 justify-center items-center"
-                                        aria-label="Перейти на страницу 3" href="search-3.html?page=3" target=" _top"
-                                        target="_top" target="_top">3</a><a
-                                        class="font-light border rounded-md border-blue-100 inline-flex text-primary h-12 w-12 justify-center items-center"
-                                        aria-label="Перейти на страницу 4" href="search-4.html?page=4 target=" _top"
-                                        target="_top" target="_top">4</a><a
-                                        class="font-light border rounded-md border-blue-100 inline-flex text-primary h-12 w-12 justify-center items-center"
-                                        aria-label="Перейти на страницу 5" href="search-5.html?page=5" target="_top"
-                                        target="_top" target="_top">5</a> -->
+         
                                     </div>
                                 <button
                                     class="uppercase font-light rounded-md inline-flex text-blue-100 h-12 w-12 justify-center items-center"
                                     tabindex="0" aria-label="Перейти на следующую страницу"><svg class="h-5 w-5">
                                         <use xlink:href="/sprites/icons.svg#chevron-right"></use>
-                                    </svg></button>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </main>
+                                    </svg></button> -->
+       
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/simplePagination.js/1.4/jquery.simplePagination.min.js"></script>
+        
+        <script>
+        setTimeout(() => {
+        var items = $("#seacrhmapjoy #search_card");
+        var numItems = items.length;
+        var perPage = 20;
+        
+        items.slice(perPage).hide();
+        
+        $("#pagination-container").pagination({
+            items: numItems,
+            itemsOnPage: perPage,
+            prevText: "<i class='bx bx-chevron-right bx-rotate-180' ></i>",
+            nextText: "<i class='bx bx-chevron-right'></i>",
+            onPageClick : function (pageNumber){
+                var showFrom = perPage * (pageNumber - 1);
+                var showTo = showFrom + perPage;
+                items.hide().slice(showFrom,showTo).show()
+            }
+        })
+        }, 6000);
+        </script>
+
 
 
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
