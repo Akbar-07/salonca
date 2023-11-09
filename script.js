@@ -377,8 +377,9 @@ fetch('https://salonca.onrender.com/api/filyal', {
     }else{
       document.querySelector("#master_description_all").innerHTML="No Requirements for a master"
     }
+    var a=0
     if(item.master.length>0){
-        item.master.map(master=>{
+        item.master.map((master,key)=>{
           filial_masterM.push(master)
           document.querySelector("#Filial_get").innerHTML+=`
           <div id="filial_big">
@@ -406,8 +407,9 @@ fetch('https://salonca.onrender.com/api/filyal', {
           </div>
               <button class="filial_master_big_div_button">Choose</button>
           </div><hr/>`
-          master.mutahasis_time.map(item=>{
-            document.querySelector(".filial_master_big_div_time").innerHTML+=`<div class="filial_master_big_div_time_number">${item.time}</div>`
+          master.mutahasis_time.map((item,key1)=>{
+            a++
+            document.querySelectorAll(".filial_master_big_div_time")[key].innerHTML+=`<div onclick="time_fon('${a-1}','${master.id}')" class="filial_master_big_div_time_number">${item.time}</div>`
           })
         })
     }else{
@@ -528,13 +530,24 @@ fetch('https://salonca.onrender.com/api/filyal', {
                 ></a>
               </div>
     `
+    document.querySelector("#filail_tel").innerHTML=`<a href="tel:${item.phone}"
+    class="hidden font-semibold text-7xl text-primary/70 md:inline-flex w-max">${item.phone}</a>`
+
   })
 })
 .catch(error => {
   console.error(error);
 });
 
-
+function time_fon(key){
+  for (let i = 0; i < document.querySelectorAll(".filial_master_big_div_time_number").length; i++) {
+  if(key==i){
+  document.querySelectorAll(".filial_master_big_div_time_number")[i].style="color:white;background:#98c1d9;"
+  }else{
+  document.querySelectorAll(".filial_master_big_div_time_number")[i].style="color:black;background:none;"
+  }
+  }
+}
 
 // function Filtir_filial(){
 //   var value=document.querySelector("#filial_input").value;

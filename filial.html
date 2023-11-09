@@ -3223,7 +3223,10 @@
                                                 color: var(--color-primary);
                                             }
                                         </style>
+                                        <div style="position: relative;">
                                         <div
+                                        onclick="SelectOpen()"
+                                        style="width: 100%;"
                                             class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-1nuk4od">
                                             <style data-emotion="css mnn31">
                                                 .css-mnn31 {
@@ -3485,7 +3488,7 @@
                                             <div tabindex="0" role="button" aria-expanded="false"
                                                 aria-haspopup="listbox"
                                                 aria-labelledby="reg-specialty-id-label reg-specialty-id"
-                                                id="reg-specialty-id"
+                                                id="home-specialization"
                                                 class="MuiSelect-select MuiSelect-standard MuiInputBase-input css-1qlt8rc">
                                                 Your specialization</div>
                                             <style data-emotion="css 1k3x8v3">
@@ -3551,6 +3554,9 @@
                                                 }
                                             </style>
                                         </div>
+                                        <div id="select_index" class="select_index">
+                                        </div>
+                                        </div>
                                     </div><button
                                         class="w-full mt-3 inline-flex relative justify-center items-center disabled:opacity-50 min-h-sm lg:min-h-md p-2 text-xl md:text-3xl bg-primary text-white font-bold hover:bg-blue-300 disabled:hover:bg-primary rounded-lg"
                                         tabindex="0" type="submit">Send a request</button>
@@ -3562,9 +3568,9 @@
                                     Still have questions?</h2>
                                 <p class="text-xl leading-5 md:text-4xl md:leading-7 text-black">Let's clarify all the details,
                                     We’ll help you choose or arrange a viewing</p>
-                                <div class="grid gap-5 md:gap-3 mt-4"><a href="tel:+79938950829"
-                                        class="hidden font-semibold text-7xl text-primary/70 md:inline-flex w-max">+7
-                                        993 895-08-29</a><button
+                                <div class="grid gap-5 md:gap-3 mt-4">
+                                    <div id="filail_tel"></div>
+                                    <button
                                         class="w-full md:max-w-[212px] inline-flex relative justify-center items-center disabled:opacity-50 min-h-sm lg:min-h-md p-2 text-xl md:text-3xl bg-primary text-white font-bold hover:bg-blue-300 disabled:hover:bg-primary rounded-lg"
                                         tabindex="0" type="button">Connect with us</button></div>
                             </section>
