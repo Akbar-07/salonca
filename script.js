@@ -745,10 +745,34 @@ function filial_map_close(){
 }
 
 
+fetch('https://salonca.onrender.com/api/rayon/',{
+  method:'GET'
+}).then(response=>response.json()).then(res=>{
+res.map((item,key)=>{
+  document.querySelector("#countries").innerHTML=`
+<option value=${item.id}>${item.title}</option>
+`
+})
+}).catch(err=>console.log(err))
+
+
+fetch('https://salonca.onrender.com/api/metro/',{
+  method:'GET'
+}).then(response=>response.json()).then(res=>{
+res.map((item,key)=>{
+  document.querySelector("#countries1").innerHTML=`
+<option value=${item.id}>${item.title}</option>
+`
+})
+}).catch(err=>console.log(err))
+
+
 
 // select
 
 function MultiSelectTag (el, customs = {shadow: false, rounded:true}) {
+  setTimeout(() => {
+    
   var element = null
   var options = null
   var customSelectContainer = null
@@ -985,4 +1009,7 @@ function MultiSelectTag (el, customs = {shadow: false, rounded:true}) {
           }
       })
   }
+
+}, 1000);
+
 }
