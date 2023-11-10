@@ -544,7 +544,7 @@ function time_fon(key){
   if(key==i){
   document.querySelectorAll(".filial_master_big_div_time_number")[i].style="color:white;background:#98c1d9;"
   }else{
-  document.querySelectorAll(".filial_master_big_div_time_number")[i].style="color:black;background:none;"
+  document.querySelectorAll(".filial_master_big_div_time_number")[i].style="color:#3D5A80;background:none;"
   }
   }
 }
