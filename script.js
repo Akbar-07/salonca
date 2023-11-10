@@ -274,6 +274,36 @@ fetch('https://salonca.onrender.com/api/filyal', {
 .catch(error => {
   console.error(error);
 });
+
+
+
+
+
+
+fetch('https://salonca.onrender.com/api/filyal', {
+  method: 'GET'
+})
+.then(response => response.json())
+.then(data => {
+  //  data.map(item=>{
+    document.querySelector("#filyal_length").innerHTML=`
+    <span>Найдено: ${data.length}</span>
+
+    `
+  //  })
+})
+.catch(error => {
+  console.error(error);
+});
+
+
+
+
+
+
+
+
+
 var category=[]
 fetch('https://salonca.onrender.com/api/category', {
   method: 'GET'
@@ -745,6 +775,7 @@ function filial_map_close(){
 }
 
 
+
 fetch('https://salonca.onrender.com/api/rayon/',{
   method:'GET'
 }).then(response=>response.json()).then(res=>{
@@ -1010,6 +1041,7 @@ function MultiSelectTag (el, customs = {shadow: false, rounded:true}) {
       })
   }
 
-}, 1000);
+}, 8000);
 
 }
+
