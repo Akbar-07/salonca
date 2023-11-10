@@ -655,3 +655,15 @@ font-weight: 300;
 font-size: 15px;
 margin-top: 5px;
 }
+@media (max-width:768px) {
+  #booking_big_div_two{
+  display: flex !important;
+  flex-direction: column-reverse;
+  }
+  #booking_swiper_div{
+    width:100%;
+  }
+  .booking_address{
+    margin-bottom: 10px;
+  }
+}
