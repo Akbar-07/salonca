@@ -287,7 +287,7 @@ fetch('https://salonca.onrender.com/api/filyal', {
 .then(data => {
   //  data.map(item=>{
     document.querySelector("#filyal_length").innerHTML=`
-    <span>Найдено: ${data.length}</span>
+    <span>Найдено: ${data.length}     салонов </span>
 
     `
   //  })
