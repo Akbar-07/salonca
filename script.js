@@ -1,25 +1,98 @@
 
 function Login() {
-  if (document.querySelector("#sms_login").style.display == "block") {
-    if (document.querySelector("#login_info").style.display == "block") {
-      window.location = "user.html";
-    } else {
-      document.querySelector("#login_info").style.display = "block";
-      document.querySelector(".bla").innerHTML = `Registration`;
-      document.querySelector("#sms_login").style.display = "none";
-      document.querySelector(".nomerEdit").style.display="none"
+  if(document.querySelector("#login_email").value==""){
+    document.querySelector("#login_email").style="border:1px solid red;"
+    document.querySelector(".login_xato_red").style="display:block;"
+  }else{
+    
+    document.querySelector("#login_p").style="display:none;"
+    document.querySelector("#numberEdit").style="display:block;"
+    document.querySelector("#login_email_one").style="display:none;"
+    document.querySelector("#login_email").style="border:1px solid #98c1d9;"
+    document.querySelector(".login_xato_red").style="display:none;"
+    document.querySelector("#sms_login").style="display:block"
+    var duration = 60;
+
+    var timerElement = document.getElementById('code_timer');
+
+    // Süre sayacını güncellemek için bir fonksiyon oluşturun
+    function updateTimer() {
+        var minutes = Math.floor(duration / 60);
+        var seconds = duration % 60;
+
+        if (minutes < 10) {
+            minutes = '0' + minutes;
+        }
+        if (seconds < 10) {
+            seconds = '0' + seconds;
+        }
+
+        timerElement.textContent = minutes + ':' + seconds;
+
+        duration--;
+
+        if (duration >= 0) {
+            setTimeout(updateTimer, 1000);
+        }
     }
-  } else {
-    if (document.querySelector("#login_info").style.display == "block") {
-      window.location = "./user.html";
-    } else {
-      document.querySelector("#sms_login").style.display = "block";
-      document.querySelector("#login_p").style.display = "none";
-      document.querySelector("#numberEdit").style.display = "block";
-    }
+
+    updateTimer();
+
+    LoginPost()
+
+    setTimeout(() => {
+        document.querySelector(".link_mas").innerHTML=`<span onclick='LoginPost()'>Send code</span>`
+    }, 60000);
+
   }
+  // if (document.querySelector("#sms_login").style.display == "block") {
+  //   if (document.querySelector("#login_info").style.display == "block") {
+  //     window.location = "user.html";
+  //   } else {
+  //     document.querySelector("#login_info").style.display = "block";
+  //     document.querySelector(".bla").innerHTML = `Registration`;
+  //     document.querySelector("#sms_login").style.display = "none";
+  //     document.querySelector(".nomerEdit").style.display="none"
+  //   }
+  // } else {
+  //   if (document.querySelector("#login_info").style.display == "block") {
+  //     window.location = "./user.html";
+  //   } else {
+  //     if(document.querySelector("#login_email").value=""){
+  //       document.querySelector("#login_email").style="border:1px solid red;"
+  //     }else{
+  //       document.querySelector("#sms_login").style.display = "block";
+  //       document.querySelector("#login_p").style.display = "none";
+  //       document.querySelector("#numberEdit").style.display = "block";
+  //     }
+  //   }
+  // }
+}
+
+function LoginPost(){
+  if(document.querySelector('#code_timer').value=="00:00"){
+    updateTimer()
+  }
+  const data={
+    username:document.querySelector("#login_username").value,
+    email:document.querySelector("#login_email").value,
+    password:document.querySelector("#login_password").value
+  }
+  fetch("https://salonca.onrender.com/api/register",{
+    method:'POST',
+    headers:{
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  }).then(response=>response.json()).then(res=>{
+  }).catch(err=>{console.log(err);})
 }
 function LoginClose() {
+  document.querySelector("#login_p").style="display:block;"
+  document.querySelector("#login_username").value=""
+  document.querySelector("#login_email").value=""
+  document.querySelector("#login_password").value=""
+  document.querySelector("#login_email_one").style="display:block;"
   document.querySelector("#sms_login").style.display = "none";
   document.querySelector("#login_p").style.display = "block";
   document.querySelector("#numberEdit").style.display = "none";
@@ -1044,4 +1117,7 @@ function MultiSelectTag (el, customs = {shadow: false, rounded:true}) {
 }, 8000);
 
 }
+
+
+
 

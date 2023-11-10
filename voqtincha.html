@@ -1,33 +1,39 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Yandex Maps Example</title>
-    <style>
-        #map {
-            width: 100%;
-            height: 400px;
-        }
-    </style>
-    <script src="https://api-maps.yandex.com/2.1/?lang=en_US" type="text/javascript"></script>
-    <script type="text/javascript">
-        ymaps.ready(init);
-
-        function init() {
-            var map = new ymaps.Map("map", {
-                center: [41.2995, 69.2401], // To'shkentning koordinatalari
-                zoom: 12 // Ko'rsatkich o'lchami
-            });
-
-            var placemark = new ymaps.Placemark([41.2995, 69.2401], {
-                hintContent: 'To\'shkent' // Joyli nuqtaning ko'rsatkich matni
-            });
-
-            map.geoObjects.add(placemark);
-        }
-    </script>
-    
+    <title>Süre Sayacı</title>
 </head>
 <body>
-    <div id="map"></div>
+    <h1 id="timer">01:00</h1>
+
+    <script>
+        // Geriye doğru sayaca başlamak için bir süre belirleyin (saniye cinsinden)
+        var duration = 60;
+
+        var timerElement = document.getElementById('timer');
+
+        // Süre sayacını güncellemek için bir fonksiyon oluşturun
+        function updateTimer() {
+            var minutes = Math.floor(duration / 60);
+            var seconds = duration % 60;
+
+            if (minutes < 10) {
+                minutes = '0' + minutes;
+            }
+            if (seconds < 10) {
+                seconds = '0' + seconds;
+            }
+
+            timerElement.textContent = minutes + ':' + seconds;
+
+            duration--;
+
+            if (duration >= 0) {
+                setTimeout(updateTimer, 1000);
+            }
+        }
+
+        updateTimer();
+    </script>
 </body>
 </html>

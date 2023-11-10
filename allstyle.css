@@ -387,6 +387,11 @@ margin-top: 30px;
   margin-top: 5px;
   cursor: pointer;
 }
+.login_xato_red{
+  color: red;
+  font-size: 13px;
+  display: none;
+}
 .filial_master_big_div_time{
   width: 100%;
   display: flex;
