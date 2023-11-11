@@ -3315,15 +3315,18 @@
       <label id="login_email_one">
         <div><p>*Email</p></div>
         <input id="login_email" type="email" placeholder="@gmail.com" /> 
-        <span class="login_xato_red">Enter the email incorrectly , correctly</span>
+        <span id="email_xato" class="login_xato_red">Enter the email incorrectly , correctly</span>
         <p style="margin-top: 10px;" class="register-p" >*Name</p>
          <input id="login_username" type="text" placeholder="name">
+         <span id="name_xato" class="login_xato_red">Fill in the name</span>
          <p style="margin-top: 10px;" class="register-p">*Password</p>
          <input id="login_password" style="margin-bottom: 20px;" placeholder="password" type="password">
+         <span id="password_xato" class="login_xato_red">Password is incorrect or less than 8 characters</span>
       </label>
       <label id="sms_login">
         <div><p>Code from sms</p><p id="numberEdit" onclick="LoginClose()" class="nomerEdit">To change number</p></div>
-        <input type="number" /> 
+        <input id="login_verify" type="number" /> 
+        <span id="login_verify_div" class="login_xato_red">Verification error</span>
         <p style="margin-left: auto !important;margin: 0;margin-top: 10px;margin-bottom: 10px;" class="link_mas">Timer : <span id="code_timer">01:00</span></p> 
       </label>
       <label id="login_info">

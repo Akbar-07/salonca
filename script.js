@@ -1,49 +1,88 @@
 
 function Login() {
-  if(document.querySelector("#login_email").value==""){
+  if(!(document.querySelector("#login_email").value).includes("@")){
     document.querySelector("#login_email").style="border:1px solid red;"
-    document.querySelector(".login_xato_red").style="display:block;"
+    document.querySelector("#email_xato").style="display:block;"
   }else{
-    
-    document.querySelector("#login_p").style="display:none;"
-    document.querySelector("#numberEdit").style="display:block;"
-    document.querySelector("#login_email_one").style="display:none;"
     document.querySelector("#login_email").style="border:1px solid #98c1d9;"
-    document.querySelector(".login_xato_red").style="display:none;"
-    document.querySelector("#sms_login").style="display:block"
-    var duration = 60;
+    document.querySelector("#email_xato").style="display:none;"
+     if(document.querySelector("#login_username").value==""){
+      document.querySelector("#login_username").style="border:1px solid red;"
+      document.querySelector("#name_xato").style="display:block;"
+     }else{
+      document.querySelector("#login_username").style="border:1px solid #98c1d9;"
+      document.querySelector("#name_xato").style="display:none;"
 
-    var timerElement = document.getElementById('code_timer');
-
-    // Süre sayacını güncellemek için bir fonksiyon oluşturun
-    function updateTimer() {
-        var minutes = Math.floor(duration / 60);
-        var seconds = duration % 60;
-
-        if (minutes < 10) {
-            minutes = '0' + minutes;
+      if((document.querySelector("#login_password").value).length<8){
+        document.querySelector("#login_password").style="border:1px solid red;"
+        document.querySelector("#password_xato").style="display:block;"
+      }else{
+        document.querySelector("#login_password").style="border:1px solid  #98c1d9;"
+        document.querySelector("#password_xato").style="display:none;"
+  
+        if(document.querySelector("#sms_login").style.display=="block"){
+          const verify={
+           code:document.querySelector("#login_verify").value
+          }
+         fetch('https://salonca.onrender.com/api/verify',{
+         method:'POST',
+         headers:{
+           'Content-Type': 'application/json'
+         },
+         body: JSON.stringify(verify)
+        }).then(response=>response.json()).then(res=>{
+         //  console.log(res,"slaom");
+         localStorage.setItem("email",document.querySelector("#login_email").value)
+          localStorage.setItem("token",res.access)
+          document.querySelector("#login_verify").style="border:1px solid #98c1d9;"
+          document.querySelector("#login_verify_div").style="display:none;"
+          window.location="user.html"
+         }).catch(err=>{
+          document.querySelector("#login_verify").style="border:1px solid red;"
+          document.querySelector("#login_verify_div").style="display:block;"
+        })
+        }else{
+         document.querySelector("#login_p").style="display:none;"
+         document.querySelector("#numberEdit").style="display:block;"
+         document.querySelector("#login_email_one").style="display:none;"
+         document.querySelector("#login_email").style="border:1px solid #98c1d9;"
+         document.querySelector(".login_xato_red").style="display:none;"
+         document.querySelector("#sms_login").style="display:block"
+         var duration = 60;
+     
+         var timerElement = document.getElementById('code_timer');
+     
+         // Süre sayacını güncellemek için bir fonksiyon oluşturun
+         function updateTimer() {
+             var minutes = Math.floor(duration / 60);
+             var seconds = duration % 60;
+     
+             if (minutes < 10) {
+                 minutes = '0' + minutes;
+             }
+             if (seconds < 10) {
+                 seconds = '0' + seconds;
+             }
+     
+             timerElement.textContent = minutes + ':' + seconds;
+     
+             duration--;
+     
+             if (duration >= 0) {
+                 setTimeout(updateTimer, 1000);
+             }
+         }
+     
+         updateTimer();
+     
+         LoginPost()
+     
+         setTimeout(() => {
+             document.querySelector(".link_mas").innerHTML=`<span onclick='LoginPostTimer()'>Send code</span>`
+         }, 60000);
         }
-        if (seconds < 10) {
-            seconds = '0' + seconds;
-        }
-
-        timerElement.textContent = minutes + ':' + seconds;
-
-        duration--;
-
-        if (duration >= 0) {
-            setTimeout(updateTimer, 1000);
-        }
-    }
-
-    updateTimer();
-
-    LoginPost()
-
-    setTimeout(() => {
-        document.querySelector(".link_mas").innerHTML=`<span onclick='LoginPost()'>Send code</span>`
-    }, 60000);
-
+      }
+     }
   }
   // if (document.querySelector("#sms_login").style.display == "block") {
   //   if (document.querySelector("#login_info").style.display == "block") {
@@ -69,10 +108,56 @@ function Login() {
   // }
 }
 
+function LoginPostTimer(){
+  document.querySelector(".link_mas").innerHTML=`Timer : <span id="code_timer">01:00</span>`
+   setTimeout(()=>{
+    const data={
+      username:document.querySelector("#login_username").value,
+      email:document.querySelector("#login_email").value,
+      password:document.querySelector("#login_password").value
+    }
+    fetch("https://salonca.onrender.com/api/register",{
+      method:'POST',
+      headers:{
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    }).then(response=>response.json()).then(res=>{
+    }).catch(err=>{console.log(err);})
+  
+    var duration = 60;
+      var timerElement = document.getElementById('code_timer');
+  
+      // Süre sayacını güncellemek için bir fonksiyon oluşturun
+      function updateTimer() {
+          var minutes = Math.floor(duration / 60);
+          var seconds = duration % 60;
+    
+          if (minutes < 10) {
+              minutes = '0' + minutes;
+          }
+          if (seconds < 10) {
+              seconds = '0' + seconds;
+          }
+    
+          timerElement.textContent = minutes + ':' + seconds;
+    
+          duration--;
+    
+          if (duration >= 0) {
+              setTimeout(updateTimer, 1000);
+          }
+      }
+    
+      updateTimer();
+    
+      setTimeout(() => {
+        document.querySelector(".link_mas").innerHTML=`<span onclick='LoginPostTimer()'>Send code</span>`
+    }, 60000);
+   },1000)
+}
+
 function LoginPost(){
-  if(document.querySelector('#code_timer').value=="00:00"){
-    updateTimer()
-  }
   const data={
     username:document.querySelector("#login_username").value,
     email:document.querySelector("#login_email").value,
@@ -96,6 +181,7 @@ function LoginClose() {
   document.querySelector("#sms_login").style.display = "none";
   document.querySelector("#login_p").style.display = "block";
   document.querySelector("#numberEdit").style.display = "none";
+  document.querySelector(".link_mas").innerHTML=`Timer : <span id="code_timer">01:00</span>`
 }
 
 function ConnectOpen() {
@@ -396,7 +482,9 @@ function SelectOpen(id,name) {
   if (document.querySelector("#select_index").style.display == "block") {
     if (id) {
       document.querySelector("#home-specialization").innerHTML=`${name}`
-      document.querySelector("#select_index").style.display = "none";
+      setTimeout(() => {
+        document.querySelector("#select_index").style.display = "none";
+      }, 100);
     } else {
       document.querySelector("#select_index").style.display = "none";
     }
@@ -404,6 +492,35 @@ function SelectOpen(id,name) {
     document.querySelector("#select_index").style.display = "block";
   }
 }
+
+// fetch('https://salonca.onrender.com/api/category', {
+//   method: 'GET'
+// })
+// .then(response => response.json())
+// .then(data => {
+//   data.map((item,key)=>{
+//     document.querySelector(".select_index").innerHTML+=`<h1 onclick="SelectOpenUser('${item.id}','${item.category}')" id="select_index_h1" value=${item.id}>${item.category}</h1>`
+//    })
+// })
+// .catch(error => {
+//   console.error(error);
+// });
+
+// function SelectOpenUser(id,name) {
+//   if (document.querySelector(".select_index").style.display == "block") {
+//     if (id) {
+//       alert("1")
+//       // document.querySelector("#user_spesilation").innerHTML=`${name}`;
+//       setTimeout(() => {
+//         document.querySelector(".select_index").style.display = "none";
+//       }, 100);
+//     } else {
+//       document.querySelector(".select_index").style.display = "none";
+//     }
+//   } else {
+//     document.querySelector(".select_index").style.display = "block";
+//   }
+// }
 
 var filial_masterM=[]
 
