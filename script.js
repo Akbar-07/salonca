@@ -1,5 +1,45 @@
 
 function Login() {
+  if(document.querySelector("#login_and_register").style.display=="none"){
+  if(!(document.querySelector("#login_email").value).includes("@")){
+    document.querySelector("#login_email").style="border:1px solid red;"
+    document.querySelector("#email_xato").style="display:block"
+  }else{
+    document.querySelector("#login_email").style="border:1px solid #98c1d9;"
+    document.querySelector("#email_xato").style="display:none"
+    if((document.querySelector("#login_password").value).length<8){
+      document.querySelector("#login_password").style="border:1px solid red;"
+      document.querySelector("#password_xato").style="display:block"
+    }else{ 
+      document.querySelector("#login_password").style="border:1px solid #98c1d9;"
+      document.querySelector("#password_xato").style="display:none"
+       const login1={
+        email:document.querySelector("#login_email").value,
+        password:document.querySelector("#login_password").value
+       }
+       fetch('https://salonca.onrender.com/api/login',{
+        method:'POST',
+        headers:{
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(login1)
+        }).then(loginn=>loginn.json()).then(res=>{
+          localStorage.setItem("email",document.querySelector("#login_email").value)
+          localStorage.setItem("token",res.token)
+          document.querySelector("#login_email").style="border:1px solid #98c1d9;"
+          document.querySelector("#login_password").style="border:1px solid  #98c1d9;"
+          document.querySelector("#password_xato").innerHTML="Password is incorrect or less than 8 characters"
+          document.querySelector("#password_xato").style="display:none;"
+          window.location="/user.html"
+        }).catch(err=>{
+          document.querySelector("#login_email").style="border:1px solid red;"
+          document.querySelector("#login_password").style="border:1px solid red;"
+          document.querySelector("#password_xato").style="display:block;"
+          document.querySelector("#password_xato").innerHTML="You have entered an incorrect email or password"
+        })
+    }
+  }
+  }else{
   if(!(document.querySelector("#login_email").value).includes("@")){
     document.querySelector("#login_email").style="border:1px solid red;"
     document.querySelector("#email_xato").style="display:block;"
@@ -30,7 +70,8 @@ function Login() {
            'Content-Type': 'application/json'
          },
          body: JSON.stringify(verify)
-        }).then(response=>response.json()).then(res=>{
+        }).then(response=>response.json())
+        .then(res=>{
          //  console.log(res,"slaom");
          localStorage.setItem("email",document.querySelector("#login_email").value)
           localStorage.setItem("token",res.access)
@@ -84,6 +125,8 @@ function Login() {
       }
      }
   }
+  }
+  
   // if (document.querySelector("#sms_login").style.display == "block") {
   //   if (document.querySelector("#login_info").style.display == "block") {
   //     window.location = "user.html";
@@ -106,6 +149,22 @@ function Login() {
   //     }
   //   }
   // }
+}
+
+function Signin(){
+  if(document.querySelector("#login_and_register").style.display=="block"){
+    document.querySelector("#login_p").innerHTML="Login for masters"
+    document.querySelector(".bla").innerHTML="Salon entrance"
+    document.querySelector("#login_and_register").style="display:none;"
+    document.querySelector("#login_email").style="border:1px solid #98c1d9;"
+    document.querySelector("#email_xato").style="display:none;"
+    document.querySelector("#login_password").style="border:1px solid  #98c1d9;"
+    document.querySelector("#password_xato").style="display:none;"
+  }else{
+    document.querySelector("#login_p").innerHTML="Salon entrance"
+    document.querySelector(".bla").innerHTML="Login for masters"
+    document.querySelector("#login_and_register").style="display:block;"
+  }
 }
 
 function LoginPostTimer(){
@@ -1234,6 +1293,19 @@ function MultiSelectTag (el, customs = {shadow: false, rounded:true}) {
 }, 8000);
 
 }
+
+
+
+fetch("https://salonca.onrender.com/api/users",{
+  method:'GET'
+}).then(response=>response.json()).then(res=>{
+const Filter=res.filter(item=>item.email==localStorage.getItem("email"))
+Filter.map(item=>{
+  document.querySelector("#email_user_get").innerHTML=item.email
+  document.querySelector("#name_user_get").value=item.username
+  document.querySelector("#phonenumber_user_get").value=item.phone
+})
+}).catch(err=>{console.log(err)})
 
 
 

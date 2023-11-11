@@ -890,7 +890,7 @@
                 type="button"
                 aria-label="Войти или зарегистрироваться"
             id="seukasasa"   >
-              <i style="font-size: 23px;margin-bottom: -8px;" class='bx bx-user w-6 h-6'></i>
+              <i onclick="LoginOpen()" style="font-size: 23px;margin-bottom: -8px;color: #3d5a80;" class='bx bx-user w-6 h-6'></i>
               <!-- <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-primary" viewBox="0 0 24 24"><path style="color: #3d5a80;" d="M19 7.001c0 3.865-3.134 7-7 7s-7-3.135-7-7c0-3.867 3.134-7.001 7-7.001s7 3.134 7 7.001zm-1.598 7.18c-1.506 1.137-3.374 1.82-5.402 1.82-2.03 0-3.899-.685-5.407-1.822-4.072 1.793-6.593 7.376-6.593 9.821h24c0-2.423-2.6-8.006-6.598-9.819z"/></svg> -->
                 <!-- <svg class="w-6 h-6 text-primary">
                   <use target="_top" xlink:href="/sprites/icons.svg#person"></use>
@@ -915,6 +915,7 @@
                         >
                       </ul>
                     </nav>
+                    <div class="navbar_name">
                     <button
                     onclick="LoginOpen()"
                       class="menu_button__0ReSs inline-flex relative justify-center items-center disabled:opacity-50 min-h-sm lg:min-h-md p-2 text-xl md:text-3xl bg-secondary text-primary font-semibold hover:bg-blue-100 hover:bg-opacity-50 rounded-lg"
@@ -923,6 +924,7 @@
                     >
                       Sign in
                     </button>
+                  </div>
                   </div>
                 </div>
                 <div class="menu_mobile__H2YeT">
@@ -3298,6 +3300,7 @@
         </div>
       </footer>
     </div>
+
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
     <div id="connectModal" class="connect_with_us">
@@ -3316,9 +3319,11 @@
         <div><p>*Email</p></div>
         <input id="login_email" type="email" placeholder="@gmail.com" /> 
         <span id="email_xato" class="login_xato_red">Enter the email incorrectly , correctly</span>
+        <div style="display: block;" id="login_and_register">
         <p style="margin-top: 10px;" class="register-p" >*Name</p>
          <input id="login_username" type="text" placeholder="name">
          <span id="name_xato" class="login_xato_red">Fill in the name</span>
+        </div>
          <p style="margin-top: 10px;" class="register-p">*Password</p>
          <input id="login_password" style="margin-bottom: 20px;" placeholder="password" type="password">
          <span id="password_xato" class="login_xato_red">Password is incorrect or less than 8 characters</span>
@@ -3343,7 +3348,7 @@
       </label>
       
       <button onclick="Login()" class="connect_with_us_div_buuton1">Salon entrance</button>
-      <p id="login_p" class="link_mas">Salon entrance</p>
+      <p id="login_p" onclick="Signin()" class="link_mas">Salon entrance</p>
       </div>
     </div>
     <div class="navbar__modal id="navbar__modal">
@@ -3359,12 +3364,31 @@
         <div class="menu_drawerBody__yrbK_">
           <div class="menu_nav__GLRQp">
             <ul class="menu_list__5oxIP">
-              <button class="menu_link__7Prly">Связаться с нами</button>
-              <a href="" class="menu_link__7Prly">Салонам</a>
+              <button onclick="ConnectOpen()" class="menu_link__7Prly">Связаться с нами</button>
+              <a href="coworking.html" class="menu_link__7Prly">Салонам</a>
             </ul>
           </div>
-          <button class="menu_button__0ReSs inline-flex relative justify-center items-center disabled:opacity-50 min-h-sm lg:min-h-md p-2 text-xl md:text-3xl bg-secondary text-primary font-semibold hover:bg-blue-100 hover:bg-opacity-50 rounded-lg">Войти</button>
+          <div style="margin: auto;" class="navbar_name">
+          <button onclick="LoginOpen()" class="menu_button__0ReSs inline-flex relative justify-center items-center disabled:opacity-50 min-h-sm lg:min-h-md p-2 text-xl md:text-3xl bg-secondary text-primary font-semibold hover:bg-blue-100 hover:bg-opacity-50 rounded-lg">Войти</button>
+        </div>
         </div>
     </div>
+    <div class="qora-oyna-navbar">
+      </div>
+    <script>
+      fetch("https://salonca.onrender.com/api/users",{
+      method:'GET'
+      }).then(response=>response.json()).then(res=>{
+      const Filter=res.filter(item=>item.email==localStorage.getItem("email"))
+      Filter.map(item=>{
+        for (let i = 0; i < document.querySelectorAll(".navbar_name").length; i++) {
+        document.querySelectorAll(".navbar_name")[i].innerHTML=`<a class="menu_link__7Prly" id="hover_user" href="/user.html" style="font-weight: bold;" target="_top">${item.username}</a>`
+        }
+      
+
+      document.querySelector("#seukasasa").innerHTML=`<a style="margin-top:13px" href="/user.html"><i style="font-size: 23px;margin-bottom: -8px;color: #3d5a80;" class='bx bx-user w-6 h-6'></i></a>`
+      })
+      }).catch(err=>{console.log(err)})
+    </script>
   </body>
 </html>

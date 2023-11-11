@@ -766,18 +766,33 @@
                   .css-vwcu3s {
                     display: none;
                   }
-                }</style
+                }
+                
+                #seukasasa1{
+                  font-size: 30px;
+                  cursor: pointer;
+                  display: none;
+                }
+                </style
               ><button
                 class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall css-vwcu3s"
                 tabindex="0"
                 type="button"
                 aria-label="Войти или зарегистрироваться"
-              >
-              <i style="font-size: 23px;margin-bottom: -8px;" class='bx bx-user w-6 h-6'></i>
+            id="seukasasa"   >
+              <i onclick="LoginOpen()" style="font-size: 23px;margin-bottom: -8px;color: #3d5a80;" class='bx bx-user w-6 h-6'></i>
               <!-- <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-primary" viewBox="0 0 24 24"><path style="color: #3d5a80;" d="M19 7.001c0 3.865-3.134 7-7 7s-7-3.135-7-7c0-3.867 3.134-7.001 7-7.001s7 3.134 7 7.001zm-1.598 7.18c-1.506 1.137-3.374 1.82-5.402 1.82-2.03 0-3.899-.685-5.407-1.822-4.072 1.793-6.593 7.376-6.593 9.821h24c0-2.423-2.6-8.006-6.598-9.819z"/></svg> -->
                 <!-- <svg class="w-6 h-6 text-primary">
                   <use target="_top" xlink:href="/sprites/icons.svg#person"></use>
                 </svg> -->
+              </button>
+              <button
+                class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall css-vwcu3s"
+                tabindex="0"
+                type="button"
+                aria-label="Войти или зарегистрироваться"
+               id="seukasasa1" onclick="closeNavbarMolad()"  >
+               <i class='bx bx-x'></i>
               </button>
               <div class="menu_menu___6ZHp">
                 <div class="menu_desktop__FzdBD">
@@ -790,6 +805,7 @@
                         >
                       </ul>
                     </nav>
+                    <div class="navbar_name">
                     <button
                     onclick="LoginOpen()"
                       class="menu_button__0ReSs inline-flex relative justify-center items-center disabled:opacity-50 min-h-sm lg:min-h-md p-2 text-xl md:text-3xl bg-secondary text-primary font-semibold hover:bg-blue-100 hover:bg-opacity-50 rounded-lg"
@@ -799,9 +815,10 @@
                       Sign in
                     </button>
                   </div>
+                  </div>
                 </div>
                 <div class="menu_mobile__H2YeT">
-                  <button class="menu_menuBtn__OsNOM" aria-label="Открыть меню">
+                  <button class="menu_menuBtn__OsNOM" aria-label="Открыть меню" onclick="navbarModal()">
                     <!-- <i class='bx bx-menu w-6 h-6'></i> -->
                     <i style="font-size: 30px;" class='bx bx-menu w-6 h-6' ></i>
                   </button>
@@ -1217,125 +1234,46 @@
       <p id="login_p" class="link_mas">Salon entrance</p>
       </div>
     </div>
-    <script id="__NEXT_DATA__" type="application/json">
-      {
-        "props": {
-          "pageProps": {
-            "source": {
-              "compiledSource": "/*@jsxRuntime automatic @jsxImportSource react*/\nconst {Fragment: _Fragment, jsx: _jsx, jsxs: _jsxs} = arguments[0];\nconst {useMDXComponents: _provideComponents} = arguments[0];\nfunction _createMdxContent(props) {\n  const _components = Object.assign({\n    h1: \"h1\",\n    p: \"p\",\n    strong: \"strong\",\n    a: \"a\",\n    ol: \"ol\",\n    li: \"li\",\n    h2: \"h2\",\n    ul: \"ul\"\n  }, _provideComponents(), props.components);\n  return _jsxs(_Fragment, {\n    children: [_jsx(_components.h1, {\n      children: \"Политика конфиденциальности\"\n    }), \"\\n\", _jsxs(_components.p, {\n      children: [\"Настоящая Политика конфиденциальности (далее – \", _jsx(_components.strong, {\n        children: \"«Политика»\"\n      }), \") определяет как ИП Ушаров Юрий Владимирович, зарегистрированный по адресу: 125252, Москва, Ходынский бульвар, д.5, к.4, кв.42, (далее – \", _jsx(_components.strong, {\n        children: \"«Оператор»\"\n      }), \", \", _jsx(_components.strong, {\n        children: \"«Мы»\"\n      }), \"), осуществляет сбор и обработку персональных данных Посетителей сайта, размещенного в сети Интернет по адресу: \", _jsx(_components.a, {\n        href: \"salonca.ru\",\n        children: \"salonca.ru\"\n      }), \", предназначенного для размещения Партнерами предложений об оказании услуг и поиска Пользователями таких предложений, а также выражения Пользователями намерений в дальнейшем заключить договор на указанных в предложении условиях (далее – \", _jsx(_components.strong, {\n        children: \"«Платформа»\"\n      }), \").\"]\n    }), \"\\n\", _jsx(_components.p, {\n      children: \"ИП Ушаров Ю.В. является оператором персональных данных Посетителей Платформы и самостоятельно определяет цели и условия обработки персональных данных Посетителей Платформы в настоящей Политике.\"\n    }), \"\\n\", _jsx(_components.p, {\n      children: \"Запросы, связанные с обработкой Ваших персональных данных в связи с использованием Платформы, вы можете направлять Оператору по адресу: 125252, г. Москва, Ходынский бульвар, д.5, к.4, кв.42 или на электронную почту лица, ответственного за обработку персональных данных в ИП Ушаров Ю.В.: info.salonca@gmail.com.\"\n    }), \"\\n\", _jsx(_components.p, {\n      children: \"Нажимая кнопку, подтверждающую согласие с условиями договора об использовании Платформы, или в любой момент совершения иных действий, связанных с использованием возможностей Платформы, Вы выражаете своё согласие с положениями настоящей Политики. Если Вы не согласны с условиями обработки Ваших персональных данных, установленными Политикой, Вы должны воздерживаться от использования Платформы.\"\n    }), \"\\n\", _jsxs(_components.ol, {\n      children: [\"\\n\", _jsxs(_components.li, {\n        children: [\"\\n\", _jsx(_components.h2, {\n          children: \"Определения\"\n        }), \"\\n\", _jsxs(_components.ol, {\n          children: [\"\\n\", _jsxs(_components.li, {\n            children: [\"\\n\", _jsx(_components.p, {\n              children: \"В настоящей Политике используются следующие определения:\"\n            }), \"\\n\", _jsxs(_components.p, {\n              children: [_jsx(_components.strong, {\n                children: \"Персональные данные\"\n              }), \" – любая информация, относящаяся к прямо или косвенно определенному или определяемому физическому лицу (субъекту персональных данных);\"]\n            }), \"\\n\", _jsxs(_components.p, {\n              children: [_jsx(_components.strong, {\n                children: \"Оператор\"\n              }), \" персональных данных – ИП Ушаров Ю.В., которое осуществляет обработку персональных данных, а также определяет цели обработки персональных данных, состав персональных данных, подлежащих обработке, действия (операции), совершаемые с персональными данными, полученными с использованием Платформы;\"]\n            }), \"\\n\", _jsxs(_components.p, {\n              children: [_jsx(_components.strong, {\n                children: \"Партнер\"\n              }), \" – физическое лицо или представитель юридического лица, регистрирующиеся на Платформе и размещающие там предложения об оказании услуг;\"]\n            }), \"\\n\", _jsxs(_components.p, {\n              children: [_jsx(_components.strong, {\n                children: \"Пользователь\"\n              }), \" – физическое лицо, регистрирующееся на Платформе и использующее его в целях поиска предложений Партнеров.\"]\n            }), \"\\n\", _jsxs(_components.p, {\n              children: [_jsx(_components.strong, {\n                children: \"Посетитель\"\n              }), \" – любое лицо (в том числе Партнер, Пользователь), использующее функционал Платформы.\"]\n            }), \"\\n\"]\n          }), \"\\n\"]\n        }), \"\\n\"]\n      }), \"\\n\", _jsxs(_components.li, {\n        children: [\"\\n\", _jsx(_components.h2, {\n          children: \"Объем и цели обработки персональных данных\"\n        }), \"\\n\", _jsxs(_components.ol, {\n          children: [\"\\n\", _jsxs(_components.li, {\n            children: [\"\\n\", _jsx(_components.p, {\n              children: \"При использовании Вами Платформы Оператор осуществляет сбор Ваших персональных данных, когда Вы осуществляете вход на Платформу, совершаете отклик на предложение, а также иным образом используете Платформу.\"\n            }), \"\\n\"]\n          }), \"\\n\", _jsxs(_components.li, {\n            children: [\"\\n\", _jsx(_components.p, {\n              children: \"В частности, мы собираем информацию, которую Вы самостоятельно предоставляете:\"\n            }), \"\\n\", _jsxs(_components.ul, {\n              children: [\"\\n\", _jsx(_components.li, {\n                children: \"номер телефона и адрес электронной почты Партнера или его представителя - в целях регистрации и дальнейшей авторизации лица на Платформе в качестве Партнера, а также предоставления возможности использовать функционал Платформы в качестве Партнера (в том числе для размещения предложений и получения уведомлений об откликах Пользователей);\"\n              }), \"\\n\", _jsx(_components.li, {\n                children: \"ФИО, номер телефона, адрес электронной почты, информацию о профессиональной Specialization Пользователя – в целях регистрации и дальнейшей авторизации лица на Платформе, а также предоставления ему возможности использовать функционал Платформы в качестве Пользователя (в том числе для направления откликов на предложения и получении уведомлений о совершенных откликах).\"\n              }), \"\\n\"]\n            }), \"\\n\"]\n          }), \"\\n\", _jsxs(_components.li, {\n            children: [\"\\n\", _jsx(_components.p, {\n              children: \"В целях улучшения качества работы Платформы мы также можем использовать техническую информацию (), которую собираем автоматически.\"\n            }), \"\\n\"]\n          }), \"\\n\"]\n        }), \"\\n\"]\n      }), \"\\n\", _jsxs(_components.li, {\n        children: [\"\\n\", _jsx(_components.h2, {\n          children: \"Обработка персональных данных\"\n        }), \"\\n\", _jsxs(_components.ol, {\n          children: [\"\\n\", _jsxs(_components.li, {\n            children: [\"\\n\", _jsx(_components.p, {\n              children: \"Оператор осуществляет обработку Ваших персональных данных в связи с заключением между Вами (в качестве Партнера / Пользователя) и Оператором договора об использовании Платформы.\"\n            }), \"\\n\"]\n          }), \"\\n\", _jsxs(_components.li, {\n            children: [\"\\n\", _jsx(_components.p, {\n              children: \"Оператор может осуществлять сбор, запись, систематизацию, накопление, хранение, уточнение (обновление, изменение), извлечение, использование, передачу (распространение, предоставление, доступ), обезличивание, блокирование, удаление, уничтожение Ваших персональных данных. Оператор использует Ваши персональные данные, чтобы предоставлять услуги Платформы в полном объеме, анализировать, обеспечивать, и улучшать работу Платформы.\"\n            }), \"\\n\"]\n          }), \"\\n\", _jsxs(_components.li, {\n            children: [\"\\n\", _jsx(_components.p, {\n              children: \"Оператор может раскрывать полученные от Вас персональные данные третьим лицам в объеме, оправданном целью такого раскрытия, а именно:\"\n            }), \"\\n\", _jsxs(_components.ul, {\n              children: [\"\\n\", _jsx(_components.li, {\n                children: \"другим пользователям Платформы в объеме, необходимом для оказания Вам услуг на Платформе;\"\n              }), \"\\n\", _jsx(_components.li, {\n                children: \"компетентным государственным органам, предоставление сведений которым является обязательным в соответствии с применимым законодательством;\"\n              }), \"\\n\", _jsx(_components.li, {\n                children: \"иным третьим лицам, на передачу данных которым Вы дали явное согласие.\"\n              }), \"\\n\"]\n            }), \"\\n\"]\n          }), \"\\n\", _jsxs(_components.li, {\n            children: [\"\\n\", _jsx(_components.p, {\n              children: \"Оператор при наличии предварительного согласия Посетителей вправе использовать их персональные данные (номер телефона, адрес электронной почты) для осуществления маркетинговой рассылки.\"\n            }), \"\\n\"]\n          }), \"\\n\", _jsxs(_components.li, {\n            children: [\"\\n\", _jsx(_components.p, {\n              children: \"Оператор может с согласия Посетителей осуществлять распространение отдельных категорий персональных данных неограниченному кругу лиц, путем размещения указанных данных на Платформе в открытом доступе. Такое размещение осуществляется в целях исполнения договора с Оператором и предоставления другим Посетителям возможности осуществить взаимодействие с Вами.\"\n            }), \"\\n\"]\n          }), \"\\n\", _jsxs(_components.li, {\n            children: [\"\\n\", _jsx(_components.p, {\n              children: \"Оператор не осуществляет трансграничную передачу персональных данных на территорию иностранных государств.\"\n            }), \"\\n\"]\n          }), \"\\n\", _jsxs(_components.li, {\n            children: [\"\\n\", _jsx(_components.p, {\n              children: \"Оператор не осуществляет обработку биометрических персональных данных.\"\n            }), \"\\n\"]\n          }), \"\\n\"]\n        }), \"\\n\"]\n      }), \"\\n\", _jsxs(_components.li, {\n        children: [\"\\n\", _jsx(_components.h2, {\n          children: \"Хранение и защита персональных данных\"\n        }), \"\\n\", _jsxs(_components.ol, {\n          children: [\"\\n\", _jsx(_components.li, {\n            children: \"Оператор хранит Ваши персональные данные до тех пор, пока это необходимо для предоставления Вам услуг Платформы и выполнения соглашения с вами. При отсутствии законодательных запретов Оператор может хранить некоторые части Ваших персональных данных даже после того, как вы прекратили использование Платформы. В случае обработки информации в маркетинговых целях, Оператор будет обрабатывать Ваши данные на протяжении ведения маркетинговой деятельности или до тех пор, пока вы не возразите против дальнейшей обработки данных в маркетинговых целях.\"\n          }), \"\\n\", _jsx(_components.li, {\n            children: \"Оператор предпринимает необходимые организационные и технические меры, чтобы защищать конфиденциальность Ваших персональных данных и предотвращать неавторизованный доступ к ним третьих лиц. Меры созданы в соответствии с применимым законодательством таким образом, чтобы обеспечить уровень безопасности, который отвечает рискам обработки Ваших персональных данных.\"\n          }), \"\\n\", _jsx(_components.li, {\n            children: \"Доступ к персональным данным посетителя сайта и личным настройкам его аккаунта защищен и предоставляется только при авторизации с использованием номера телефона.\"\n          }), \"\\n\", _jsx(_components.li, {\n            children: \"Оператор предоставляет субъектам возможность в любой момент изменить свои персональные данные или личные настройки аккаунта. В отношении персональных данных, которые Оператор обрабатывает на основании Вашего согласия, Вы вправе в любой момент отозвать согласие, направив соответствующее письменное заявление по адресам, указанным в преамбуле.\"\n          }), \"\\n\"]\n        }), \"\\n\"]\n      }), \"\\n\", _jsxs(_components.li, {\n        children: [\"\\n\", _jsx(_components.h2, {\n          children: \"Прочие условия\"\n        }), \"\\n\", _jsxs(_components.ol, {\n          children: [\"\\n\", _jsxs(_components.li, {\n            children: [\"Оператор оставляет за собой право в одностороннем порядке вносить изменения в настоящую Политику без какого-либо специального уведомления. Новая редакция Политики вступает в силу с момента ее размещения на странице сайта, если иное не предусмотрено в самом документе. Посетитель Платформы считается ознакомившимся с изменениями Политики с момента, когда ее актуальная версия предоставляется Оператором для публичного доступа. Актуальная версия Политики всегда располагается на странице по адресу \", _jsx(_components.a, {\n              href: \"https://salonca.ru/confidentiality\",\n              children: \"salonca.ru/confidentiality\"\n            }), \" и доступна 24 часа в сутки.\"]\n          }), \"\\n\", _jsx(_components.li, {\n            children: \"В части, не урегулированной настоящей Политикой, к отношениям между Посетителями и Оператором применяется право Российской Федерации.\"\n          }), \"\\n\", _jsx(_components.li, {\n            children: \"Все возможные споры по поводу настоящей Политики и отношений между Посетителем и Оператором будут разрешаться в суде по месту нахождения Оператора.\"\n          }), \"\\n\"]\n        }), \"\\n\"]\n      }), \"\\n\"]\n    })]\n  });\n}\nfunction MDXContent(props = {}) {\n  const {wrapper: MDXLayout} = Object.assign({}, _provideComponents(), props.components);\n  return MDXLayout ? _jsx(MDXLayout, Object.assign({}, props, {\n    children: _jsx(_createMdxContent, props)\n  })) : _createMdxContent(props);\n}\nreturn {\n  default: MDXContent\n};\n",
-              "frontmatter": {},
-              "scope": {
-                "title": "Политика конфиденциальности",
-                "desc": "Быстрый поиск по бьюти салонам и коворкингам города Москвы. Аренда рабочих мест для парикмахеров, стилистов и мастеров маникюра. Все предложения на карте Москвы.",
-                "slug": "confidentiality"
-              }
-            },
-            "frontMatter": {
-              "title": "Политика конфиденциальности",
-              "desc": "Быстрый поиск по бьюти салонам и коворкингам города Москвы. Аренда рабочих мест для парикмахеров, стилистов и мастеров маникюра. Все предложения на карте Москвы.",
-              "slug": "confidentiality"
-            },
-            "specialties": [
-              { "id": 1, "name": "Стилист-парикмахер" },
-              { "id": 2, "name": "Визажист" },
-              { "id": 3, "name": "Косметолог" },
-              { "id": 4, "name": "Мастер ногтевого сервиса" },
-              { "id": 5, "name": "Специалист по наращиванию ресниц" },
-              { "id": 6, "name": "Массажист" },
-              { "id": 7, "name": "Мастер перманентного макияжа" },
-              { "id": 8, "name": "Барбер" }
-            ],
-            "featuresList": [
-              {
-                "slug": "has_parking",
-                "name": "There is parking",
-                "read_only": false
-              },
-              {
-                "slug": "in_zhk",
-                "name": "Находится в ЖК",
-                "read_only": false
-              },
-              {
-                "slug": "prof_materials",
-                "name": "Профессиональные материалы по запросу",
-                "read_only": false
-              },
-              {
-                "slug": "uborka",
-                "name": "Уборка рабочих мест",
-                "read_only": false
-              },
-              {
-                "slug": "administrator",
-                "name": "Есть администратор",
-                "read_only": false
-              },
-              {
-                "slug": "card_payment",
-                "name": "Аренду можно оплатить картой",
-                "read_only": false
-              },
-              {
-                "slug": "cash_rent",
-                "name": "Аренда кассы",
-                "read_only": false
-              },
-              {
-                "slug": "guest_welcome",
-                "name": "Зона ожидания для гостей",
-                "read_only": false
-              },
-              {
-                "slug": "drinks",
-                "name": "Чай и кофе бесплатно",
-                "read_only": false
-              },
-              {
-                "slug": "kitchen",
-                "name": "Кухня для сотрудников",
-                "read_only": false
-              },
-              {
-                "slug": "free_hour",
-                "name": "Бесплатный тест-драйв (1 час)",
-                "read_only": false
-              },
-              {
-                "slug": "separate_room",
-                "name": "Отдельный кабинет",
-                "read_only": true
-              }
-            ],
-            "placeFeatureList": [
-              {
-                "slug": "separate_room",
-                "name": "Отдельный кабинет",
-                "read_only": false
-              },
-              {
-                "slug": "has_shower",
-                "name": "Душ в массажном кабинете",
-                "read_only": false
-              },
-              { "slug": "near_window", "name": "У окна", "read_only": false },
-              {
-                "slug": "equip_rent",
-                "name": "Аренда аппаратов для косметологии",
-                "read_only": false
-              }
-            ]
-          },
-          "__N_SSG": true
-        },
-        "page": "/[slug]",
-        "query": { "slug": "confidentiality" },
-        "buildId": "G6UULUO7CzhXqobddKZQh",
-        "isFallback": false,
-        "dynamicIds": [9235],
-        "gsp": true,
-        "scriptLoader": []
-      }
+    
+    <div class="navbar__modal id="navbar__modal">
+      <div class="container">
+          <div class="header_header__dliyZ flex items-center justify-between">
+            <a aria-label="Салонка" target="_top" href="index.html"
+              ><strong style="font-size:20px;" class="header_logo__BC0sp">The Suites</strong></a>
+            <div class="grid grid-flow-col items-center">
+              asfnas;jksajdjldal              
+            </div>
+          </div>
+        </div>
+        <div class="menu_drawerBody__yrbK_">
+          <div class="menu_nav__GLRQp">
+            <ul class="menu_list__5oxIP">
+              <button onclick="ConnectOpen()" class="menu_link__7Prly">Связаться с нами</button>
+              <a href="coworking.html" class="menu_link__7Prly">Салонам</a>
+            </ul>
+          </div>
+          <div style="margin: auto;" class="navbar_name">
+          <button onclick="LoginOpen()" class="menu_button__0ReSs inline-flex relative justify-center items-center disabled:opacity-50 min-h-sm lg:min-h-md p-2 text-xl md:text-3xl bg-secondary text-primary font-semibold hover:bg-blue-100 hover:bg-opacity-50 rounded-lg">Войти</button>
+        </div>
+        </div>
+    </div>
+    <div class="qora-oyna-navbar">
+  </div>
+
+    <script>
+      fetch("https://salonca.onrender.com/api/users",{
+      method:'GET'
+      }).then(response=>response.json()).then(res=>{
+      const Filter=res.filter(item=>item.email==localStorage.getItem("email"))
+      Filter.map(item=>{
+        for (let i = 0; i < document.querySelectorAll(".navbar_name").length; i++) {
+        document.querySelectorAll(".navbar_name")[i].innerHTML=`<a class="menu_link__7Prly" id="hover_user" href="/user.html" style="font-weight: bold;" target="_top">${item.username}</a>`
+        }
+      
+
+      document.querySelector("#seukasasa").innerHTML=`<a style="margin-top:13px" href="/user.html"><i style="font-size: 23px;margin-bottom: -8px;color: #3d5a80;" class='bx bx-user w-6 h-6'></i></a>`
+      })
+      }).catch(err=>{console.log(err)})
     </script>
   </body>
 </html>
