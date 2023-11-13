@@ -125,7 +125,7 @@ function Login() {
       }
      }
   }
-  }
+}
   
   // if (document.querySelector("#sms_login").style.display == "block") {
   //   if (document.querySelector("#login_info").style.display == "block") {
@@ -159,8 +159,10 @@ function Signin(){
     document.querySelector("#login_email").style="border:1px solid #98c1d9;"
     document.querySelector("#email_xato").style="display:none;"
     document.querySelector("#login_password").style="border:1px solid  #98c1d9;"
+    document.querySelector("#login_button").innerHTML="Salon entrance"
     document.querySelector("#password_xato").style="display:none;"
   }else{
+    document.querySelector("#login_button").innerHTML="Login for masters"
     document.querySelector("#login_p").innerHTML="Salon entrance"
     document.querySelector(".bla").innerHTML="Login for masters"
     document.querySelector("#login_and_register").style="display:block;"
