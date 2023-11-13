@@ -304,7 +304,7 @@ border: 1px solid #98cdd9;
 
 .mult-select-tag .item-container {
     display: flex;
-    justify-content: center;
+    justify-content: center ;
     align-items: center;
     color: #3d5a80;
     padding: 10px;
