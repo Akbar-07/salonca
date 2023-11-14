@@ -689,8 +689,12 @@ fetch('https://salonca.onrender.com/api/filyal', {
               <button class="filial_master_big_div_button">Choose</button>
           </div><hr/>`
           master.mutahasis_time.map((time,key1)=>{
-            a++
-            document.querySelectorAll(".filial_master_big_div_time")[key].innerHTML+=`<div onclick="time_fon('${a-1}','${master.id}','${time.id}','${item.id}')" class="filial_master_big_div_time_number">${time.time}</div>`
+            var date=new Date()
+            var hours=date.getHours()+":"+date.getMinutes()
+            if(time.time>=hours){
+              a++
+              document.querySelectorAll(".filial_master_big_div_time")[key].innerHTML+=`<div onclick="time_fon('${a-1}','${master.id}','${time.id}','${item.id}')" class="filial_master_big_div_time_number">${time.time}</div>`
+            }
           })
         })
     }else{

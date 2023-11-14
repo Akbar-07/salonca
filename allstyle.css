@@ -698,3 +698,20 @@ margin-bottom: 4px;
   border: 1px solid #98c1d9;
   color: grey;
 }
+.booking_select{
+width: 100%;
+max-height: 400px;
+overflow-y: scroll;
+padding-top: 5px;
+padding-bottom: 5px;
+position: absolute;
+}
+.booking_select_option{
+  padding-left: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  color: #3d5a80;
+}
+.booking_select_option:hover{
+  background-color: #98c1d9;
+}
