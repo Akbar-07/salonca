@@ -1018,12 +1018,14 @@ function filial_master_close(){
   document.querySelector("#filail_xususiyat").innerHTML=""
 }
 
-function filial_map_open(){
-document.querySelector("#filial_map_modal").style="display:flex"
-}
-function filial_map_close(){
-  document.querySelector("#filial_map_modal").style="display:none"
-}
+
+ function filial_map_open(){
+ document.querySelector("#filial_map_modal").style="display:flex"
+ }
+
+ function filial_map_close(){
+ document.querySelector("#filial_map_modal").style="display:none"
+ }
 
 
 
@@ -1312,3 +1314,6 @@ Filter.map(item=>{
 
 
 
+function searchfilter1(){
+
+}
