@@ -688,9 +688,9 @@ fetch('https://salonca.onrender.com/api/filyal', {
           </div>
               <button class="filial_master_big_div_button">Choose</button>
           </div><hr/>`
-          master.mutahasis_time.map((item,key1)=>{
+          master.mutahasis_time.map((time,key1)=>{
             a++
-            document.querySelectorAll(".filial_master_big_div_time")[key].innerHTML+=`<div onclick="time_fon('${a-1}','${master.id}')" class="filial_master_big_div_time_number">${item.time}</div>`
+            document.querySelectorAll(".filial_master_big_div_time")[key].innerHTML+=`<div onclick="time_fon('${a-1}','${master.id}','${time.id}','${item.id}')" class="filial_master_big_div_time_number">${time.time}</div>`
           })
         })
     }else{
@@ -813,124 +813,28 @@ fetch('https://salonca.onrender.com/api/filyal', {
     `
     document.querySelector("#filail_tel").innerHTML=`<a href="tel:${item.phone}"
     class="hidden font-semibold text-7xl text-primary/70 md:inline-flex w-max">${item.phone}</a>`
-
   })
 })
 .catch(error => {
   console.error(error);
 });
 
-function time_fon(key){
+var buttun_zakaz=0
+function time_fon(key,masterid,id,filialid){
+  document.querySelector("#button_mutaxasis_link").style="opacity:1;"
   for (let i = 0; i < document.querySelectorAll(".filial_master_big_div_time_number").length; i++) {
   if(key==i){
+  buttun_zakaz=1
   document.querySelectorAll(".filial_master_big_div_time_number")[i].style="color:white;background:#98c1d9;"
+  localStorage.setItem("filial_master_id",masterid)
+  localStorage.setItem("time_filial_master",id)
+  localStorage.setItem("filial_time",filialid)
   }else{
   document.querySelectorAll(".filial_master_big_div_time_number")[i].style="color:#3D5A80;background:none;"
   }
   }
 }
 
-// function Filtir_filial(){
-//   var value=document.querySelector("#filial_input").value;
-//   fetch('https://salonca.onrender.com/api/filyal', {
-//     method: 'GET'
-//   })
-//   .then(response => response.json())
-//   .then(res=>{
-//     document.querySelector(`#Filial_get`).innerHTML=""
-//     const data=res.filter(item=>item.id==localStorage.getItem("FilialId"))
-//     console.log(value,"filial");
-//     if(value){
-//     data.map(item=>{
-//          var Filter=item.master.filter(item2=>item2.time_create.slice(0,10)==value)
-//          console.log(Filter,"filtr ishladi");
-//          category.map(category2=>{
-//           for (let i = 0; i < category2.length; i++) {
-//             for (let j = 0; j < Filter.length; j++) {
-//              if(category2[i].id==Filter[j].category){
-//                Filter[j].categoryName=category2[i].category
-//              }  
-//             }
-//            }
-//         })
-//          Filter.map(filter=>{
-//           document.querySelector(`#Filial_get`).innerHTML+=`<div id="filial_big">
-//           <div>
-//               <p class="filial_big_title">Photo</p>
-//               <div class="filial_master_big_img_div">
-//               <img src='${filter.mutahasis_image.length>0?filter.mutahasis_image[0].image:"salom"}' alt=${filter.tavsif}>
-//                   <div class="filial_master_big_img_div_text">
-//                   <p>More details</p>
-//                   </div>
-//               </div></div>
-//               <div class="filial_big_Specialization">
-//               <p class="filial_big_title">Specialization</p>
-//               <div class="filial_master_big_div_text">${filter.categoryName}</div>
-//           </div>
-//           <div class="filial_big_time_div">
-//               <p class="filial_big_title">date:<input id="filial_input" type="date" class="filial_big_input"></p>
-//               <div class="filial_master_big_div_time">
-//               </div>
-//           </div>
-//           <div>
-//               <p class="filial_big_title">Price per hour</p>
-//               <p class="filial_master_big_div_money">${filter.price} ₽</p>
-//           </div>
-//               <button class="filial_master_big_div_button">Choose</button>
-//           </div>`
-//           filter.mutahasis_time.map(time=>{
-//             document.querySelector(".filial_master_big_div_time").innerHTML+=`<div class="filial_master_big_div_time_number">${time.time}</div>`
-//           })
-//         })
-//     })
-//     }else{
-//       data.map(item=>{
-//         category.map(category2=>{
-//          for (let i = 0; i < category2.length; i++) {
-//            for (let j = 0; j < item.master.length; j++) {
-//             if(category2[i].id==item.master[j].category){
-//               item.master[j].categoryName=category2[i].category
-//             }  
-//            }
-//           }
-//        })
-//        item.master.map(filter=>{
-//          document.querySelector(`#Filial_get`).innerHTML+=`<div id="filial_big">
-//          <div>
-//              <p class="filial_big_title">Photo</p>
-//              <div class="filial_master_big_img_div">
-//              <img src='${filter.mutahasis_image.length>0?filter.mutahasis_image[0].image:"salom"}' alt=${filter.tavsif}>
-//                  <div class="filial_master_big_img_div_text">
-//                  <p>More details</p>
-//                  </div>
-//              </div></div>
-//              <div class="filial_big_Specialization">
-//              <p class="filial_big_title">Specialization</p>
-//              <div class="filial_master_big_div_text">${filter.categoryName}</div>
-//          </div>
-//          <div class="filial_big_time_div">
-//              <p class="filial_big_title">date:<input id="filial_input"  type="date" class="filial_big_input"></p>
-//              <div class="filial_master_big_div_time">
-//              </div>
-//          </div>
-//          <div>
-//              <p class="filial_big_title">Price per hour</p>
-//              <p class="filial_master_big_div_money">${filter.price} ₽</p>
-//          </div>
-//              <button class="filial_master_big_div_button">Choose</button>
-//          </div>`
-//          filter.mutahasis_time.map(time=>{
-//           document.querySelector(".filial_master_big_div_time").innerHTML+=`<div class="filial_master_big_div_time_number">${time.time}</div>`
-//         })
-//        })
-//    })
-//     }
-    
-   
-//   }).catch(err=>{
-//     console.log(err);
-//   })
-// }
 
 
 function filial_master(id){
@@ -1314,6 +1218,14 @@ Filter.map(item=>{
 
 
 
+
 function searchfilter1(){
 
+}
+
+function zakazFilial(){
+  if(buttun_zakaz==1){
+    localStorage.setItem("filial_date",document.querySelector("#filial_input").value)
+   window.location="/booking.html"
+  }
 }

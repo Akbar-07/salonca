@@ -1156,10 +1156,8 @@
                                         class="hidden md:grid md:gap-4 md:col-span-2 md:grid-cols-[96px,1fr,2fr,1fr,212px]">
                                         <div class=" text-lg text-blue-100">Photo</div>
                                         <div class=" text-lg text-blue-100">Specialization</div>
-                                        <div class=" text-lg text-blue-100">date: <span class="relative"><input
-                                                    readonly="" aria-readonly="true"
-                                                    aria-label="Choose date, selected date is 25 авг. 2023 г."
-                                                    value="25.08.2023"
+                                        <div class=" text-lg text-blue-100">date: <span class="relative">
+                                            <input
                                                     style="width:1px;height:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);clip-path:inset(50%);position:absolute;left:0;bottom:0">
                                                 <style data-emotion="css n1rt70">
                                                     .css-n1rt70 {
@@ -1235,7 +1233,7 @@
                                                         text-decoration: none;
                                                     }
                                                 </style><button class="MuiButtonBase-root css-1l4z0yi" tabindex="0"
-                                                    type="button"><input id="filial_input" onchange="Filtir_filial()" type="date" class="filial_big_input"></button>
+                                                    type="button"><input id="filial_input"  type="date" class="filial_big_input"></button>
                                             </span>
                                             <style data-emotion="css 1wtxsft">
                                                 .css-1wtxsft {
@@ -1485,10 +1483,12 @@
                                         </div> -->
                                     </div>
                                     <div
-                                        class="md:grid md:col-start-2 auto-rows-max md:gap-4 md:items-start md:sticky md:top-[80px]">
-                                        <button
+                                    class="md:grid md:col-start-2 auto-rows-max md:gap-4 md:items-start md:sticky md:top-[80px]">
+                                    <button
+                                    onclick="zakazFilial()"
+                                        id="button_mutaxasis_link"
                                             class="w-full hidden md:inline-flex inline-flex relative justify-center items-center disabled:opacity-50 min-h-sm lg:min-h-md p-2 text-xl md:text-3xl bg-primary text-white font-bold hover:bg-blue-300 disabled:hover:bg-primary rounded-lg"
-                                            disabled="" tabindex="-1" type="button">Choose</button>
+                                              type="button" >Choose</button>
                                         <ul class="grid gap-5 max-w-[258px] md:pl-2">
                                             <li class="text-xl font-semibold grid gap-1.5 grid-flow-col justify-start">
                                                 <svg class="text-success w-6 h-6">

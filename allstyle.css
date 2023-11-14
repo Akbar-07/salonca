@@ -17,6 +17,9 @@
   #coworking_icon{
     font-size: 50px;
   }
+  #button_mutaxasis_link{
+    opacity: 0.5;
+  }
   @media (max-width:1024px) {
     #coworking_icon{
       font-size: 30px;
