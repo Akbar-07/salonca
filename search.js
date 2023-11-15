@@ -154,3 +154,55 @@ src="_next/czM6Ly9zYWxvbmNhLWRldi1idWNrZXQvaW1hZ2VzLzEyMmEwNjgzLWVlYWEtNGMxMy05Y
 
 
 
+fetch('https://salonca.onrender.com/api/filyal_mark/',{
+  method:'GET'
+}).then(response=>response.json()).then(res=>{
+res.map((item,key)=>{
+  document.querySelector("#list").innerHTML+=`
+  <div class="item"> 
+    <div class="filial_sharh_div">
+  <div class="filial_sharh_div_text_one">
+      <p>${item.mark}</p>
+      <div class="filial_sharh_div_text_one_stars">
+          <i class='bx bxs-star'></i>
+          <i class='bx bxs-star'></i>
+          <i class='bx bxs-star'></i>
+          <i class='bx bxs-star'></i>
+          <i class='bx bxs-star'></i>
+      </div>
+  </div>
+  <h1>${item.creator}</h1>
+  <p> ${item.text}</p>
+</div>
+  </div
+
+`
+})
+}).catch(err=>console.log(err))
+
+
+function postbec(){
+  fetch('https://salonca.onrender.com/api/contact',{
+  method: 'POST',
+  headers:{
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    ism: document.querySelector("#postmetod1").value,
+    nomer: document.querySelector("#postmetod2").value,
+    mutahasis_id: document.querySelector("#select_index").value,
+  })
+  })
+  .then(res=>{
+   res.json().then((res1) =>{
+    console.log(res1);
+    alert("Скоро мы с вами свяжемся")
+   })
+  })
+  .catch(err=>{
+    alert("xato")
+  })    
+}
+
+
+

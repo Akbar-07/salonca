@@ -542,6 +542,7 @@ fetch('https://salonca.onrender.com/api/category', {
 function SelectOpen(id,name) {
   if (document.querySelector("#select_index").style.display == "block") {
     if (id) {
+      localStorage.setItem("categoryId",id)
       document.querySelector("#home-specialization").innerHTML=`${name}`
       setTimeout(() => {
         document.querySelector("#select_index").style.display = "none";
@@ -606,6 +607,7 @@ fetch('https://salonca.onrender.com/api/filyal', {
     document.querySelector("#swiper_filial_one").innerHTML=`<div class="swiper-slide">
     <img src='${item.image}' />
     </div>`
+    
     document.querySelector("#swiper_filial_two").innerHTML=`<div class="swiper-slide">
     <img src='${item.image}' />
     </div>`
@@ -616,6 +618,9 @@ fetch('https://salonca.onrender.com/api/filyal', {
     document.querySelector("#swiper_filial_two").innerHTML+=`<div class="swiper-slide">
     <img src='${image.image}' />
     </div>`
+ 
+    
+
     var swiper = new Swiper(".mySwiper", {
       spaceBetween: 10,
       slidesPerView: 4,
