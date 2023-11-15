@@ -154,3 +154,28 @@ src="_next/czM6Ly9zYWxvbmNhLWRldi1idWNrZXQvaW1hZ2VzLzEyMmEwNjgzLWVlYWEtNGMxMy05Y
 
 
 
+fetch('https://salonca.onrender.com/api/filyal_mark/',{
+  method:'GET'
+}).then(response=>response.json()).then(res=>{
+res.map((item,key)=>{
+  document.querySelector("#list").innerHTML+=`
+  <div class="item"> 
+    <div class="filial_sharh_div">
+  <div class="filial_sharh_div_text_one">
+      <p>${item.mark}</p>
+      <div class="filial_sharh_div_text_one_stars">
+          <i class='bx bxs-star'></i>
+          <i class='bx bxs-star'></i>
+          <i class='bx bxs-star'></i>
+          <i class='bx bxs-star'></i>
+          <i class='bx bxs-star'></i>
+      </div>
+  </div>
+  <h1>${item.creator}</h1>
+  <p> ${item.text}</p>
+</div>
+  </div
+
+`
+})
+}).catch(err=>console.log(err))
