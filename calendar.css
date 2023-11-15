@@ -60,6 +60,23 @@ body .fc {
   margin: 0;
   padding: 0;
 }
+.fc-bg-default{
+  width: 100px !important;
+  height: 100px !important;
+  background-color: #3d5a80 !important;
+  color: #fff !important;
+  border: 0 !important;
+  border-radius: 15px !important;
+  opacity: 1 !important;
+}
+.fc-bg-default span{
+  color: #fff !important;
+  font-weight: 900 !important;
+}
+.fc-bg-default .fc-title{
+  color: #fff !important;
+  font-weight: 900 !important;
+}
 
 .fc-state-default {
   /* non-theme */
@@ -1058,7 +1075,7 @@ NOTE: use percentage font sizes or else old IE chokes
   -webkit-box-sizing: content-box;
   -moz-box-sizing: content-box;
   box-sizing: content-box;
-  color: #98c1d9;
+  color: #3d5a80;
 }
 
 .fc-view,

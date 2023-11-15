@@ -303,7 +303,7 @@
 <div class="user_big_text_div">
     <div class="user_big_text_div_title">
         <h1>Personal data</h1>
-        <a href="/"><button>Go out</button></a>
+        <button onclick="LogOut()" >Go out</button>
     </div>
     <br>
     <label for="">
@@ -413,6 +413,16 @@
           superadmin=item.superadmin
           user=item.id
           localStorage.setItem("user",item.id)
+          if(item.category!==0){
+             fetch('https://salonca.onrender.com/api/category',{
+              method:'GET'
+             }).then(category=>category.json()).then(cat=>{
+               const Filter2=cat.filter(item1=>item1.id==item.category)
+               Filter2.map(item2=>{
+                document.querySelector("#home-specialization").innerHTML=item2.category
+               })
+             })
+          }
           for (let i = 0; i < document.querySelectorAll(".navbar_name").length; i++) {
           document.querySelectorAll(".navbar_name")[i].innerHTML=`<a class="menu_link__7Prly" id="hover_user" href="/user.html" style="font-weight: bold;" target="_top">${item.username}</a>`
         }
@@ -420,6 +430,7 @@
         document.querySelector("#seukasasa").innerHTML=`<a style="margin-top:13px" href="/user.html"><i style="font-size: 23px;margin-bottom: -8px;color: #3d5a80;" class='bx bx-user w-6 h-6'></i></a>`
         })
         }).catch(err=>{console.log(err)})
+        
         function UsersPost(){
         var edit_user={
         phone:document.querySelector("#phonenumber_user_get").value,
@@ -439,6 +450,11 @@
         }).catch(err=>{
         alert("Информация не изменилась")
         })
+        }
+
+        function LogOut(){
+          localStorage.clear()
+          window.location="/"
         }
       </script>
 </body>
