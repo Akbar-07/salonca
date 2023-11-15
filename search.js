@@ -179,3 +179,30 @@ res.map((item,key)=>{
 `
 })
 }).catch(err=>console.log(err))
+
+
+function postbec(){
+  fetch('https://salonca.onrender.com/api/contact',{
+  method: 'POST',
+  headers:{
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    ism: document.querySelector("#postmetod1").value,
+    nomer: document.querySelector("#postmetod2").value,
+    mutahasis_id: document.querySelector("#select_index").value,
+  })
+  })
+  .then(res=>{
+   res.json().then((res1) =>{
+    console.log(res1);
+    alert("Скоро мы с вами свяжемся")
+   })
+  })
+  .catch(err=>{
+    alert("xato")
+  })    
+}
+
+
+
