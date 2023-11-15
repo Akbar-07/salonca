@@ -542,6 +542,7 @@ fetch('https://salonca.onrender.com/api/category', {
 function SelectOpen(id,name) {
   if (document.querySelector("#select_index").style.display == "block") {
     if (id) {
+      localStorage.setItem("categoryId",id)
       document.querySelector("#home-specialization").innerHTML=`${name}`
       setTimeout(() => {
         document.querySelector("#select_index").style.display = "none";

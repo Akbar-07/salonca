@@ -334,7 +334,7 @@
       </div>
     </div>
     </label>
-    <button class="user_big_text_div_button_save">Save</button>
+    <button onclick="UsersPost()" class="user_big_text_div_button_save">Save</button>
 </div>
     </div>
 
@@ -403,19 +403,43 @@
     </div>
 
       <script>
+        var superadmin=""
+        var user=0
         fetch("https://salonca.onrender.com/api/users",{
         method:'GET'
         }).then(response=>response.json()).then(res=>{
         const Filter=res.filter(item=>item.email==localStorage.getItem("email"))
         Filter.map(item=>{
+          superadmin=item.superadmin
+          user=item.id
+          localStorage.setItem("user",item.id)
           for (let i = 0; i < document.querySelectorAll(".navbar_name").length; i++) {
           document.querySelectorAll(".navbar_name")[i].innerHTML=`<a class="menu_link__7Prly" id="hover_user" href="/user.html" style="font-weight: bold;" target="_top">${item.username}</a>`
-          }
+        }
         
-  
         document.querySelector("#seukasasa").innerHTML=`<a style="margin-top:13px" href="/user.html"><i style="font-size: 23px;margin-bottom: -8px;color: #3d5a80;" class='bx bx-user w-6 h-6'></i></a>`
         })
         }).catch(err=>{console.log(err)})
+        function UsersPost(){
+        var edit_user={
+        phone:document.querySelector("#phonenumber_user_get").value,
+        username:document.querySelector("#name_user_get").value,
+        category:localStorage.getItem("categoryId"),
+        email:document.querySelector("#email_user_get").innerHTML,
+        superadmin:superadmin,
+        }
+        fetch(`https://salonca.onrender.com/api/users/${user}`,{
+        method:'PUT',
+        headers: {
+        'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(edit_user)
+        }).then(response=>response.json()).then(res=>{
+        alert("Информация изменилась")
+        }).catch(err=>{
+        alert("Информация не изменилась")
+        })
+        }
       </script>
 </body>
 </html>
