@@ -1230,6 +1230,198 @@ function searchfilter1(){
 function zakazFilial(){
   if(buttun_zakaz==1){
     localStorage.setItem("filial_date",document.querySelector("#filial_input").value)
-   window.location="/booking.html"
+    window.location="/booking.html"
+  }
+}
+
+fetch('https://salonca.onrender.com/api/filyal',{
+  method:'GET'
+}).then(response=>response.json()).then(res=>{
+  const filial=res.filter(item=>item.id==localStorage.getItem("FilialId"))
+
+  filial.map(item=>{
+    category.map(category2=>{
+      for (let i = 0; i < category2.length; i++) {
+        for (let j = 0; j < item.master.length; j++) {
+         if(category2[i].id==item.master[j].category){
+           item.master[j].categoryName=category2[i].category
+         }  
+        }
+       }
+    })
+    const Filter=item.master.filter(item1=>item1.id==localStorage.getItem("filial_master_id"))
+    Filter.map(filter=>{
+      document.querySelector("#notranslate").innerHTML=`<div  class="booking_select_map"><img src='${filter.mutahasis_image.length>0?filter.mutahasis_image[0].image:"yuq"}' alt=""><h1>${filter.categoryName}</h1></div>`
+      document.querySelector("#booking_master_price").innerHTML=`${filter.price} ₽`
+      const time_filter=filter.mutahasis_time.filter(item2=>item2.id==localStorage.getItem("time_filial_master"))
+      document.querySelector("#booking_time_from").value=time_filter[0].time
+      Time_until()
+    })
+    item.master.map(master=>{
+      document.querySelector("#booking_select").innerHTML+=`<h1 onclick="bookingSelect('${master.id}','${master.categoryName}','${master.mutahasis_image.length>0?master.mutahasis_image[0].image:"yuq"}')" class="booking_select_option"><img id="booking_img" src='${master.mutahasis_image.length>0?master.mutahasis_image[0].image:"Zor"}' alt="">${master.categoryName}</h1>`
+    })
+  })
+})
+
+
+
+
+function bookingSelect(id,name,img) {
+  if (document.querySelector("#booking_select").style.display == "block") {
+    if (id) {
+      document.querySelector("#notranslate").innerHTML=`<div  class="booking_select_map"><img src='${img}' alt=""><h1>${name}</h1></div>`
+      setTimeout(() => {
+        document.querySelector("#booking_select").style.display = "none";
+      }, 100);
+      fetch("https://salonca.onrender.com/api/filyal",{
+        method:'GET'
+      }).then(response=>response.json()).then(res=>{
+      res.map(master1=>{
+        const FIlter=master1.master.filter(item=>item.id==id)
+        console.log(FIlter);
+        FIlter.map(item=>{
+            if(item.mutahasis_time.length>0){
+              document.querySelector("#time_booking_div_block1").style="display:flex"
+              document.querySelector("#time_booking_div_block").style="display:flex"
+              document.querySelector("#time_select_none").style="display:none"
+              var date=new Date()
+              var hours=date.getHours()+":"+date.getMinutes()
+              const time_filter=item.mutahasis_time.filter(item2=>hours<=item2.time)
+              document.querySelector("#booking_time_from").value=time_filter[0].time
+              Time_until()
+            document.querySelector("#booking_master_price").innerHTML=`${item.price} ₽`
+            }else{
+              document.querySelector("#time_booking_div_block1").style="display:none"
+              document.querySelector("#time_booking_div_block").style="display:none"
+              document.querySelector("#time_select_none").style="display:flex"
+            }
+        })
+
+      })
+      })
+    } else {
+      document.querySelector("#booking_select").style.display = "none";
+    }
+  } else {
+    document.querySelector("#booking_select").style.display = "block";
+  }
+}
+
+fetch('https://salonca.onrender.com/api/filyal',{
+  method:'GET'
+}).then(response=>response.json()).then(res=>{
+  const filial=res.filter(item=>item.id==localStorage.getItem("FilialId"))
+  filial.map(item=>{
+    item.master.map(master=>{
+      master.mutahasis_time.map(time=>{
+        var date=new Date()
+        var hours=date.getHours()+":"+date.getMinutes()
+        if(hours<=time.time){
+          document.querySelector("#booking_time_div").innerHTML+=`<h1 onclick="bookingSelectTime('${time.id}','${time.time}')" class="booking_time_div_h1">${time.time}</h1>`
+        }
+      })
+    })
+  })
+})
+
+var time_until=[
+  {
+    time:'06:00'
+  },
+  {
+    time:'07:00'
+  },
+  {
+    time:'08:00'
+  },
+  {
+    time:'09:00'
+  },
+  {
+    time:'10:00'
+  },
+  {
+    time:'11:00'
+  },
+  {
+    time:'12:00'
+  },
+  {
+    time:'13:00'
+  },
+  {
+    time:'14:00'
+  },
+  {
+    time:'15:00'
+  },
+  {
+    time:'16:00'
+  },
+  {
+    time:'17:00'
+  },
+  {
+    time:'18:00'
+  },
+  {
+    time:'19:00'
+  },
+  {
+    time:'20:00'
+  },
+  {
+    time:'21:00'
+  },
+  {
+    time:'22:00'
+  },
+  {
+    time:'23:00'
+  },
+  {
+    time:'24:00'
+  }
+]
+
+function bookingSelectTime(id,time) {
+  if (document.querySelector("#booking_time_div").style.display == "block") {
+    if (id) {
+      document.querySelector("#booking_time_from").value=time
+      setTimeout(() => {
+        document.querySelector("#booking_time_div").style.display = "none";
+      }, 100); 
+      document.querySelector("#booking_time_div_two").innerHTML=""
+      Time_until()
+    } else {
+      document.querySelector("#booking_time_div").style.display = "none";
+    }
+  } else {
+    document.querySelector("#booking_time_div").style.display = "block";
+  }
+}
+
+function Time_until(){
+  const Filter=time_until.filter(item=>document.querySelector("#booking_time_from").value<=item.time)
+  document.querySelector("#booking_time_from_two").value=Filter[0].time
+  time_until.map((item,key)=>{
+    if(document.querySelector("#booking_time_from").value<=item.time){
+      document.querySelector("#booking_time_div_two").innerHTML+=`<h1 onclick="bookingSelectTimeTwo('${key}','${item.time}')" class="booking_time_div_h1">${item.time}</h1>`
+    }
+  })
+}
+  
+function bookingSelectTimeTwo(id,time) {
+  if (document.querySelector("#booking_time_div_two").style.display == "block") {
+    if (id) {
+      document.querySelector("#booking_time_from_two").value=time
+      setTimeout(() => {
+        document.querySelector("#booking_time_div_two").style.display = "none";
+      }, 100); 
+    } else {
+      document.querySelector("#booking_time_div_two").style.display = "none";
+    }
+  } else {
+    document.querySelector("#booking_time_div_two").style.display = "block";
   }
 }

@@ -1261,6 +1261,7 @@
                                     </style>
                                     <div style="position: relative;width: 100%;">
                                     <div
+                                    onclick="bookingSelect()"
                                     style="width: 100%;"
                                         class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-1kx1vri">
                                         <style data-emotion="css mnn31">
@@ -1523,7 +1524,9 @@
                                         <div tabindex="0" role="button" aria-expanded="false" aria-haspopup="listbox"
                                             aria-labelledby="booking-type-label booking-type" id="booking-type"
                                             class="MuiSelect-select MuiSelect-standard MuiInputBase-input css-1qlt8rc">
-                                            <span class="notranslate">​</span></div>
+                                            <span id="notranslate" class="notranslate">
+                                                
+                                            ​</span></div>
                                         <style data-emotion="css 1k3x8v3">
                                             .css-1k3x8v3 {
                                                 bottom: 0;
@@ -1586,13 +1589,12 @@
                                             }
                                         </style>
                                     </div>
-                                    <div class="booking_select">
-                                    <h1 class="booking_select_option">Hello</h1>
+                                    <div id="booking_select" class="booking_select">
                                     </div>
                                     </div>
                                 </div>
                                 
-                                <div class="grid grid-cols-[repeat(3,1fr)] gap-2">
+                                <div id="time_booking_div" class="grid grid-cols-[repeat(3,1fr)] gap-2">
                                     <style data-emotion="css 1kaqgze">
                                         .css-1kaqgze {
                                             display: grid;
@@ -2255,7 +2257,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="MuiFormControl-root css-klsayf">
+                                    <div id="time_booking_div_block" class="MuiFormControl-root css-klsayf">
                                         <div
                                             class="input-top_root__qC8ZD grid items-center justify-between mb-1 md:mb-0">
                                             <style data-emotion="css 18ulv0z">
@@ -2392,7 +2394,8 @@
                                                 class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-standard MuiFormLabel-root MuiFormLabel-colorPrimary css-eph74h"
                                                 data-shrink="false" for="booking-date">Time (from)</label>
                                         </div>
-                                        <div>
+                                        <div  style="position: relative;width: 100%;">
+                                        <div onclick="bookingSelectTime()">
                                             <style data-emotion="css 19tyrwg">
                                                 .css-19tyrwg {
                                                     border-radius: var(--rounded-xl);
@@ -2838,15 +2841,18 @@
                                                         animation-name: mui-auto-fill;
                                                     }
                                                 </style>
-                                                <input class="MuiInput-input MuiInputBase-input css-mnn31" type="text">
+                                                <input id="booking_time_from" class="MuiInput-input MuiInputBase-input css-mnn31" type="text" readonly>
                                                 <!-- <input type="text" aria-invalid="false"
                                                     aria-describedby="booking-date-helper-text" id="booking-date"
                                                     readonly="" value="09.11.2023"
                                                     class="MuiInput-input MuiInputBase-input css-mnn31"> -->
                                             </div>
                                         </div>
+                                        <div  id="booking_time_div" class="booking_time_div">
+                                        </div>
+                                        </div>
                                     </div>
-                                    <div class="MuiFormControl-root css-klsayf">
+                                    <div id="time_booking_div_block1" class="MuiFormControl-root css-klsayf">
                                         <div
                                             class="input-top_root__qC8ZD grid items-center justify-between mb-1 md:mb-0">
                                             <style data-emotion="css 18ulv0z">
@@ -3321,7 +3327,8 @@
                                                     }
                                                 }
                                             </style>
-                                            <div aria-readonly="true"
+                                            <div  style="position: relative;width: 100%;">
+                                            <div onclick="bookingSelectTimeTwo()" aria-readonly="true"
                                                 aria-label="Choose date, selected date is 9 нояб. 2023 г."
                                                 class="MuiInput-root MuiInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-19agkdx">
                                                 <style data-emotion="css mnn31">
@@ -3429,14 +3436,20 @@
                                                         animation-name: mui-auto-fill;
                                                     }
                                                 </style>
-                                                <input class="MuiInput-input MuiInputBase-input css-mnn31" type="text">
+                                                <input id="booking_time_from_two" class="MuiInput-input MuiInputBase-input css-mnn31" type="text" readonly>
                                                 <!-- <input type="text" aria-invalid="false"
                                                     aria-describedby="booking-date-helper-text" id="booking-date"
                                                     readonly="" value="09.11.2023"
                                                     class="MuiInput-input MuiInputBase-input css-mnn31"> -->
                                             </div>
+                                            <div  id="booking_time_div_two" class="booking_time_div">
+                                            
+                                            </div>
+                                           </div>
                                         </div>
                                     </div>
+                                    <p id="time_select_none">No time available</p>
+                                    <!-- </div> -->
                                     <style data-emotion="css 1wtxsft">
                                         .css-1wtxsft {
                                             z-index: 1500;
@@ -4214,7 +4227,7 @@
                                 <div class="grid gap-5 items-center grid-cols-[92px,1fr] mt-2">
                                     <div>
                                         <p class="text-xl leading-5">Price</p>
-                                        <p class=" text-4xl font-extrabold text-primary mt-1 md:font-bold">0 ₽</p>
+                                        <p id="booking_master_price" class=" text-4xl font-extrabold text-primary mt-1 md:font-bold">0 ₽</p>
                                     </div><button
                                         class="inline-flex relative justify-center items-center disabled:opacity-50 min-h-sm lg:min-h-md p-2 text-xl md:text-3xl bg-primary text-white font-bold hover:bg-blue-300 disabled:hover:bg-primary rounded-lg"
                                         disabled="" tabindex="-1" type="submit">Book</button>
