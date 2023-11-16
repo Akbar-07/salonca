@@ -4229,8 +4229,9 @@
                                         <p class="text-xl leading-5">Price</p>
                                         <p id="booking_master_price" class=" text-4xl font-extrabold text-primary mt-1 md:font-bold">0 ₽</p>
                                     </div><button
+                                       onclick="ZakazPost()"
                                         class="inline-flex relative justify-center items-center disabled:opacity-50 min-h-sm lg:min-h-md p-2 text-xl md:text-3xl bg-primary text-white font-bold hover:bg-blue-300 disabled:hover:bg-primary rounded-lg"
-                                        disabled="" tabindex="-1" type="submit">Book</button>
+                                        tabindex="-1" type="button">Book</button>
                                 </div>
                                 <p class=" text-lg text-primary">By clicking the Book button, you confirm your consent
                                     with the requirements of the salon. Payment is made on the spot according to the rules of the salon</p>
@@ -4496,7 +4497,7 @@
          delay: 5000,
         },
       });
-      var swiper2 = new Swiper(".mySwiper2", {
+            var swiper2 = new Swiper(".mySwiper2", {
         spaceBetween: 10,
         navigation: {
           nextEl: ".swiper-button-next",
@@ -4508,11 +4509,37 @@
         thumbs: {
           swiper: swiper,
         },
-      });
-            
-    })
+      }); 
+           })
            })
         })
+
+        function ZakazPost(){
+        if(localStorage.getItem("token")){
+        var zakaz={
+        time_start: document.querySelector("#booking_time_from").value,
+        time_end:document.querySelector("#booking_time_from_two").value,
+        day_zakaz:document.querySelector("#booking_date").value,
+        mutahasis_id:localStorage.getItem("filial_master_id"),
+        message:document.querySelector("#booking-comment").value,
+        user_id:localStorage.getItem("user")
+        }
+        fetch('https://salonca.onrender.com/api/zakaz',{
+            method:'POST',
+            headers:{
+                'Content-Type':'application/json'
+            },
+            body:JSON.stringify(zakaz)
+        }).then(response=>response.json()).then(res=>{
+           window.location='/user.html'
+        }).catch(err=>{
+           alert("An error occurred")
+        })
+        }
+        else{
+            LoginOpen()
+        }
+        }
       </script>
 </body>
 

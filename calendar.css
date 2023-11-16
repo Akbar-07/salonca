@@ -61,7 +61,7 @@ body .fc {
   padding: 0;
 }
 .fc-bg-default{
-  width: 100px !important;
+  width: 100% !important;
   height: 100px !important;
   background-color: #3d5a80 !important;
   color: #fff !important;

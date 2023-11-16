@@ -19,13 +19,16 @@ fetch('https://salonca.onrender.com/api/zakaz',{
     fetch('https://salonca.onrender.com/api/filyal',{method:'GET'}).then(response2=>response2.json()).then(res2=>{
       for (let j = 0; j < Filter.length; j++) {
         for (let d = 0; d < res1.length; d++) {
-         for (let b = 0; b < res2.length; b++) {
           if(Filter[j].mutahasis_id==res1[d].id){
-             if(res1[d].filial_id==res2[b].id){
-              Filter[j].title=res2[b].name
-             }
+            Filter[j].filial_id=res1[d].filial_id
           }
-         }
+        }
+      }
+      for (let i = 0; i < Filter.length; i++) {
+        for (let n = 0; n < res2.length; n++) {
+          if(Filter[i].filial_id==res2[n].id){
+            Filter[i].title=res2[n].name
+           }
         }
       }
       Filter.map(filter=>{
@@ -99,7 +102,7 @@ setTimeout(() => {
     });
   });
 })(jQuery);  
-}, 15000);
+}, 20000);
 
 
 function SelectOpenUser(id) {

@@ -24,18 +24,22 @@ function Login() {
         },
         body: JSON.stringify(login1)
         }).then(loginn=>loginn.json()).then(res=>{
-          localStorage.setItem("email",document.querySelector("#login_email").value)
-          localStorage.setItem("token",res.token)
-          document.querySelector("#login_email").style="border:1px solid #98c1d9;"
-          document.querySelector("#login_password").style="border:1px solid  #98c1d9;"
-          document.querySelector("#password_xato").innerHTML="Password is incorrect or less than 8 characters"
-          document.querySelector("#password_xato").style="display:none;"
-          window.location="/user.html"
+          if(!res.error){
+            localStorage.setItem("email",document.querySelector("#login_email").value)
+            localStorage.setItem("token",res.token)
+            document.querySelector("#login_email").style="border:1px solid #98c1d9;"
+            document.querySelector("#login_password").style="border:1px solid  #98c1d9;"
+            document.querySelector("#password_xato").innerHTML="Password is incorrect or less than 8 characters"
+            document.querySelector("#password_xato").style="display:none;"
+            window.location="/user.html"
+          }else{
+            document.querySelector("#login_email").style="border:1px solid red;"
+            document.querySelector("#login_password").style="border:1px solid red;"
+            document.querySelector("#password_xato").style="display:block;"
+            document.querySelector("#password_xato").innerHTML="You have entered an incorrect email or password"
+          }
         }).catch(err=>{
-          document.querySelector("#login_email").style="border:1px solid red;"
-          document.querySelector("#login_password").style="border:1px solid red;"
-          document.querySelector("#password_xato").style="display:block;"
-          document.querySelector("#password_xato").innerHTML="You have entered an incorrect email or password"
+
         })
     }
   }
@@ -1274,6 +1278,7 @@ fetch('https://salonca.onrender.com/api/filyal',{
 function bookingSelect(id,name,img) {
   if (document.querySelector("#booking_select").style.display == "block") {
     if (id) {
+      localStorage.setItem("filial_master_id",id)
       document.querySelector("#notranslate").innerHTML=`<div  class="booking_select_map"><img src='${img}' alt=""><h1>${name}</h1></div>`
       setTimeout(() => {
         document.querySelector("#booking_select").style.display = "none";
@@ -1381,12 +1386,6 @@ var time_until=[
   {
     time:'22:00'
   },
-  {
-    time:'23:00'
-  },
-  {
-    time:'24:00'
-  }
 ]
 
 function bookingSelectTime(id,time) {

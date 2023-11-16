@@ -447,6 +447,7 @@
         body: JSON.stringify(edit_user)
         }).then(response=>response.json()).then(res=>{
         alert("Информация изменилась")
+        window.location.reload()
         }).catch(err=>{
         alert("Информация не изменилась")
         })
