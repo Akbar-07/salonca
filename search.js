@@ -157,27 +157,33 @@ src="_next/czM6Ly9zYWxvbmNhLWRldi1idWNrZXQvaW1hZ2VzLzEyMmEwNjgzLWVlYWEtNGMxMy05Y
 fetch('https://salonca.onrender.com/api/filyal_mark/',{
   method:'GET'
 }).then(response=>response.json()).then(res=>{
-res.map((item,key)=>{
-  document.querySelector("#list").innerHTML+=`
-  <div class="item"> 
-    <div class="filial_sharh_div">
-  <div class="filial_sharh_div_text_one">
-      <p>${item.mark}</p>
-      <div class="filial_sharh_div_text_one_stars">
-          <i class='bx bxs-star'></i>
-          <i class='bx bxs-star'></i>
-          <i class='bx bxs-star'></i>
-          <i class='bx bxs-star'></i>
-          <i class='bx bxs-star'></i>
+  const Filter=res.filter(item=>item.filyal_id==localStorage.getItem("FilialId"))
+  if(Filter.length>0){
+    Filter.map((item,key)=>{
+      console.log(item,"sal");
+      document.querySelector("#list").innerHTML+=`
+      <div class="item"> 
+        <div class="filial_sharh_div">
+      <div class="filial_sharh_div_text_one">
+          <p>${item.mark}</p>
+          <div class="filial_sharh_div_text_one_stars">
+              <i class='bx bxs-star'></i>
+              <i class='bx bxs-star'></i>
+              <i class='bx bxs-star'></i>
+              <i class='bx bxs-star'></i>
+              <i class='bx bxs-star'></i>
+          </div>
       </div>
-  </div>
-  <h1>${item.creator}</h1>
-  <p> ${item.text}</p>
-</div>
-  </div
-
-`
-})
+      <h1>${item.creator}</h1>
+      <p> ${item.text}</p>
+    </div>
+      </div
+    
+    `
+    })
+  }else{
+    document.querySelector("#list").innerHTML="There are no comments"
+  }
 }).catch(err=>console.log(err))
 
 
@@ -190,7 +196,7 @@ function postbec(){
   body: JSON.stringify({
     ism: document.querySelector("#postmetod1").value,
     nomer: document.querySelector("#postmetod2").value,
-    mutahasis_id: document.querySelector("#select_index").value,
+    mutahasis_id: localStorage.getItem("categoryId"),
   })
   })
   .then(res=>{
