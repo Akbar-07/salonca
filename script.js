@@ -1429,3 +1429,45 @@ function bookingSelectTimeTwo(id,time) {
     document.querySelector("#booking_time_div_two").style.display = "block";
   }
 }
+
+
+function InputIndexFilter(){
+  document.querySelector("#index_filter_disrit_div2").innerHTML=""
+  document.querySelector("#index_filter_disrit_div1").innerHTML=""
+  if(document.querySelector("#home-address").value!==""){
+    // document.querySelector("#index_filter_disrit").style="display:block"
+  fetch('https://salonca.onrender.com/api/rayon',{
+    method:'GET'
+  }).then(response=>response.json()).then(res=>{
+    const Filter=res.filter(item=>(item.title).includes(document.querySelector("#home-address").value))
+    if(Filter.length>0){
+      document.querySelector("#title_p_index1").style="display:block"
+      Filter.map(item=>{
+        document.querySelector("#index_filter_disrit_div1").innerHTML+=`<h1>${item.title}</h1>`
+      })
+    }else{
+      document.querySelector("#title_p_index1").style="display:none"
+    }
+    fetch('https://salonca.onrender.com/api/metro',{
+      method:'GET'
+  }).then(response1=>response1.json()).then(res1=>{
+      const Filter1=res1.filter(item=>(item.title).includes(document.querySelector("#home-address").value))
+      if(Filter1.length>0){
+        document.querySelector("#title_p_index2").style="display:block"
+        Filter1.map(item1=>{
+          if(Filter1.length==0 && Filter.length==0){
+            document.querySelector("#index_filter_disrit").innerHTML=`<p>No results</p>`
+          }else{
+            document.querySelector("#index_filter_disrit").style="display:block"
+            document.querySelector("#index_filter_disrit_div2").innerHTML+=`<h1>${item1.title}</h1>`
+          }
+        })
+      }else{
+        document.querySelector("#title_p_index2").style="display:none"
+      }
+  })
+  })
+  }else{
+    document.querySelector("#index_filter_disrit").style="display:none"
+  } 
+}

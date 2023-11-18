@@ -2324,6 +2324,7 @@
                           color: var(--color-primary);
                         }
                       </style>
+                      <div style="position: relative;">
                       <div
                         aria-autocomplete="list"
                         autocapitalize="none"
@@ -2459,6 +2460,7 @@
                             animation-name: mui-auto-fill;
                           }</style
                         ><input
+                          onchange="InputIndexFilter()"
                           type="text"
                           aria-invalid="false"
                           aria-describedby="home-address-helper-text"
@@ -2469,6 +2471,15 @@
                           class="MuiInput-input MuiInputBase-input css-mnn31"
                         />
                       </div>
+                       <div id="index_filter_disrit" class="index_filter_disrit">
+                        <p id="title_p_index1">Rayon</p>
+                        <div id="index_filter_disrit_div1" class="index_filter_disrit_div1">
+                        </div>
+                        <p id="title_p_index2">Metro</p>
+                        <div id="index_filter_disrit_div2" class="index_filter_disrit_div2">
+                        </div>
+                      </div>
+                    </div>
                     </div>
                   </div>
                 </div>
