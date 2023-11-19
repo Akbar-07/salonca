@@ -1,3 +1,10 @@
+var input_date=new Date().toISOString().split('T')[0]
+
+console.log(input_date);
+
+setTimeout(()=>{
+  document.getElementById("index_date").innerHTML=`<input min='${input_date}'  name="home-date"  id="home-date" class="MuiInput-input MuiInputBase-input css-mnn31" type="date" />`
+},1000)
 
 function Login() {
   if(document.querySelector("#login_and_register").style.display=="none"){
@@ -1455,7 +1462,7 @@ function InputIndexFilter(){
         document.querySelector("#title_p_index1").style="display:block"
         Filter.map(item=>{
           document.querySelector("#index_filter_disrit").style="display:block"
-          document.querySelector("#index_filter_disrit_div1").innerHTML+=`<h1>${item.title}</h1>`
+          document.querySelector("#index_filter_disrit_div1").innerHTML+=`<h1 onclick="InputIndexFilterOption('${item.title}','${item.id}')">${item.title}</h1>`
         })
       }else{
         document.querySelector("#title_p_index1").style="display:none"
@@ -1464,7 +1471,7 @@ function InputIndexFilter(){
       document.querySelector("#title_p_index2").style="display:block"
       Filter1.map(item1=>{
         document.querySelector("#index_filter_disrit").style="display:block"
-        document.querySelector("#index_filter_disrit_div2").innerHTML+=`<h1>${item1.title}</h1>`
+        document.querySelector("#index_filter_disrit_div2").innerHTML+=`<h1 onclick="InputIndexFilterOption('${item1.title}','${item1.id}')">${item1.title}</h1>`
       })
       }else{
         document.querySelector("#title_p_index2").style="display:none"
@@ -1476,4 +1483,11 @@ function InputIndexFilter(){
   }else{
     document.querySelector("#index_filter_disrit").style="display:none"
   } 
+}
+
+
+function InputIndexFilterOption(title,id){
+  localStorage.setItem("SearchDistritId",id)
+  document.querySelector("#index_filter_disrit").style="display:none"
+  document.querySelector("#home-address").value=title
 }
