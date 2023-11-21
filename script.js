@@ -709,7 +709,7 @@ fetch('https://salonca.onrender.com/api/filyal', {
               <div class="filial_master_big_div_text">${master.categoryName}</div>
           </div>
           <div class="filial_big_time_div">
-              <p class="filial_big_title">date:<input id="filial_input" type="date" class="filial_big_input"></p>
+              <p class="filial_big_title">date:<input id='${"filial_input"+key}' type="date" class="filial_big_input"></p>
               <div class="filial_master_big_div_time">
               </div>
           </div>
@@ -717,7 +717,8 @@ fetch('https://salonca.onrender.com/api/filyal', {
               <p class="filial_big_title">Price per hour</p>
               <p class="filial_master_big_div_money">${master.price} ₽</p>
           </div>
-              <button class="filial_master_big_div_button">Choose</button>
+              <button onclick="zakazFilial('${key}')"
+              id="button_mutaxasis_link" class="filial_master_big_div_button">Choose</button>
           </div><hr/>`
           master.mutahasis_time.map((time,key1)=>{
             var date=new Date()
@@ -1260,10 +1261,18 @@ function searchfilter1(){
 
 }
 
-function zakazFilial(){
+function zakazFilial(key){
   if(buttun_zakaz==1){
-    localStorage.setItem("filial_date",document.querySelector("#filial_input").value)
-    window.location="/booking.html"
+    if(key!==0.5){
+      // console.log(key);
+      localStorage.setItem("filial_date",document.querySelector(`#filial_input${key}`).value)
+      // console.log(document.querySelector(`#filial_input${key}`).value,"chrt");
+      // console.log();
+      window.location="/booking.html"
+    }else{
+      localStorage.setItem("filial_date",document.querySelector("#filial_input").value)
+      window.location="/booking.html"
+    }
   }
 }
 
