@@ -211,4 +211,64 @@ function postbec(){
 }
 
 
+fetch('https://salonca.onrender.com/api/category',{
+  method:'GET'
+}).then(response=>response.json()).then(res=>{
+    const Filter=res.filter(item=>item.id==localStorage.getItem("categoryId"))
+    Filter.map(item=>{
+      document.querySelector("#home-specialization").innerHTML=item.category
+      document.querySelector("#Search_filter_div").innerHTML+=`<div onclick="Filter_div_close(1)" id="search_div" class="grid grid-flow-col justify-start gap-2 sm:gap-4">${item.category} <i class='bx bx-x'></i></div>`
+    })
+    fetch('https://salonca.onrender.com/api/rayon',{
+      method:'GET'
+    }).then(response1=>response1.json()).then(res1=>{
+      fetch('https://salonca.onrender.com/api/metro',{
+        method:'GET'
+      }).then(response2=>response2.json()).then(res2=>{
+          var a=localStorage.getItem("SearchDistritId").split(',')
+          const Filter1=res1.filter(item=>item.id==a[0])
+          const Filter2=res2.filter(item=>item.id==a[0])
+          const Filter3=Filter1.filter(item=>item.title==a[1])
+          const Filter4=Filter2.filter(item=>item.title==a[1])
+          Filter3.map(item=>{
+            document.querySelector("#Search_filter_div").innerHTML+=`<div onclick="Filter_div_close(2)" id="search_div" class="grid grid-flow-col justify-start gap-2 sm:gap-4">${item.title} <i class='bx bx-x'></i></div>`
+          })
+          Filter4.map(item=>{
+            document.querySelector("#Search_filter_div").innerHTML+=`<div onclick="Filter_div_close(2)" id="search_div" class="grid grid-flow-col justify-start gap-2 sm:gap-4">${item.title} <i class='bx bx-x'></i></div>`
+          })
+      })
+    })
+    if(localStorage.getItem("date_search")){
+      document.querySelector("#home-date").value=localStorage.getItem("date_search")
+      document.querySelector("#Search_filter_div").innerHTML+=`<div onclick="Filter_div_close(3)" id="search_div" class="grid grid-flow-col justify-start gap-2 sm:gap-4">${localStorage.getItem("date_search")} <i class='bx bx-x'></i></div>`
+    }
+})
 
+
+
+function Filter_div_close(id){
+  if(id==1){
+   localStorage.removeItem("categoryId")
+  }else{
+    if(id==2){
+      localStorage.removeItem("SearchDistritId")
+    }else{
+      if(id==3){
+        localStorage.removeItem("date_search")
+      }
+    }
+  }
+  window.location.reload()
+}
+
+function InputIndexFilterOption(title,id){
+  localStorage.setItem("SearchDistritId",id+","+title)
+  document.querySelector("#index_filter_disrit").style="display:none"
+  document.querySelector("#home-address").value=title
+}
+
+
+function SearchFilterPost(){
+  // document.querySelector("#home-date").value
+  localStorage.setItem("date_search",document.querySelector("#home-date").value)
+}

@@ -309,19 +309,33 @@ function closeNavbarMolad(){
   document.querySelector("body").style=`overflow: scroll;`
 }
 
+fetch('https://salonca.onrender.com/api/category', {
+  method: 'GET'
+})
+.then(response => response.json())
+.then(data => {
+  document.querySelector("#select_index1").innerHTML=""
+  data.map((item,key)=>{
+    document.querySelector("#select_index1").innerHTML+=`<h1 onclick="SelectOpen2('${item.id}','${item.category}')" id="select_index_h1" value='${item.id}'>${item.category}</h1>`
+   })
+})
+.catch(error => {
+  console.error(error);
+});
 
-function SelectOpen2(id) {
-  if (document.querySelector("#select_index").style.display == "block") {
+function SelectOpen2(id,name) {
+  if (document.querySelector("#select_index1").style.display == "block") {
     if (id) {
-      document.querySelector("#reg-select").innerHTML =
-        document.querySelectorAll("#select_index_h1")[id].innerHTML;
-      document.querySelector("#select_index").style.display = "none";
+      localStorage.setItem("categoryIdSearch",id)
+      document.querySelector("#home-specialization").innerHTML=`${name}`
+      setTimeout(() => {
+        document.querySelector("#select_index1").style.display = "none";
+      }, 100);
     } else {
-      document.querySelector("#select_index").style.display = "none";
+      document.querySelector("#select_index1").style.display = "none";
     }
   } else {
-    document.querySelector("#select_index").style.display = "block";
-    document.querySelector("#select_index1").style.display = "none";
+    document.querySelector("#select_index1").style.display = "block";
   }
 }
 
@@ -542,6 +556,7 @@ fetch('https://salonca.onrender.com/api/category', {
 .then(response => response.json())
 .then(data => {
   category.push(data)
+  document.querySelector("#select_index").innerHTML=""
   data.map((item,key)=>{
     document.querySelector("#select_index").innerHTML+=`<h1 onclick="SelectOpen('${item.id}','${item.category}')" id="select_index_h1" value='${item.id}'>${item.category}</h1>`
    })
@@ -956,8 +971,9 @@ function filial_master_close(){
 fetch('https://salonca.onrender.com/api/rayon/',{
   method:'GET'
 }).then(response=>response.json()).then(res=>{
+  document.querySelector("#countries").innerHTML=""
 res.map((item,key)=>{
-  document.querySelector("#countries").innerHTML=`
+  document.querySelector("#countries").innerHTML+=`
 <option value=${item.id}>${item.title}</option>
 `
 })
@@ -967,8 +983,9 @@ res.map((item,key)=>{
 fetch('https://salonca.onrender.com/api/metro/',{
   method:'GET'
 }).then(response=>response.json()).then(res=>{
+  document.querySelector("#countries1").innerHTML=""
 res.map((item,key)=>{
-  document.querySelector("#countries1").innerHTML=`
+  document.querySelector("#countries1").innerHTML+=`
 <option value=${item.id}>${item.title}</option>
 `
 })
@@ -1486,8 +1503,3 @@ function InputIndexFilter(){
 }
 
 
-function InputIndexFilterOption(title,id){
-  localStorage.setItem("SearchDistritId",id)
-  document.querySelector("#index_filter_disrit").style="display:none"
-  document.querySelector("#home-address").value=title
-}

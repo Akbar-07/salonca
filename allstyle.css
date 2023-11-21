@@ -816,3 +816,22 @@ height: 50px;
 .index_filter_disrit h1:hover{
   background-color: #e5e7eb;
 }
+#search_div{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+  border-radius: 10px;
+  border: 1px solid #98c1d9;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  font-size: 13px;
+}
+#search_div i{
+  font-size: 20px;
+  color: #98c1d9;
+  padding-top: 0.5px;
+  cursor: pointer;
+}
