@@ -32,7 +32,6 @@ fetch('https://salonca.onrender.com/api/zakaz',{
         }
       }
       Filter.map(filter=>{
-        console.log(filter,"xato");
         Data.push(filter)
       })
     })
