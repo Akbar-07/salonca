@@ -244,16 +244,20 @@ fetch('https://salonca.onrender.com/api/category',{
             fetch("https://salonca.onrender.com/api/mutahasis",{
             method:'GET'
             }).then(response3=>response3.json()).then(res4=>{
-              const FilterMaster=res4.filter(item=>item.category.includes(categoryId))
+              const FilterMaster=res4.filter(item=>item.category==categoryId)
               var a=[]
               for (let i = 0; i < res3.length; i++) {
                 for (let j = 0; j < FilterMaster.length; j++) {
                   if(res3[i].id==FilterMaster[j].filial_id){
-                      a.push(res3[i])
+                          a.push(res3[i])
                   } 
                 }
               }
-              console.log(a,"sihladi");
+              console.log(a,"slaom");
+              // FilterMaster.map(filtermaster=>{
+              //   const res31=res3.filter(item=>item.id==filtermaster.filial_id)
+              //   console.log(res31,"slaom");
+              // })
             })
           })
       })
