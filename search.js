@@ -215,7 +215,9 @@ fetch('https://salonca.onrender.com/api/category',{
   method:'GET'
 }).then(response=>response.json()).then(res=>{
     const Filter=res.filter(item=>item.id==localStorage.getItem("categoryId"))
+    var categoryId=""
     Filter.map(item=>{
+      categoryId=item.id
       document.querySelector("#home-specialization").innerHTML=item.category
       document.querySelector("#Search_filter_div").innerHTML+=`<div onclick="Filter_div_close(1)" id="search_div" class="grid grid-flow-col justify-start gap-2 sm:gap-4">${item.category} <i class='bx bx-x'></i></div>`
     })
@@ -235,6 +237,24 @@ fetch('https://salonca.onrender.com/api/category',{
           })
           Filter4.map(item=>{
             document.querySelector("#Search_filter_div").innerHTML+=`<div onclick="Filter_div_close(2)" id="search_div" class="grid grid-flow-col justify-start gap-2 sm:gap-4">${item.title} <i class='bx bx-x'></i></div>`
+          })
+          fetch("https://salonca.onrender.com/api/filyal",{
+            method:'GET'
+          }).then(response3=>response3.json()).then(res3=>{
+            fetch("https://salonca.onrender.com/api/mutahasis",{
+            method:'GET'
+            }).then(response3=>response3.json()).then(res4=>{
+              const FilterMaster=res4.filter(item=>item.category.includes(categoryId))
+              var a=[]
+              for (let i = 0; i < res3.length; i++) {
+                for (let j = 0; j < FilterMaster.length; j++) {
+                  if(res3[i].id==FilterMaster[j].filial_id){
+                      a.push(res3[i])
+                  } 
+                }
+              }
+              console.log(a,"sihladi");
+            })
           })
       })
     })
