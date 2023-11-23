@@ -5605,20 +5605,22 @@ color: #5ea2b9 !important;
             <div class="connect_with_us_div_close"><i onclick="LoginOpen()" class='bx bx-x'></i></div>
             <h1 class="bla">Login or register</h1>
             <label id="login_email_one">
-              <div><p>*Email</p></div>
-              <input id="login_email" type="email" placeholder="@gmail.com" /> 
-              <span id="email_xato" class="login_xato_red">Enter the email incorrectly , correctly</span>
               <div style="display: block;" id="login_and_register">
               <p style="margin-top: 10px;" class="register-p" >*Name</p>
                <input id="login_username" type="text" placeholder="name">
                <span id="name_xato" class="login_xato_red">Fill in the name</span>
               </div>
+              <p></p>
+              <div><p>*Email</p></div>
+              <input id="login_email" type="email" placeholder="" /> 
+              <span id="email_xato" class="login_xato_red">Enter the email incorrectly , correctly</span>
+      
                <p style="margin-top: 10px;" class="register-p">*Password</p>
                <input id="login_password" style="margin-bottom: 20px;" placeholder="password" type="password">
                <span id="password_xato" class="login_xato_red">Password is incorrect or less than 8 characters</span>
             </label>
             <label id="sms_login">
-              <div><p>Code from sms</p><p id="numberEdit" onclick="LoginClose()" class="nomerEdit">To change number</p></div>
+              <div><p>Code from sms</p><p id="numberEdit" onclick="LoginClose()" class="nomerEdit">To change Login or register</p></div>
               <input id="login_verify" type="number" /> 
               <span id="login_verify_div" class="login_xato_red">Verification error</span>
               <p style="margin-left: auto !important;margin: 0;margin-top: 10px;margin-bottom: 10px;" class="link_mas">Timer : <span id="code_timer">01:00</span></p> 
