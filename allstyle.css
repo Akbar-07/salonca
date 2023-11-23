@@ -1,3 +1,10 @@
+html{
+scroll-behavior: smooth !important;
+
+}
+
+
+
 .connect_with_us label p {
   margin-bottom: 5px;
   font-size: 13px !important;
@@ -430,6 +437,8 @@
   width: 90px;
   outline: none;
   background: none !important;
+  position: relative;
+  top: -2px;
 }
 
 @media (max-width: 768px) {
