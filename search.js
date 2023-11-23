@@ -232,12 +232,14 @@ fetch('https://salonca.onrender.com/api/category',{
           const Filter2=res2.filter(item=>item.id==a[0])
           const Filter3=Filter1.filter(item=>item.title==a[1])
           const Filter4=Filter2.filter(item=>item.title==a[1])
-          Filter3.map(item=>{
-            document.querySelector("#Search_filter_div").innerHTML+=`<div onclick="Filter_div_close(2)" id="search_div" class="grid grid-flow-col justify-start gap-2 sm:gap-4">${item.title} <i class='bx bx-x'></i></div>`
-          })
-          Filter4.map(item=>{
-            document.querySelector("#Search_filter_div").innerHTML+=`<div onclick="Filter_div_close(2)" id="search_div" class="grid grid-flow-col justify-start gap-2 sm:gap-4">${item.title} <i class='bx bx-x'></i></div>`
-          })
+          setTimeout(() => {
+            Filter3.map(item=>{
+              document.querySelector("#Search_filter_div").innerHTML+=`<div onclick="Filter_div_close(2)" id="search_div" class="grid grid-flow-col justify-start gap-2 sm:gap-4">${item.title} <i class='bx bx-x'></i></div>`
+            })
+            Filter4.map(item=>{
+              document.querySelector("#Search_filter_div").innerHTML+=`<div onclick="Filter_div_close(2)" id="search_div" class="grid grid-flow-col justify-start gap-2 sm:gap-4">${item.title} <i class='bx bx-x'></i></div>`
+            })
+          }, 6000);
           fetch("https://salonca.onrender.com/api/filyal",{
             method:'GET'
           }).then(response3=>response3.json()).then(res3=>{
@@ -249,15 +251,11 @@ fetch('https://salonca.onrender.com/api/category',{
               for (let i = 0; i < res3.length; i++) {
                 for (let j = 0; j < FilterMaster.length; j++) {
                   if(res3[i].id==FilterMaster[j].filial_id){
-                          a.push(res3[i])
+                    a.push(res3[i])
                   } 
                 }
               }
               console.log(a,"slaom");
-              // FilterMaster.map(filtermaster=>{
-              //   const res31=res3.filter(item=>item.id==filtermaster.filial_id)
-              //   console.log(res31,"slaom");
-              // })
             })
           })
       })
