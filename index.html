@@ -910,16 +910,20 @@
                   <div class="menu_menuBody__IfST1">
                     <nav class="menu_nav__GLRQp">
                       <ul class="menu_list__5oxIP">
-                        <button onclick="ConnectOpen()" class="menu_link__7Prly">Connect with us</button
-                        ><a class="menu_link__7Prly" href="coworking.html" target="_top"
-                          >Salons</a
+                        <a class="menu_button__0ReSs inline-flex relative justify-center items-center disabled:opacity-50 min-h-sm lg:min-h-md p-2 text-xl md:text-3xl bg-secondary text-primary font-semibold hover:bg-blue-100 hover:bg-opacity-50 rounded-lg" href="/" target="_top"
+                          >Main</a
+                        >
+                        <button onclick="ConnectOpen()" class="menu_link__7Prly"><span id="asdsadsadsadasdsaas">Connect with us</span></button
+                        >
+                        <a class="menu_link__7Prly" href="coworking.html" target="_top"
+                          ><span id="asdsadsadsadasdsaas">Salons</span></a
                         >
                       </ul>
                     </nav>
                     <div class="navbar_name">
                     <button
                     onclick="LoginOpen()"
-                      class="menu_button__0ReSs inline-flex relative justify-center items-center disabled:opacity-50 min-h-sm lg:min-h-md p-2 text-xl md:text-3xl bg-secondary text-primary font-semibold hover:bg-blue-100 hover:bg-opacity-50 rounded-lg"
+                      
                       tabindex="0"
                       type="button"
                     >
@@ -945,6 +949,10 @@
                     .css-f101zn .MuiPaper-root {
                       border-radius: 0 0 12px 12px;
                       box-shadow: 0px 6px 24px rgba(26, 61, 107, 0.16);
+                    }
+                    #asdsadsadsadasdsaas{
+                      position: relative;
+                      top: 5px;
                     }
                   </style>
                   <style data-emotion="css i4xtmq">
@@ -3325,19 +3333,22 @@
       <a href="tel:+739832332232"><button class="connect_with_us_div_buuton2">Call</button></a>
       </div>
     </div>
-    <div id="loginModal" class="connect_with_us">
+    <div class="bosganda-display-none" onclick="ochaqoo()">
+      <div id="loginModal" class="connect_with_us">
       <div class="connect_with_us_div">
       <div class="connect_with_us_div_close"><i onclick="LoginOpen()" class='bx bx-x'></i></div>
       <h1 class="bla">Login or register</h1>
       <label id="login_email_one">
-        <div><p>*Email</p></div>
-        <input id="login_email" type="email" placeholder="@gmail.com" /> 
-        <span id="email_xato" class="login_xato_red">Enter the email incorrectly , correctly</span>
         <div style="display: block;" id="login_and_register">
         <p style="margin-top: 10px;" class="register-p" >*Name</p>
          <input id="login_username" type="text" placeholder="name">
          <span id="name_xato" class="login_xato_red">Fill in the name</span>
         </div>
+        <p></p>
+        <div><p>*Email</p></div>
+        <input id="login_email" type="email" placeholder="" /> 
+        <span id="email_xato" class="login_xato_red">Enter the email incorrectly , correctly</span>
+
          <p style="margin-top: 10px;" class="register-p">*Password</p>
          <input id="login_password" style="margin-bottom: 20px;" placeholder="password" type="password">
          <span id="password_xato" class="login_xato_red">Password is incorrect or less than 8 characters</span>
@@ -3364,7 +3375,7 @@
       <button id="login_button" onclick="Login()" class="connect_with_us_div_buuton1">Login for masters</button>
       <p id="login_p" onclick="Signin()" class="link_mas">Salon entrance</p>
       </div>
-    </div>
+    </div></div>
     <div class="navbar__modal id="navbar__modal">
       <div class="container">
           <div class="header_header__dliyZ flex items-center justify-between">
@@ -3380,15 +3391,18 @@
             <ul class="menu_list__5oxIP">
               <button onclick="ConnectOpen()" class="menu_link__7Prly">Связаться с нами</button>
               <a href="coworking.html" class="menu_link__7Prly">Салонам</a>
+              <a href="coworking.html" class="menu_button__0ReSs inline-flex relative justify-center items-center disabled:opacity-50 min-h-sm lg:min-h-md p-2 text-xl md:text-3xl bg-secondary text-primary font-semibold hover:bg-blue-100 hover:bg-opacity-50 rounded-lg">Main</a>
             </ul>
           </div>
           <div style="margin: auto;" class="navbar_name">
-          <button onclick="LoginOpen()" class="menu_button__0ReSs inline-flex relative justify-center items-center disabled:opacity-50 min-h-sm lg:min-h-md p-2 text-xl md:text-3xl bg-secondary text-primary font-semibold hover:bg-blue-100 hover:bg-opacity-50 rounded-lg">Войти</button>
+          <button onclick="LoginOpen()" class="menu_link__7Prly" >Войти</button>
         </div>
         </div>
     </div>
     <div class="qora-oyna-navbar">
       </div>
+
+
     <script>
       fetch("https://salonca.onrender.com/api/users",{
       method:'GET'
@@ -3404,5 +3418,9 @@
       })
       }).catch(err=>{console.log(err)})
     </script>
+
+
+
+
   </body>
 </html>
