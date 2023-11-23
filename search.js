@@ -32,54 +32,40 @@ fetch('https://salonca.onrender.com/api/filyal', {
    data.map(item=>{
     document.querySelector("#seacrhmapjoy").innerHTML+=`
     <div
-    id="search_card"
-    onclick='localStorage.setItem("FilialId",${item.id})'
-                class="grid relative grid-rows-[1fr,152px] rounded-xl overflow-hidden bg-white shadow"
-              >
-                <div class="grid gap-1 px-4 pt-3 pb-1.5">
-                  <h2 class="text-xl leading-5 truncate text-black font-bold">
-                    ${item.name}
-                  </h2>
-                  <div class="grid gap-2 grid-flow-col justify-start">
-                    <div
-                      class="w-2.5 h-2.5 rounded-full mt-[5px]"
-                      style="background-color: #915133"
-                    ></div>
-                    <div
-                      class="text-xl font-light leading-5 text-black-900 truncate"
-                      itemprop="address"
-                    >${item.address}</div>
-                  </div>
-                  <div class="flex gap-1 h-[26px]">
-                    <p class="text-xl leading-5 text-primary">from 0/hour</p>
-                    <div class="text-xl leading-5 text-blue-100">
-                      · from 1 hour
+                  class="grid relative grid-rows-[1fr,152px] rounded-xl overflow-hidden bg-white shadow"
+                  onclick='localStorage.setItem("FilialId",${item.id})'
+                >
+                  <div class="grid gap-1 px-4 pt-3 pb-1.5">
+                    <h2 class="text-xl leading-5 truncate text-black font-bold">
+                      ${item.name}
+                    </h2>
+                    <div class="grid gap-2 grid-flow-col justify-start">
+                      <div
+                        class="w-2.5 h-2.5 rounded-full mt-[5px]"
+                        style="background-color: #915133"
+                      ></div>
+                      <div
+                        class="text-xl font-light leading-5 text-black-900 truncate"
+                        itemprop="address"
+                      >${item.address}</div>
+                    </div>
+                    <div class="flex gap-1 h-[26px]">
+                      <p class="text-xl leading-5 text-primary">from ${item.master.length>0?item.master[0].price:"0"} ₽/hour</p>
+                      <div class="text-xl leading-5 text-blue-100">
+                        · from ${item.min_time} hour
+                      </div>
                     </div>
                   </div>
-                </div>
-                <a
-                  aria-label='${item.name}'
-                  class="grid before:content-[&quot;&quot;] before:absolute before:top-0 before:left-0 before:z-10 before:w-full before:h-full image-placeholder"
-                  href="/filial.html"
-                  target="_top"
-                  ><span
-                    style="
-                      box-sizing: border-box;
-                      display: block;
-                      overflow: hidden;
-                      width: initial;
-                      height: initial;
-                      background: none;
-                      opacity: 1;
-                      border: 0;
-                      margin: 0;
-                      padding: 0;
-                      position: relative;
-                    "
+                  <a
+                    aria-label='${item.name}'
+                    class="grid before:content-[&quot;&quot;] before:absolute before:top-0 before:left-0 before:z-10 before:w-full before:h-full image-placeholder"
+                    href="/filial.html"
+                    target="_top"
                     ><span
                       style="
                         box-sizing: border-box;
                         display: block;
+                        overflow: hidden;
                         width: initial;
                         height: initial;
                         background: none;
@@ -87,39 +73,25 @@ fetch('https://salonca.onrender.com/api/filyal', {
                         border: 0;
                         margin: 0;
                         padding: 0;
-                        padding-top: 60.97560975609756%;
+                        position: relative;
                       "
-                    ></span
-                    ><img
-                      alt='${item.name}'
-                      src='${item.image}'
-                      decoding="async"
-                      data-nimg="responsive"
-                      style="
-                        position: absolute;
-                        top: 0;
-                        left: 0;
-                        bottom: 0;
-                        right: 0;
-                        box-sizing: border-box;
-                        padding: 0;
-                        border: none;
-                        margin: auto;
-                        display: block;
-                        width: 0;
-                        height: 0;
-                        min-width: 100%;
-                        max-width: 100%;
-                        min-height: 100%;
-                        max-height: 100%;
-                        object-fit: cover;
-                        object-position: center;
-                      " /><noscript
+                      ><span
+                        style="
+                          box-sizing: border-box;
+                          display: block;
+                          width: initial;
+                          height: initial;
+                          background: none;
+                          opacity: 1;
+                          border: 0;
+                          margin: 0;
+                          padding: 0;
+                          padding-top: 60.97560975609756%;
+                        "
+                      ></span
                       ><img
                         alt='${item.name}'
-                        sizes="100vw"
-
-src="_next/czM6Ly9zYWxvbmNhLWRldi1idWNrZXQvaW1hZ2VzLzEyMmEwNjgzLWVlYWEtNGMxMy05YjRlLTNhYTE1ZDlhM2EwMS9iMzRhNzU3NS1iOTM3LTRhZDEtODNkMi1mODlmOWE2ZDA1N2YuanBn.jpeg?url=https%3A%2F%2Fsalonca.ru%2Fimages%2Fy9Nqkao9c_fgHkVORA5Q8ivq8yqs8zTBBj2FlA9ZBf8%2Frs%3Afill%3A327%3A200%3A1%2Fmh%3A420%2Fdpr%3A2%2Fg%3Ace%2FczM6Ly9zYWxvbmNhLWRldi1idWNrZXQvaW1hZ2VzLzEyMmEwNjgzLWVlYWEtNGMxMy05YjRlLTNhYTE1ZDlhM2EwMS9iMzRhNzU3NS1iOTM3LTRhZDEtODNkMi1mODlmOWE2ZDA1N2YuanBn.jpg&amp;w=3840&amp;q=75"
+                        src='${item.image}'
                         decoding="async"
                         data-nimg="responsive"
                         style="
@@ -141,10 +113,36 @@ src="_next/czM6Ly9zYWxvbmNhLWRldi1idWNrZXQvaW1hZ2VzLzEyMmEwNjgzLWVlYWEtNGMxMy05Y
                           max-height: 100%;
                           object-fit: cover;
                           object-position: center;
-                        "
-                        loading="lazy" /></noscript></span
-                ></a>
-              </div>
+                        " /><noscript
+                        ><img
+                          alt='${item.name}'
+                          sizes="100vw"
+                          src="_next/czM6Ly9zYWxvbmNhLWRldi1idWNrZXQvaW1hZ2VzLzEyMmEwNjgzLWVlYWEtNGMxMy05YjRlLTNhYTE1ZDlhM2EwMS9iMzRhNzU3NS1iOTM3LTRhZDEtODNkMi1mODlmOWE2ZDA1N2YuanBn.jpeg?url=https%3A%2F%2Fsalonca.ru%2Fimages%2Fy9Nqkao9c_fgHkVORA5Q8ivq8yqs8zTBBj2FlA9ZBf8%2Frs%3Afill%3A327%3A200%3A1%2Fmh%3A420%2Fdpr%3A2%2Fg%3Ace%2FczM6Ly9zYWxvbmNhLWRldi1idWNrZXQvaW1hZ2VzLzEyMmEwNjgzLWVlYWEtNGMxMy05YjRlLTNhYTE1ZDlhM2EwMS9iMzRhNzU3NS1iOTM3LTRhZDEtODNkMi1mODlmOWE2ZDA1N2YuanBn.jpg&amp;w=3840&amp;q=75"
+                          decoding="async"
+                          data-nimg="responsive"
+                          style="
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            bottom: 0;
+                            right: 0;
+                            box-sizing: border-box;
+                            padding: 0;
+                            border: none;
+                            margin: auto;
+                            display: block;
+                            width: 0;
+                            height: 0;
+                            min-width: 100%;
+                            max-width: 100%;
+                            min-height: 100%;
+                            max-height: 100%;
+                            object-fit: cover;
+                            object-position: center;
+                          "
+                          loading="lazy" /></noscript></span
+                  ></a>
+                </div>
     `
    })
 })
@@ -292,5 +290,120 @@ function InputIndexFilterOption(title,id){
 
 function SearchFilterPost(){
   // document.querySelector("#home-date").value
-  localStorage.setItem("date_search",document.querySelector("#home-date").value)
+  // localStorage.setItem("date_search",document.querySelector("#home-date").value)
+  var data={
+
+  }
 }
+
+fetch('https://salonca.onrender.com/api/xususiyatlar',{
+  method:'GET'
+}).then(response=>response.json()).then(res=>{
+  res.map(item=>{
+    document.querySelector("#xususiyatId").innerHTML+=`<label
+    class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-5vspnf">
+    <style data-emotion="css zf7d16">
+        .css-zf7d16 {
+            padding: 0 7px;
+        }
+    </style>
+    <style data-emotion="css 1c7h8lr">
+        .css-1c7h8lr {
+            color: #293241;
+            padding: 0 7px;
+        }
+    </style>
+    <style data-emotion="css ski1p">
+        .css-ski1p {
+            padding: 9px;
+            border-radius: 50%;
+            color: #293241;
+            padding: 0 7px;
+        }
+    </style>
+    <style data-emotion="css 1yxmk4u">
+        .css-1yxmk4u {
+            display: -webkit-inline-box;
+            display: -webkit-inline-flex;
+            display: -ms-inline-flexbox;
+            display: inline-flex;
+            -webkit-align-items: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            position: relative;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            background-color: transparent;
+            outline: 0;
+            border: 0;
+            margin: 0;
+            border-radius: 0;
+            padding: 0;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            vertical-align: middle;
+            -moz-appearance: none;
+            -webkit-appearance: none;
+            -webkit-text-decoration: none;
+            text-decoration: none;
+            color: inherit;
+            padding: 9px;
+            border-radius: 50%;
+            color: #293241;
+            padding: 0 7px;
+        }
+
+        .css-1yxmk4u::-moz-focus-inner {
+            border-style: none;
+        }
+
+        .css-1yxmk4u.Mui-disabled {
+            pointer-events: none;
+            cursor: default;
+        }
+
+        @media print {
+            .css-1yxmk4u {
+                -webkit-print-color-adjust: exact;
+                color-adjust: exact;
+            }
+        }
+    </style>
+    <span><input type="checkbox" class="checkbox-seacrh"></span><span class="opasasas">${item.title}</span>
+</label>`
+  })  
+})
+
+// getCategory()
+// getFillial()
+// getMetro()
+// getRayon()
+// getXususiyat()
+// var data_key=JSON.parse(localStorage.getItem("filter"))
+// if(data_key){
+// console.log(data_key,"ishladi");
+// // select_page.push(data_key.name,select_id_category.push(data_key.id))
+// if(data_key.rayonMetro!==0){
+// if(data_key.rayonMetro.type=="metro"){
+// // this.setState({metro1:[data_key.rayonMetro]})
+// metro1.push([data_key.rayonMetro])
+// }else{
+// // this.setState({rayon1:[data_key.rayonMetro]})
+// rayon1.push([data_key.rayonMetro])
+// }
+// }
+// if(data_key.date.length>0){
+// document.querySelector("#date1").value=data_key.date
+// }
+// setTimeout(() => {
+// this.allFilter()
+// }, 100)
+// }
