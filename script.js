@@ -273,6 +273,7 @@ function LoginOpen() {
     document.querySelector("#loginModal").style.display = "flex";
     document.querySelector("body").style = "overflow: hidden;";
   }
+  
 }
 
 function FilterOpen() {
