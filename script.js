@@ -1536,7 +1536,9 @@ function InputIndexFilter(){
 fetch('https://salonca.onrender.com/api/category',{
 method:"GET"
 }).then(response=>response.json()).then(res=>{
-category.push(res)
+  res.map(item=>{
+    category.push(item)
+  })
 })
 fetch('https://salonca.onrender.com/api/filyal',{
 method:"GET"
@@ -1544,22 +1546,30 @@ method:"GET"
   for (let i = 0; i < res.length; i++) {
         res[i].date1="сегодня"
   }
-  filyal.push(res)
+  res.map(item=>{
+    filyal.push(item)
+  })
 })
 fetch('https://salonca.onrender.com/api/xususiyatlar',{
 method:"GET"
 }).then(response=>response.json()).then(res=>{
-xususiyat.push(res)
+res.map(item=>{
+  xususiyat.push(item)
+})
 })
 fetch('https://salonca.onrender.com/api/metro',{
 method:"GET"
 }).then(response=>response.json()).then(res=>{
-metro.push(res)
+res.map(item=>{
+  metro.push(item)
+})
 })
 fetch('https://salonca.onrender.com/api/rayon',{
 method:"GET"
 }).then(response=>response.json()).then(res=>{
-rayon.push(res)
+res.map(item=>{
+  rayon.push(item)
+})
 })
 
 
@@ -1619,16 +1629,16 @@ return data1
 function filter_xususiyat(data){
   var checked1=[]
   var xus=document.querySelectorAll('.checkbox-seacrh')
-  for (let i = 0; i < xus.length; i++) {
-if(xus[i].checked){
+  for (let i = 0; i < document.querySelectorAll('.checkbox-seacrh').length; i++) {
+if(document.querySelectorAll('.checkbox-seacrh')[i].checked){
 checked1.push(xususiyat[i])
 }}
 var send_data=[]
 if(checked1.length>0){
-for (let i = 0; i < data.length; i++) {
-var dostup=false
-  for (let j = 0; j < data[i].xususiyat.length; j++) {
-   for (let k = 0; k < checked1.length; k++) {
+  for (let i = 0; i < data.length; i++) {
+    var dostup=false
+    for (let j = 0; j < data[i].xususiyat.length; j++) {
+      for (let k = 0; k < checked1.length; k++) {
 if(data[i].xususiyat[j].xususiyat_id==checked1[k].id){
 dostup=true
 }
@@ -1645,16 +1655,13 @@ send_data=data
 return send_data
 }
 function filter_metro(data){
-  console.log("ishlamoqda");
-var data_1=document.querySelectorAll("#countries1");
 var send_data=[]
-if(data_1.length>1){
+if(document.querySelectorAll(".item-label").length>0){
 for (let i = 0; i < data.length; i++) {
 var push=false
 for (let j = 0; j < data[i].metro.length; j++) {
-for (let k = 0; k < data_1.length; k++) {
-  console.log(data_1[k].value,"salom");
-if(data[i].metro[j].metro_id==data_1[k].value){
+for (let k = 0; k < document.querySelectorAll(".item-label").length; k++) {
+if(data[i].metro[j].metro_id==document.querySelectorAll(".item-label")[k].getAttribute('data-value')){
 push=true
 }  
 }}
@@ -1669,14 +1676,13 @@ send_data=data
 return send_data
 }
 function filter_rayon(data){
-  var data_1=rayon1
   var send_data=[]
-  if (data_1.length>0) {
+  if (document.querySelectorAll(".item-label").length>0) {
     for (let i = 0; i < data.length; i++) {
   var push=false
   for (let j = 0; j < data[i].rayon.length; j++) {
-  for (let k = 0; k < data_1.length; k++) {
-  if(data[i].rayon[j].rayon_id==data_1[k].id){
+  for (let k = 0; k < document.querySelectorAll(".item-label").length; k++) {
+  if(data[i].rayon[j].rayon_id==document.querySelectorAll(".item-label")[k].getAttribute('data-value')){
   push=true
   }  
   }}
@@ -1701,7 +1707,6 @@ function allFilter(){
     data=filter_metro(data)
     data=filter_rayon(data)
     data=filter_price(data)
-    console.log(data,"sasassa");
     document.querySelector("#seacrhmapjoy").innerHTML=""
     data.map(item=>{
       document.querySelector("#seacrhmapjoy").innerHTML+=`
