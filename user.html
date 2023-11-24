@@ -405,6 +405,7 @@
       <script>
         var superadmin=""
         var user=0
+        var password=""
         fetch("https://salonca.onrender.com/api/users",{
         method:'GET'
         }).then(response=>response.json()).then(res=>{
@@ -412,6 +413,7 @@
         Filter.map(item=>{
           superadmin=item.superadmin
           user=item.id
+          password=item.password
           localStorage.setItem("user",item.id)
           if(item.category!==0){
              fetch('https://salonca.onrender.com/api/category',{
@@ -438,6 +440,7 @@
         category:localStorage.getItem("categoryId"),
         email:document.querySelector("#email_user_get").innerHTML,
         superadmin:superadmin,
+        password:
         }
         fetch(`https://salonca.onrender.com/api/users/${user}`,{
         method:'PUT',

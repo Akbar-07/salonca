@@ -209,77 +209,77 @@ function postbec(){
 }
 
 
-fetch('https://salonca.onrender.com/api/category',{
-  method:'GET'
-}).then(response=>response.json()).then(res=>{
-    const Filter=res.filter(item=>item.id==localStorage.getItem("categoryId"))
-    var categoryId=""
-    Filter.map(item=>{
-      categoryId=item.id
-      document.querySelector("#home-specialization").innerHTML=item.category
-      document.querySelector("#Search_filter_div").innerHTML+=`<div onclick="Filter_div_close(1)" id="search_div" class="grid grid-flow-col justify-start gap-2 sm:gap-4">${item.category} <i class='bx bx-x'></i></div>`
-    })
-    fetch('https://salonca.onrender.com/api/rayon',{
-      method:'GET'
-    }).then(response1=>response1.json()).then(res1=>{
-      fetch('https://salonca.onrender.com/api/metro',{
-        method:'GET'
-      }).then(response2=>response2.json()).then(res2=>{
-          var a=localStorage.getItem("SearchDistritId").split(',')
-          const Filter1=res1.filter(item=>item.id==a[0])
-          const Filter2=res2.filter(item=>item.id==a[0])
-          const Filter3=Filter1.filter(item=>item.title==a[1])
-          const Filter4=Filter2.filter(item=>item.title==a[1])
-          setTimeout(() => {
-            Filter3.map(item=>{
-              document.querySelector("#Search_filter_div").innerHTML+=`<div onclick="Filter_div_close(2)" id="search_div" class="grid grid-flow-col justify-start gap-2 sm:gap-4">${item.title} <i class='bx bx-x'></i></div>`
-            })
-            Filter4.map(item=>{
-              document.querySelector("#Search_filter_div").innerHTML+=`<div onclick="Filter_div_close(2)" id="search_div" class="grid grid-flow-col justify-start gap-2 sm:gap-4">${item.title} <i class='bx bx-x'></i></div>`
-            })
-          }, 6000);
-          fetch("https://salonca.onrender.com/api/filyal",{
-            method:'GET'
-          }).then(response3=>response3.json()).then(res3=>{
-            fetch("https://salonca.onrender.com/api/mutahasis",{
-            method:'GET'
-            }).then(response3=>response3.json()).then(res4=>{
-              const FilterMaster=res4.filter(item=>item.category==categoryId)
-              var a=[]
-              for (let i = 0; i < res3.length; i++) {
-                for (let j = 0; j < FilterMaster.length; j++) {
-                  if(res3[i].id==FilterMaster[j].filial_id){
-                    a.push(res3[i])
-                  } 
-                }
-              }
-              console.log(a,"slaom");
-            })
-          })
-      })
-    })
-    if(localStorage.getItem("date_search")){
-      document.querySelector("#home-date").value=localStorage.getItem("date_search")
-      document.querySelector("#Search_filter_div").innerHTML+=`<div onclick="Filter_div_close(3)" id="search_div" class="grid grid-flow-col justify-start gap-2 sm:gap-4">${localStorage.getItem("date_search")} <i class='bx bx-x'></i></div>`
-    }
-})
+// fetch('https://salonca.onrender.com/api/category',{
+//   method:'GET'
+// }).then(response=>response.json()).then(res=>{
+//     const Filter=res.filter(item=>item.id==localStorage.getItem("categoryId"))
+//     var categoryId=""
+//     Filter.map(item=>{
+//       categoryId=item.id
+//       document.querySelector("#home-specialization").innerHTML=item.category
+//       document.querySelector("#Search_filter_div").innerHTML+=`<div onclick="Filter_div_close(1)" id="search_div" class="grid grid-flow-col justify-start gap-2 sm:gap-4">${item.category} <i class='bx bx-x'></i></div>`
+//     })
+//     fetch('https://salonca.onrender.com/api/rayon',{
+//       method:'GET'
+//     }).then(response1=>response1.json()).then(res1=>{
+//       fetch('https://salonca.onrender.com/api/metro',{
+//         method:'GET'
+//       }).then(response2=>response2.json()).then(res2=>{
+//           var a=localStorage.getItem("SearchDistritId").split(',')
+//           const Filter1=res1.filter(item=>item.id==a[0])
+//           const Filter2=res2.filter(item=>item.id==a[0])
+//           const Filter3=Filter1.filter(item=>item.title==a[1])
+//           const Filter4=Filter2.filter(item=>item.title==a[1])
+//           setTimeout(() => {
+//             Filter3.map(item=>{
+//               document.querySelector("#Search_filter_div").innerHTML+=`<div onclick="Filter_div_close(2)" id="search_div" class="grid grid-flow-col justify-start gap-2 sm:gap-4">${item.title} <i class='bx bx-x'></i></div>`
+//             })
+//             Filter4.map(item=>{
+//               document.querySelector("#Search_filter_div").innerHTML+=`<div onclick="Filter_div_close(2)" id="search_div" class="grid grid-flow-col justify-start gap-2 sm:gap-4">${item.title} <i class='bx bx-x'></i></div>`
+//             })
+//           }, 6000);
+//           fetch("https://salonca.onrender.com/api/filyal",{
+//             method:'GET'
+//           }).then(response3=>response3.json()).then(res3=>{
+//             fetch("https://salonca.onrender.com/api/mutahasis",{
+//             method:'GET'
+//             }).then(response3=>response3.json()).then(res4=>{
+//               const FilterMaster=res4.filter(item=>item.category==categoryId)
+//               var a=[]
+//               for (let i = 0; i < res3.length; i++) {
+//                 for (let j = 0; j < FilterMaster.length; j++) {
+//                   if(res3[i].id==FilterMaster[j].filial_id){
+//                     a.push(res3[i])
+//                   } 
+//                 }
+//               }
+//               console.log(a,"slaom");
+//             })
+//           })
+//       })
+//     })
+//     if(localStorage.getItem("date_search")){
+//       document.querySelector("#home-date").value=localStorage.getItem("date_search")
+//       document.querySelector("#Search_filter_div").innerHTML+=`<div onclick="Filter_div_close(3)" id="search_div" class="grid grid-flow-col justify-start gap-2 sm:gap-4">${localStorage.getItem("date_search")} <i class='bx bx-x'></i></div>`
+//     }
+// })
 
 
 
-function Filter_div_close(id){
-  if(id==1){
-   localStorage.removeItem("categoryId")
-  }else{
-    if(id==2){
-      localStorage.removeItem("SearchDistritId")
-    }else{
-      if(id==3){
-        localStorage.removeItem("date_search")
-      }
-    }
-  }
-  window.location.reload()
-}
+// function Filter_div_close(id){
+//   if(id==1){
+//    localStorage.removeItem("categoryId")
+//   }else{
+//     if(id==2){
+//       localStorage.removeItem("SearchDistritId")
+//     }else{
+//       if(id==3){
+//         localStorage.removeItem("date_search")
+//       }
+//     }
+//   }
+//   window.location.reload()
+// }
 
 function InputIndexFilterOption(title,id){
   localStorage.setItem("SearchDistritId",id+","+title)

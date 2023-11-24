@@ -1645,14 +1645,16 @@ send_data=data
 return send_data
 }
 function filter_metro(data){
-var data_1=metro1
+  console.log("ishlamoqda");
+var data_1=document.querySelectorAll("#countries1");
 var send_data=[]
 if(data_1.length>1){
 for (let i = 0; i < data.length; i++) {
 var push=false
 for (let j = 0; j < data[i].metro.length; j++) {
 for (let k = 0; k < data_1.length; k++) {
-if(data[i].metro[j].metro_id==data_1[k].id){
+  console.log(data_1[k].value,"salom");
+if(data[i].metro[j].metro_id==data_1[k].value){
 push=true
 }  
 }}
