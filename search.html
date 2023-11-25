@@ -803,6 +803,10 @@
                 <div class="grid lg:grid-cols-[312px,1fr] lg:items-start lg:gap-6 lg:mt-6">
                     <div id="filtir_search_media_big">
                     <form id="filtir_search_media" class="hidden lg:grid grid gap-4 pt-4 pb-5">
+                        <div class="filtir_search_media_big_div">
+                            <h1>Filters</h1>
+                            <i onclick="FilterClose()" class='bx bx-x'></i>
+                        </div>
                         <style data-emotion="css 11f40o3">
                             .css-11f40o3 {
                                 display: -webkit-inline-box;
@@ -5471,7 +5475,7 @@ color: #5ea2b9 !important;
                                 </style>
                             </div>
                         </div><button
-                            onclick="allFilter()"
+                            onclick="allFilter();sessionStorage.clear()"
                             class="sticky bottom-3 mt-2 inline-flex relative justify-center items-center disabled:opacity-50 min-h-sm lg:min-h-md p-2 text-xl md:text-3xl bg-primary text-white font-bold hover:bg-blue-300 disabled:hover:bg-primary rounded-lg"
                             tabindex="0" type="button">Search</button>
                     </form>
@@ -5587,7 +5591,7 @@ color: #5ea2b9 !important;
                 items.hide().slice(showFrom,showTo).show()
             }
         })
-        }, 6000);
+        }, 2000);
         </script>
 
 

@@ -19,6 +19,7 @@ fetch('https://fre.abbas.uz/api/filyal', {
    data.map(item=>{
     document.querySelector("#seacrhmapjoy").innerHTML+=`
     <div
+     id="search_card"
                   class="grid relative grid-rows-[1fr,152px] rounded-xl overflow-hidden bg-white shadow"
                   onclick='localStorage.setItem("FilialId",${item.id})'
                 >
@@ -492,9 +493,143 @@ function filter_rayon(data){
 }
 
 function allFilter(){
-  fetch('https://fre.abbas.uz/api/filyal',{
+  if(document.querySelector("#filtir_search_media_big").style.display == "flex"){
+    fetch('https://fre.abbas.uz/api/filyal',{
+      method:'GET'
+      }).then(response=>response.json()).then(res=>{
+        var data=filter_master(res)
+        data=filter_xususiyat(data)
+        data=filter_date(data)
+        data=filter_metro(data)
+        data=filter_rayon(data)
+        data=filter_price(data)
+        document.querySelector("#seacrhmapjoy").innerHTML=""
+        data.map(item=>{
+          document.querySelector("#seacrhmapjoy").innerHTML+=`
+          <div
+          id="search_card"
+                      class="grid relative grid-rows-[1fr,152px] rounded-xl overflow-hidden bg-white shadow"
+                      onclick='localStorage.setItem("FilialId",${item.id})'
+                    >
+                      <div class="grid gap-1 px-4 pt-3 pb-1.5">
+                        <h2 class="text-xl leading-5 truncate text-black font-bold">
+                          ${item.name}
+                        </h2>
+                        <div class="grid gap-2 grid-flow-col justify-start">
+                          <div
+                            class="w-2.5 h-2.5 rounded-full mt-[5px]"
+                            style="background-color: #915133"
+                          ></div>
+                          <div
+                            class="text-xl font-light leading-5 text-black-900 truncate"
+                            itemprop="address"
+                          >${item.address}</div>
+                        </div>
+                        <div class="flex gap-1 h-[26px]">
+                          <p class="text-xl leading-5 text-primary">from ${item.master.length>0?item.master[0].price:"0"} ₽/hour</p>
+                          <div class="text-xl leading-5 text-blue-100">
+                            · from ${item.min_time} hour
+                          </div>
+                        </div>
+                      </div>
+                      <a
+                        aria-label='${item.name}'
+                        class="grid before:content-[&quot;&quot;] before:absolute before:top-0 before:left-0 before:z-10 before:w-full before:h-full image-placeholder"
+                        href="/filial.html"
+                        target="_top"
+                        ><span
+                          style="
+                            box-sizing: border-box;
+                            display: block;
+                            overflow: hidden;
+                            width: initial;
+                            height: initial;
+                            background: none;
+                            opacity: 1;
+                            border: 0;
+                            margin: 0;
+                            padding: 0;
+                            position: relative;
+                          "
+                          ><span
+                            style="
+                              box-sizing: border-box;
+                              display: block;
+                              width: initial;
+                              height: initial;
+                              background: none;
+                              opacity: 1;
+                              border: 0;
+                              margin: 0;
+                              padding: 0;
+                              padding-top: 60.97560975609756%;
+                            "
+                          ></span
+                          ><img
+                            alt='${item.name}'
+                            src='${item.image}'
+                            decoding="async"
+                            data-nimg="responsive"
+                            style="
+                              position: absolute;
+                              top: 0;
+                              left: 0;
+                              bottom: 0;
+                              right: 0;
+                              box-sizing: border-box;
+                              padding: 0;
+                              border: none;
+                              margin: auto;
+                              display: block;
+                              width: 0;
+                              height: 0;
+                              min-width: 100%;
+                              max-width: 100%;
+                              min-height: 100%;
+                              max-height: 100%;
+                              object-fit: cover;
+                              object-position: center;
+                            " /><noscript
+                            ><img
+                              alt='${item.name}'
+                              sizes="100vw"
+                              src="_next/czM6Ly9zYWxvbmNhLWRldi1idWNrZXQvaW1hZ2VzLzEyMmEwNjgzLWVlYWEtNGMxMy05YjRlLTNhYTE1ZDlhM2EwMS9iMzRhNzU3NS1iOTM3LTRhZDEtODNkMi1mODlmOWE2ZDA1N2YuanBn.jpeg?url=https%3A%2F%2Fsalonca.ru%2Fimages%2Fy9Nqkao9c_fgHkVORA5Q8ivq8yqs8zTBBj2FlA9ZBf8%2Frs%3Afill%3A327%3A200%3A1%2Fmh%3A420%2Fdpr%3A2%2Fg%3Ace%2FczM6Ly9zYWxvbmNhLWRldi1idWNrZXQvaW1hZ2VzLzEyMmEwNjgzLWVlYWEtNGMxMy05YjRlLTNhYTE1ZDlhM2EwMS9iMzRhNzU3NS1iOTM3LTRhZDEtODNkMi1mODlmOWE2ZDA1N2YuanBn.jpg&amp;w=3840&amp;q=75"
+                              decoding="async"
+                              data-nimg="responsive"
+                              style="
+                                position: absolute;
+                                top: 0;
+                                left: 0;
+                                bottom: 0;
+                                right: 0;
+                                box-sizing: border-box;
+                                padding: 0;
+                                border: none;
+                                margin: auto;
+                                display: block;
+                                width: 0;
+                                height: 0;
+                                min-width: 100%;
+                                max-width: 100%;
+                                min-height: 100%;
+                                max-height: 100%;
+                                object-fit: cover;
+                                object-position: center;
+                              "
+                              loading="lazy" /></noscript></span
+                      ></a>
+                    </div>
+          `
+        })
+        document.querySelector("#filyal_length").innerHTML=`
+        <span>Найдено: ${data.length}     салонов </span>`
+        // this.setState({filyal:filter_price(data)})
+          FilterClose()
+      })
+  }else{
+        fetch('https://fre.abbas.uz/api/filyal',{
   method:'GET'
-  }).then(response=>response.json()).then(res=>{
+        }).then(response=>response.json()).then(res=>{
     var data=filter_master(res)
     data=filter_xususiyat(data)
     data=filter_date(data)
@@ -505,6 +640,7 @@ function allFilter(){
     data.map(item=>{
       document.querySelector("#seacrhmapjoy").innerHTML+=`
       <div
+      id="search_card"
                   class="grid relative grid-rows-[1fr,152px] rounded-xl overflow-hidden bg-white shadow"
                   onclick='localStorage.setItem("FilialId",${item.id})'
                 >
@@ -621,23 +757,55 @@ function allFilter(){
     document.querySelector("#filyal_length").innerHTML=`
     <span>Найдено: ${data.length}     салонов </span>`
     // this.setState({filyal:filter_price(data)})
-  })
+        })
+  }
+  setTimeout(() => {
+    var items = $("#seacrhmapjoy #search_card");
+    var numItems = items.length;
+    var perPage = 20;
+    
+    items.slice(perPage).hide();
+    
+    $("#pagination-container").pagination({
+        items: numItems,
+        itemsOnPage: perPage,
+        prevText: "<i class='bx bx-chevron-right bx-rotate-180' ></i>",
+        nextText: "<i class='bx bx-chevron-right'></i>",
+        onPageClick : function (pageNumber){
+            var showFrom = perPage * (pageNumber - 1);
+            var showTo = showFrom + perPage;
+            items.hide().slice(showFrom,showTo).show()
+        }
+    })
+    }, 100);
 }
 
 
 fetch('https://fre.abbas.uz/api/category',{
 method:"GET"
-}).then(res=>{
+}).then(response=>response.json()).then(res=>{
   res.map((item,key)=>{
    if(item.id==sessionStorage.getItem("categoryId")){
-   document.querySelector("select_index_h1").innerHTML=item.category
-  //  document.querySelectorAll("#select_index_h1").slice(key,1)
-   select_id_category=sessionStorage.getItem("categoryId")
-   document.querySelector('#home-date').value=sessionStorage.getItem("date")
+     //  document.querySelectorAll("#select_index_h1").slice(key,1)
+     document.querySelector("#home-specialization").innerHTML=item.category
+     select_id_category=sessionStorage.getItem("categoryId")
+     document.querySelector('#home-date').value=sessionStorage.getItem("date")
+     allFilter()
     }
    })
 })
 
+
+
 function SelectClose2(){
   document.querySelector("#select_index1").style.display = "none";
+}
+
+function FilterOpen() {
+    document.querySelector("#filtir_search_media_big").style = "display:flex";
+    document.querySelector("body").style = "overflow: hidden;";
+}
+function FilterClose() {
+    document.querySelector("#filtir_search_media_big").style = "display:none";
+    document.querySelector("body").style = "overflow: scroll;";
 }

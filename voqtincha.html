@@ -15,8 +15,8 @@
     <meta property="og:description" content="Арендуйте рабочее место в бьюти салоне в Москве" />
     <meta name="description" content="Арендуйте рабочее место в бьюти салоне в Москве" />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://salonca.ru/search" />
-    <link href="https://salonca.ru/search" rel="canonical" as="" />
+    <meta property="og:url" content="voqtincha.html" />
+    <link href="voqtincha.html" rel="canonical" as="" />
     <meta property="og:site_name" content="salonca.ru" />
     <meta property="og:image" content="https://salonca.ru/coworking-hero-bg.png" />
     <meta name="keywords"
@@ -481,19 +481,369 @@
 
 
 <script>
+var select_page='Ваша специализация'
+var category=[]
+var  filyal=[]
+var  dataFilyal=[]
+var  select_id_category=0
+var  minDate=''
+var  xususiyat=[]
+var  metro=[]
+var  rayon=[]
+var  rayon1=[]
+var  metro1=[]
+
+fetch('https://fre.abbas.uz/api/category',{
+method:"GET"
+}).then(response=>response.json()).then(res=>{
+  res.map(item=>{
+    category.push(item)
+  })
+})
+fetch('https://fre.abbas.uz/api/filyal',{
+method:"GET"
+}).then(response=>response.json()).then(res=>{
+  for (let i = 0; i < res.length; i++) {
+        res[i].date1="сегодня"
+  }
+  res.map(item=>{
+    filyal.push(item)
+  })
+})
+fetch('https://fre.abbas.uz/api/filyal',{
+method:"GET"
+}).then(response=>response.json()).then(res=>{
+  res.map(item=>{
+    dataFilyal.push(item)
+  })
+})
+fetch('https://fre.abbas.uz/api/xususiyatlar',{
+method:"GET"
+}).then(response=>response.json()).then(res=>{
+res.map(item=>{
+  xususiyat.push(item)
+})
+})
+fetch('https://fre.abbas.uz/api/metro',{
+method:"GET"
+}).then(response=>response.json()).then(res=>{
+res.map(item=>{
+  metro.push(item)
+})
+})
+fetch('https://fre.abbas.uz/api/rayon',{
+method:"GET"
+}).then(response=>response.json()).then(res=>{
+res.map(item=>{
+  rayon.push(item)
+})
+})
+fetch('https://fre.abbas.uz/api/xususiyatlar',{
+  method:'GET'
+}).then(response=>response.json()).then(res=>{
+  res.map(item=>{
+    document.querySelector("#xususiyatId").innerHTML+=`<label
+    class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-5vspnf">
+    <style data-emotion="css zf7d16">
+        .css-zf7d16 {
+            padding: 0 7px;
+        }
+    </style>
+    <style data-emotion="css 1c7h8lr">
+        .css-1c7h8lr {
+            color: #293241;
+            padding: 0 7px;
+        }
+    </style>
+    <style data-emotion="css ski1p">
+        .css-ski1p {
+            padding: 9px;
+            border-radius: 50%;
+            color: #293241;
+            padding: 0 7px;
+        }
+    </style>
+    <style data-emotion="css 1yxmk4u">
+        .css-1yxmk4u {
+            display: -webkit-inline-box;
+            display: -webkit-inline-flex;
+            display: -ms-inline-flexbox;
+            display: inline-flex;
+            -webkit-align-items: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            position: relative;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            background-color: transparent;
+            outline: 0;
+            border: 0;
+            margin: 0;
+            border-radius: 0;
+            padding: 0;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            vertical-align: middle;
+            -moz-appearance: none;
+            -webkit-appearance: none;
+            -webkit-text-decoration: none;
+            text-decoration: none;
+            color: inherit;
+            padding: 9px;
+            border-radius: 50%;
+            color: #293241;
+            padding: 0 7px;
+        }
+
+        .css-1yxmk4u::-moz-focus-inner {
+            border-style: none;
+        }
+
+        .css-1yxmk4u.Mui-disabled {
+            pointer-events: none;
+            cursor: default;
+        }
+
+        @media print {
+            .css-1yxmk4u {
+                -webkit-print-color-adjust: exact;
+                color-adjust: exact;
+            }
+        }
+    </style>
+    <span><input type="checkbox" class="checkbox-seacrh"></span><span class="opasasas">${item.title}</span>
+</label>`
+  })  
+})
+
+fetch('https://fre.abbas.uz/api/rayon/',{
+  method:'GET'
+}).then(response=>response.json()).then(res=>{
+  document.querySelector("#countries").innerHTML=""
+res.map((item,key)=>{
+  document.querySelector("#countries").innerHTML+=`
+<option value=${item.id}>${item.title}</option>
+`
+})
+}).catch(err=>console.log(err))
+
+
+fetch('https://fre.abbas.uz/api/metro/',{
+  method:'GET'
+}).then(response=>response.json()).then(res=>{
+  document.querySelector("#countries1").innerHTML=""
+res.map((item,key)=>{
+  document.querySelector("#countries1").innerHTML+=`
+<option value=${item.id}>${item.title}</option>
+`
+})
+}).catch(err=>console.log(err))
+
+function SelectClose2(){
+  document.querySelector("#select_index1").style.display = "none";
+}
+
+function filter_master(data){
+    var masiv=data
+    var send_data=[]
+if(select_id_category!==0){
+    for (let i = 0; i < masiv.length; i++) {
+var push=false 
+for (let j = 0; j < masiv[i].master.length; j++) {
+if(masiv[i].master[j].category==select_id_category){
+push=true
+}
+}
+if(push){
+send_data.push(masiv[i])
+}}}else{
+  send_data=data
+}
+    return send_data
+}
+function filter_price(data){
+var min_price=document.querySelector('#filter-price-from').value
+var max_price=document.querySelector('#filter-price-to').value
+var result=[]
+if(max_price.length!==0 && min_price.length!==0){
+for (let i = 0; i < data.length; i++) {
+if(data[i].master.length>0 && data[i].master[0].price>=min_price*1 && data[i].master[0].price<=max_price*1){
+result.push(data[i])
+}
+}
+}else{
+if(max_price.length!==0){
+  for (let i = 0; i < data.length; i++) {
+    if(data[i].master.length>0 && data[i].master[0].price<=max_price*1){
+    result.push(data[i])
+    }
+    }
+}
+if(min_price.length!==0){
+  for (let i = 0; i < data.length; i++) {
+    if(data[i].master.length>0 && data[i].master[0].price>=min_price*1){
+    result.push(data[i])
+    }
+    }
+}
+}
+if(max_price.length===0 && min_price.length===0){
+result=data
+}
+
+
+
+return result
+}
+function filter_date(data12){
+  var data=document.querySelector('#home-date').value
+  var data1=data12
+if(data.length>0){
+  for (let i = 0; i < data1.length; i++) {
+    data1[i].date1=data
+}
+}else{
+  for (let i = 0; i < data1.length; i++) {
+    data1[i].date1="сегодня"
+  }
+}
+return data1
+}
+function filter_xususiyat(data){
+  var checked1=[]
+  var xus=document.querySelectorAll('.checkbox-seacrh')
+  for (let i = 0; i < document.querySelectorAll('.checkbox-seacrh').length; i++) {
+if(document.querySelectorAll('.checkbox-seacrh')[i].checked){
+checked1.push(xususiyat[i])
+}}
+var send_data=[]
+if(checked1.length>0){
+  for (let i = 0; i < data.length; i++) {
+    var dostup=false
+    for (let j = 0; j < data[i].xususiyat.length; j++) {
+      for (let k = 0; k < checked1.length; k++) {
+if(data[i].xususiyat[j].xususiyat_id==checked1[k].id){
+dostup=true
+}
+    }}
+  if(dostup){
+      send_data.push(data[i])  
+  }
+
+}
+}else{
+send_data=data
+}
+
+return send_data
+}
+function filter_metro(data){
+var send_data=[]
+if(document.querySelectorAll(".item-label").length>0){
+for (let i = 0; i < data.length; i++) {
+var push=false
+for (let j = 0; j < data[i].metro.length; j++) {
+for (let k = 0; k < document.querySelectorAll(".item-label").length; k++) {
+if(data[i].metro[j].metro_id==document.querySelectorAll(".item-label")[k].getAttribute('data-value')){
+push=true
+}  
+}}
+if(push){
+send_data.push(data[i])
+}
+
+}
+}else{
+send_data=data
+}
+return send_data
+}
+function filter_rayon(data){
+  var send_data=[]
+  if (document.querySelectorAll(".item-label").length>0) {
+    for (let i = 0; i < data.length; i++) {
+  var push=false
+  for (let j = 0; j < data[i].rayon.length; j++) {
+  for (let k = 0; k < document.querySelectorAll(".item-label").length; k++) {
+  if(data[i].rayon[j].rayon_id==document.querySelectorAll(".item-label")[k].getAttribute('data-value')){
+  push=true
+  }  
+  }}
+  if(push){
+  send_data.push(data[i])
+  }
+  
+  }
+  }else{
+    send_data=data
+  }
+ return send_data
+}
+
+function allFilter(){
+    fetch('https://fre.abbas.uz/api/filyal',{
+     method:'GET'
+    }).then(response=>response.json()).then(res=>{
+    var data=filter_master(res)
+    data=filter_xususiyat(data)
+    data=filter_date(data)
+    data=filter_metro(data)
+    data=filter_rayon(data)
+    data=filter_price(data)
+    dataFilyal=[]
+    data.map(item=>{
+        dataFilyal.push(item)
+    })
+    setTimeout(()=>{
+    ymaps.ready(function() {
+        // ymaps obyektini qayta yuklash
+    });
+    },1000)
+    
+    console.log(data,"salom");
+    document.querySelector("#filyal_length").innerHTML=`
+    <span>Найдено: ${data.length}     салонов </span>`
+    // this.setState({filyal:filter_price(data)})
+    })
+}
+
+function SelectOpen2(id,name) {
+  if (document.querySelector("#select_index1").style.display == "block") {
+    if (id) {
+      // localStorage.setItem("categoryIdSearch",id)
+      select_id_category=id
+      document.querySelector("#home-specialization").innerHTML=`${name}`
+      setTimeout(() => {
+        document.querySelector("#select_index1").style.display = "none";
+      }, 100);
+    } else {
+      document.querySelector("#select_index1").style.display = "none";
+    }
+  } else {
+    document.querySelector("#select_index1").style.display = "block";
+  }
+}
+
 function init() {
+    for (let i = 0; i < dataFilyal.length; i++) {
+        dataFilyal[i].coordinates=[dataFilyal[i].location,dataFilyal[i].longuage]
+        dataFilyal[i].hintContent=`Location ,${dataFilyal[i].id}`
+    }
     let map = new ymaps.Map('map-test', {
-        center: [59.92975319089752, 30.28962423526219],
+        center: dataFilyal[0].coordinates,
         zoom: 16
     });
 
     // Locationlarni qoshib berish
-    var locations = [
-        { coordinates: [59.92975319089752, 30.28962423526219], hintContent: 'Location 1' },
-        { coordinates: [59.930000, 30.290000], hintContent: 'Location 2' },
-        { coordinates: [59.931000, 30.291000], hintContent: 'Location 3' },
-        // Qo'shimcha locationlarni qo'shing
-    ];
+    var locations = dataFilyal
 
     for (var i = 0; i < locations.length; i++) {
         var location = locations[i];
@@ -1235,7 +1585,7 @@ ymaps.ready(init);
                         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
                         <div class="container lg:px-4">
-                            <form class="grid gap-4 pt-4 pb-5">
+                            <form class="hidden lg:grid grid gap-4 pt-4 pb-5">
                                 <style data-emotion="css 11f40o3">
                                     .css-11f40o3 {
                                         display: -webkit-inline-box;
@@ -1261,7 +1611,7 @@ ymaps.ready(init);
                                         }
                                     }
                                 </style>
-                                <div class="MuiFormControl-root css-11f40o3">
+                                <div  class="MuiFormControl-root css-11f40o3">
                                     <div class="input-top_root__qC8ZD grid items-center justify-between mb-1 md:mb-0">
                                         <style data-emotion="css 1p6tn6p">
                                             .css-1p6tn6p {
@@ -1485,6 +1835,9 @@ ymaps.ready(init);
                                         }
                                     </style>
                                     <style data-emotion="css 1d4xb2r">
+                                        #home-specialization{
+                                            color: #3D5A80;
+                                        }
                                         .css-1d4xb2r {
                                             font-size: 14px;
                                             line-height: 1.4375em;
@@ -1903,7 +2256,7 @@ ymaps.ready(init);
                                         </style>
                                     </div>
                                 </div>
-                                <div id="select_index" class="select_index">
+                                <div onmouseleave="SelectClose2()" id="select_index1" class="select_index">
                                   </div>
                                 </div>
                                 <div>
@@ -2949,7 +3302,7 @@ ymaps.ready(init);
                                                         }
                                                     </style><input type="tel" aria-invalid="false"
                                                         aria-describedby="filter-price-to-helper-text" id="filter-price-to"
-                                                        placeholder="30 000" value=""
+                                                        placeholder="30 000" 
                                                         class="MuiInput-input MuiInputBase-input css-mnn31">
                                                 </div>
                                             </div>
@@ -3501,7 +3854,7 @@ ymaps.ready(init);
                                                 }
                                             }
                                         </style>
-                                        <div  aria-readonly="true" aria-label="Choose date"
+                                        <div id="index_date"  aria-readonly="true" aria-label="Choose date"
                                             class="MuiInput-root MuiInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-19agkdx">
                                             <style data-emotion="css mnn31">
                                                 .css-mnn31 {
@@ -3608,7 +3961,7 @@ ymaps.ready(init);
                                                     animation-name: mui-auto-fill;
                                                 }
                                             </style>
-                                            <input class="MuiInput-input MuiInputBase-input css-mnn31" type="date">
+                                            <!-- <input id="seacrsh_input_date" class="MuiInput-input MuiInputBase-input css-mnn31" type="date"> -->
                                         </div>
                             </div>
                                 </div>
@@ -5023,7 +5376,7 @@ ymaps.ready(init);
                                          new MultiSelectTag('countries1')  // id
                                     </script>
                                     <div class="mb-2.5 text-blue-200 text-sm font-bold leading-4">Peculiarities</div>
-                                    <div class="grid gap-2.5">
+                                    <div id="xususiyatId" class="grid gap-2.5">
                                         <style data-emotion="css oi0fdz">
                                             .css-oi0fdz {
                                                 font-size: var(--font-md);
@@ -5089,87 +5442,7 @@ ymaps.ready(init);
                                                 background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 18 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M15 16H3c-.55 0-1-.45-1-1V3c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1Zm1-16H2C.9 0 0 .9 0 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V2c0-1.1-.9-2-2-2Z' fill='%23EE6C4D'/%3E%3C/svg%3E");
                                             }
                                         </style>
-                                        <label
-                                            class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-5vspnf">
-                                            <style data-emotion="css zf7d16">
-                                                .css-zf7d16 {
-                                                    padding: 0 7px;
-                                                }
-                                            </style>
-                                            <style data-emotion="css 1c7h8lr">
-                                                .css-1c7h8lr {
-                                                    color: #293241;
-                                                    padding: 0 7px;
-                                                }
-                                            </style>
-                                            <style data-emotion="css ski1p">
-                                                .css-ski1p {
-                                                    padding: 9px;
-                                                    border-radius: 50%;
-                                                    color: #293241;
-                                                    padding: 0 7px;
-                                                }
-                                            </style>
-                                            <style data-emotion="css 1yxmk4u">
-                                                .css-1yxmk4u {
-                                                    display: -webkit-inline-box;
-                                                    display: -webkit-inline-flex;
-                                                    display: -ms-inline-flexbox;
-                                                    display: inline-flex;
-                                                    -webkit-align-items: center;
-                                                    -webkit-box-align: center;
-                                                    -ms-flex-align: center;
-                                                    align-items: center;
-                                                    -webkit-box-pack: center;
-                                                    -ms-flex-pack: center;
-                                                    -webkit-justify-content: center;
-                                                    justify-content: center;
-                                                    position: relative;
-                                                    box-sizing: border-box;
-                                                    -webkit-tap-highlight-color: transparent;
-                                                    background-color: transparent;
-                                                    outline: 0;
-                                                    border: 0;
-                                                    margin: 0;
-                                                    border-radius: 0;
-                                                    padding: 0;
-                                                    cursor: pointer;
-                                                    -webkit-user-select: none;
-                                                    -moz-user-select: none;
-                                                    -ms-user-select: none;
-                                                    user-select: none;
-                                                    vertical-align: middle;
-                                                    -moz-appearance: none;
-                                                    -webkit-appearance: none;
-                                                    -webkit-text-decoration: none;
-                                                    text-decoration: none;
-                                                    color: inherit;
-                                                    padding: 9px;
-                                                    border-radius: 50%;
-                                                    color: #293241;
-                                                    padding: 0 7px;
-                                                }
-        
-                                                .css-1yxmk4u::-moz-focus-inner {
-                                                    border-style: none;
-                                                }
-        
-                                                .css-1yxmk4u.Mui-disabled {
-                                                    pointer-events: none;
-                                                    cursor: default;
-                                                }
-        
-                                                @media print {
-                                                    .css-1yxmk4u {
-                                                        -webkit-print-color-adjust: exact;
-                                                        color-adjust: exact;
-                                                    }
-                                                }
-                                            </style>
-                                            <span><input type="checkbox" class="checkbox-seacrh"></span><span class="opasasas"> There is parking</span>
-                                        </label>
-        
-        <style>
+                                        <style>
             .checkbox-seacrh[type=checkbox] {
             -moz-appearance:none;
             -webkit-appearance:none;
@@ -5177,7 +5450,7 @@ ymaps.ready(init);
             outline: none;
             content: none;	
             border: 2px solid #5ea2b9 !important;
-            border-radius: 5px;
+            border-radius: 5px; 
         }
         .opasasas{
             padding-left: 5px;
@@ -5198,9 +5471,7 @@ ymaps.ready(init);
         color: #5ea2b9 !important;
         }
         
-        </style>
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet"/>
-        
+                                        </style>
                                         <style data-emotion="css oi0fdz">
                                             .css-oi0fdz {
                                                 font-size: var(--font-md);
@@ -5265,85 +5536,7 @@ ymaps.ready(init);
                                             .css-5vspnf.MuiCheckbox-colorError {
                                                 background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 18 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M15 16H3c-.55 0-1-.45-1-1V3c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1Zm1-16H2C.9 0 0 .9 0 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V2c0-1.1-.9-2-2-2Z' fill='%23EE6C4D'/%3E%3C/svg%3E");
                                             }
-                                        </style>     <label
-                                            class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-5vspnf">
-                                            <style data-emotion="css zf7d16">
-                                                .css-zf7d16 {
-                                                    padding: 0 7px;
-                                                }
-                                            </style>
-                                            <style data-emotion="css 1c7h8lr">
-                                                .css-1c7h8lr {
-                                                    color: #293241;
-                                                    padding: 0 7px;
-                                                }
-                                            </style>
-                                            <style data-emotion="css ski1p">
-                                                .css-ski1p {
-                                                    padding: 9px;
-                                                    border-radius: 50%;
-                                                    color: #293241;
-                                                    padding: 0 7px;
-                                                }
-                                            </style>
-                                            <style data-emotion="css 1yxmk4u">
-                                                .css-1yxmk4u {
-                                                    display: -webkit-inline-box;
-                                                    display: -webkit-inline-flex;
-                                                    display: -ms-inline-flexbox;
-                                                    display: inline-flex;
-                                                    -webkit-align-items: center;
-                                                    -webkit-box-align: center;
-                                                    -ms-flex-align: center;
-                                                    align-items: center;
-                                                    -webkit-box-pack: center;
-                                                    -ms-flex-pack: center;
-                                                    -webkit-justify-content: center;
-                                                    justify-content: center;
-                                                    position: relative;
-                                                    box-sizing: border-box;
-                                                    -webkit-tap-highlight-color: transparent;
-                                                    background-color: transparent;
-                                                    outline: 0;
-                                                    border: 0;
-                                                    margin: 0;
-                                                    border-radius: 0;
-                                                    padding: 0;
-                                                    cursor: pointer;
-                                                    -webkit-user-select: none;
-                                                    -moz-user-select: none;
-                                                    -ms-user-select: none;
-                                                    user-select: none;
-                                                    vertical-align: middle;
-                                                    -moz-appearance: none;
-                                                    -webkit-appearance: none;
-                                                    -webkit-text-decoration: none;
-                                                    text-decoration: none;
-                                                    color: inherit;
-                                                    padding: 9px;
-                                                    border-radius: 50%;
-                                                    color: #293241;
-                                                    padding: 0 7px;
-                                                }
-        
-                                                .css-1yxmk4u::-moz-focus-inner {
-                                                    border-style: none;
-                                                }
-        
-                                                .css-1yxmk4u.Mui-disabled {
-                                                    pointer-events: none;
-                                                    cursor: default;
-                                                }
-        
-                                                @media print {
-                                                    .css-1yxmk4u {
-                                                        -webkit-print-color-adjust: exact;
-                                                        color-adjust: exact;
-                                                    }
-                                                }
-                                            </style>
-                                            <span><input type="checkbox" class="checkbox-seacrh"></span><span class="opasasas">Located in the residential complex</span>
-                                        </label>
+                                        </style>
                                         <style data-emotion="css oi0fdz">
                                             .css-oi0fdz {
                                                 font-size: var(--font-md);
@@ -5408,85 +5601,7 @@ ymaps.ready(init);
                                             .css-5vspnf.MuiCheckbox-colorError {
                                                 background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 18 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M15 16H3c-.55 0-1-.45-1-1V3c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1Zm1-16H2C.9 0 0 .9 0 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V2c0-1.1-.9-2-2-2Z' fill='%23EE6C4D'/%3E%3C/svg%3E");
                                             }
-                                        </style>   <label
-                                            class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-5vspnf">
-                                            <style data-emotion="css zf7d16">
-                                                .css-zf7d16 {
-                                                    padding: 0 7px;
-                                                }
-                                            </style>
-                                            <style data-emotion="css 1c7h8lr">
-                                                .css-1c7h8lr {
-                                                    color: #293241;
-                                                    padding: 0 7px;
-                                                }
-                                            </style>
-                                            <style data-emotion="css ski1p">
-                                                .css-ski1p {
-                                                    padding: 9px;
-                                                    border-radius: 50%;
-                                                    color: #293241;
-                                                    padding: 0 7px;
-                                                }
-                                            </style>
-                                            <style data-emotion="css 1yxmk4u">
-                                                .css-1yxmk4u {
-                                                    display: -webkit-inline-box;
-                                                    display: -webkit-inline-flex;
-                                                    display: -ms-inline-flexbox;
-                                                    display: inline-flex;
-                                                    -webkit-align-items: center;
-                                                    -webkit-box-align: center;
-                                                    -ms-flex-align: center;
-                                                    align-items: center;
-                                                    -webkit-box-pack: center;
-                                                    -ms-flex-pack: center;
-                                                    -webkit-justify-content: center;
-                                                    justify-content: center;
-                                                    position: relative;
-                                                    box-sizing: border-box;
-                                                    -webkit-tap-highlight-color: transparent;
-                                                    background-color: transparent;
-                                                    outline: 0;
-                                                    border: 0;
-                                                    margin: 0;
-                                                    border-radius: 0;
-                                                    padding: 0;
-                                                    cursor: pointer;
-                                                    -webkit-user-select: none;
-                                                    -moz-user-select: none;
-                                                    -ms-user-select: none;
-                                                    user-select: none;
-                                                    vertical-align: middle;
-                                                    -moz-appearance: none;
-                                                    -webkit-appearance: none;
-                                                    -webkit-text-decoration: none;
-                                                    text-decoration: none;
-                                                    color: inherit;
-                                                    padding: 9px;
-                                                    border-radius: 50%;
-                                                    color: #293241;
-                                                    padding: 0 7px;
-                                                }
-        
-                                                .css-1yxmk4u::-moz-focus-inner {
-                                                    border-style: none;
-                                                }
-        
-                                                .css-1yxmk4u.Mui-disabled {
-                                                    pointer-events: none;
-                                                    cursor: default;
-                                                }
-        
-                                                @media print {
-                                                    .css-1yxmk4u {
-                                                        -webkit-print-color-adjust: exact;
-                                                        color-adjust: exact;
-                                                    }
-                                                }
-                                            </style>
-                                            <span><input type="checkbox" class="checkbox-seacrh"></span><span class="opasasas">Professional materials on request</span>
-                                        </label>
+                                        </style>
                                         <style data-emotion="css oi0fdz">
                                             .css-oi0fdz {
                                                 font-size: var(--font-md);
@@ -5551,85 +5666,7 @@ ymaps.ready(init);
                                             .css-5vspnf.MuiCheckbox-colorError {
                                                 background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 18 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M15 16H3c-.55 0-1-.45-1-1V3c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1Zm1-16H2C.9 0 0 .9 0 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V2c0-1.1-.9-2-2-2Z' fill='%23EE6C4D'/%3E%3C/svg%3E");
                                             }
-                                        </style><label
-                                            class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-5vspnf">
-                                            <style data-emotion="css zf7d16">
-                                                .css-zf7d16 {
-                                                    padding: 0 7px;
-                                                }
-                                            </style>
-                                            <style data-emotion="css 1c7h8lr">
-                                                .css-1c7h8lr {
-                                                    color: #293241;
-                                                    padding: 0 7px;
-                                                }
-                                            </style>
-                                            <style data-emotion="css ski1p">
-                                                .css-ski1p {
-                                                    padding: 9px;
-                                                    border-radius: 50%;
-                                                    color: #293241;
-                                                    padding: 0 7px;
-                                                }
-                                            </style>
-                                            <style data-emotion="css 1yxmk4u">
-                                                .css-1yxmk4u {
-                                                    display: -webkit-inline-box;
-                                                    display: -webkit-inline-flex;
-                                                    display: -ms-inline-flexbox;
-                                                    display: inline-flex;
-                                                    -webkit-align-items: center;
-                                                    -webkit-box-align: center;
-                                                    -ms-flex-align: center;
-                                                    align-items: center;
-                                                    -webkit-box-pack: center;
-                                                    -ms-flex-pack: center;
-                                                    -webkit-justify-content: center;
-                                                    justify-content: center;
-                                                    position: relative;
-                                                    box-sizing: border-box;
-                                                    -webkit-tap-highlight-color: transparent;
-                                                    background-color: transparent;
-                                                    outline: 0;
-                                                    border: 0;
-                                                    margin: 0;
-                                                    border-radius: 0;
-                                                    padding: 0;
-                                                    cursor: pointer;
-                                                    -webkit-user-select: none;
-                                                    -moz-user-select: none;
-                                                    -ms-user-select: none;
-                                                    user-select: none;
-                                                    vertical-align: middle;
-                                                    -moz-appearance: none;
-                                                    -webkit-appearance: none;
-                                                    -webkit-text-decoration: none;
-                                                    text-decoration: none;
-                                                    color: inherit;
-                                                    padding: 9px;
-                                                    border-radius: 50%;
-                                                    color: #293241;
-                                                    padding: 0 7px;
-                                                }
-        
-                                                .css-1yxmk4u::-moz-focus-inner {
-                                                    border-style: none;
-                                                }
-        
-                                                .css-1yxmk4u.Mui-disabled {
-                                                    pointer-events: none;
-                                                    cursor: default;
-                                                }
-        
-                                                @media print {
-                                                    .css-1yxmk4u {
-                                                        -webkit-print-color-adjust: exact;
-                                                        color-adjust: exact;
-                                                    }
-                                                }
-                                            </style>
-                                            <span><input type="checkbox" class="checkbox-seacrh"></span><span class="opasasas">Cleaning workplaces</span>
-                                        </label>
+                                        </style>
                                         <style data-emotion="css oi0fdz">
                                             .css-oi0fdz {
                                                 font-size: var(--font-md);
@@ -5694,85 +5731,7 @@ ymaps.ready(init);
                                             .css-5vspnf.MuiCheckbox-colorError {
                                                 background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 18 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M15 16H3c-.55 0-1-.45-1-1V3c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1Zm1-16H2C.9 0 0 .9 0 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V2c0-1.1-.9-2-2-2Z' fill='%23EE6C4D'/%3E%3C/svg%3E");
                                             }
-                                        </style><label
-                                            class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-5vspnf">
-                                            <style data-emotion="css zf7d16">
-                                                .css-zf7d16 {
-                                                    padding: 0 7px;
-                                                }
-                                            </style>
-                                            <style data-emotion="css 1c7h8lr">
-                                                .css-1c7h8lr {
-                                                    color: #293241;
-                                                    padding: 0 7px;
-                                                }
-                                            </style>
-                                            <style data-emotion="css ski1p">
-                                                .css-ski1p {
-                                                    padding: 9px;
-                                                    border-radius: 50%;
-                                                    color: #293241;
-                                                    padding: 0 7px;
-                                                }
-                                            </style>
-                                            <style data-emotion="css 1yxmk4u">
-                                                .css-1yxmk4u {
-                                                    display: -webkit-inline-box;
-                                                    display: -webkit-inline-flex;
-                                                    display: -ms-inline-flexbox;
-                                                    display: inline-flex;
-                                                    -webkit-align-items: center;
-                                                    -webkit-box-align: center;
-                                                    -ms-flex-align: center;
-                                                    align-items: center;
-                                                    -webkit-box-pack: center;
-                                                    -ms-flex-pack: center;
-                                                    -webkit-justify-content: center;
-                                                    justify-content: center;
-                                                    position: relative;
-                                                    box-sizing: border-box;
-                                                    -webkit-tap-highlight-color: transparent;
-                                                    background-color: transparent;
-                                                    outline: 0;
-                                                    border: 0;
-                                                    margin: 0;
-                                                    border-radius: 0;
-                                                    padding: 0;
-                                                    cursor: pointer;
-                                                    -webkit-user-select: none;
-                                                    -moz-user-select: none;
-                                                    -ms-user-select: none;
-                                                    user-select: none;
-                                                    vertical-align: middle;
-                                                    -moz-appearance: none;
-                                                    -webkit-appearance: none;
-                                                    -webkit-text-decoration: none;
-                                                    text-decoration: none;
-                                                    color: inherit;
-                                                    padding: 9px;
-                                                    border-radius: 50%;
-                                                    color: #293241;
-                                                    padding: 0 7px;
-                                                }
-        
-                                                .css-1yxmk4u::-moz-focus-inner {
-                                                    border-style: none;
-                                                }
-        
-                                                .css-1yxmk4u.Mui-disabled {
-                                                    pointer-events: none;
-                                                    cursor: default;
-                                                }
-        
-                                                @media print {
-                                                    .css-1yxmk4u {
-                                                        -webkit-print-color-adjust: exact;
-                                                        color-adjust: exact;
-                                                    }
-                                                }
-                                            </style>
-                                            <span><input type="checkbox" class="checkbox-seacrh"></span><span class="opasasas">There is an administrator</span>
-                                        </label>
+                                        </style>
                                         <style data-emotion="css oi0fdz">
                                             .css-oi0fdz {
                                                 font-size: var(--font-md);
@@ -5837,85 +5796,7 @@ ymaps.ready(init);
                                             .css-5vspnf.MuiCheckbox-colorError {
                                                 background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 18 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M15 16H3c-.55 0-1-.45-1-1V3c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1Zm1-16H2C.9 0 0 .9 0 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V2c0-1.1-.9-2-2-2Z' fill='%23EE6C4D'/%3E%3C/svg%3E");
                                             }
-                                        </style><label
-                                            class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-5vspnf">
-                                            <style data-emotion="css zf7d16">
-                                                .css-zf7d16 {
-                                                    padding: 0 7px;
-                                                }
-                                            </style>
-                                            <style data-emotion="css 1c7h8lr">
-                                                .css-1c7h8lr {
-                                                    color: #293241;
-                                                    padding: 0 7px;
-                                                }
-                                            </style>
-                                            <style data-emotion="css ski1p">
-                                                .css-ski1p {
-                                                    padding: 9px;
-                                                    border-radius: 50%;
-                                                    color: #293241;
-                                                    padding: 0 7px;
-                                                }
-                                            </style>
-                                            <style data-emotion="css 1yxmk4u">
-                                                .css-1yxmk4u {
-                                                    display: -webkit-inline-box;
-                                                    display: -webkit-inline-flex;
-                                                    display: -ms-inline-flexbox;
-                                                    display: inline-flex;
-                                                    -webkit-align-items: center;
-                                                    -webkit-box-align: center;
-                                                    -ms-flex-align: center;
-                                                    align-items: center;
-                                                    -webkit-box-pack: center;
-                                                    -ms-flex-pack: center;
-                                                    -webkit-justify-content: center;
-                                                    justify-content: center;
-                                                    position: relative;
-                                                    box-sizing: border-box;
-                                                    -webkit-tap-highlight-color: transparent;
-                                                    background-color: transparent;
-                                                    outline: 0;
-                                                    border: 0;
-                                                    margin: 0;
-                                                    border-radius: 0;
-                                                    padding: 0;
-                                                    cursor: pointer;
-                                                    -webkit-user-select: none;
-                                                    -moz-user-select: none;
-                                                    -ms-user-select: none;
-                                                    user-select: none;
-                                                    vertical-align: middle;
-                                                    -moz-appearance: none;
-                                                    -webkit-appearance: none;
-                                                    -webkit-text-decoration: none;
-                                                    text-decoration: none;
-                                                    color: inherit;
-                                                    padding: 9px;
-                                                    border-radius: 50%;
-                                                    color: #293241;
-                                                    padding: 0 7px;
-                                                }
-        
-                                                .css-1yxmk4u::-moz-focus-inner {
-                                                    border-style: none;
-                                                }
-        
-                                                .css-1yxmk4u.Mui-disabled {
-                                                    pointer-events: none;
-                                                    cursor: default;
-                                                }
-        
-                                                @media print {
-                                                    .css-1yxmk4u {
-                                                        -webkit-print-color-adjust: exact;
-                                                        color-adjust: exact;
-                                                    }
-                                                }
-                                            </style>
-                                            <span><input type="checkbox" class="checkbox-seacrh"></span><span class="opasasas">Rent can be paid by card</span>
-                                        </label>
+                                        </style>
                                         <style data-emotion="css oi0fdz">
                                             .css-oi0fdz {
                                                 font-size: var(--font-md);
@@ -5980,85 +5861,7 @@ ymaps.ready(init);
                                             .css-5vspnf.MuiCheckbox-colorError {
                                                 background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 18 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M15 16H3c-.55 0-1-.45-1-1V3c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1Zm1-16H2C.9 0 0 .9 0 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V2c0-1.1-.9-2-2-2Z' fill='%23EE6C4D'/%3E%3C/svg%3E");
                                             }
-                                        </style><label
-                                            class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-5vspnf">
-                                            <style data-emotion="css zf7d16">
-                                                .css-zf7d16 {
-                                                    padding: 0 7px;
-                                                }
-                                            </style>
-                                            <style data-emotion="css 1c7h8lr">
-                                                .css-1c7h8lr {
-                                                    color: #293241;
-                                                    padding: 0 7px;
-                                                }
-                                            </style>
-                                            <style data-emotion="css ski1p">
-                                                .css-ski1p {
-                                                    padding: 9px;
-                                                    border-radius: 50%;
-                                                    color: #293241;
-                                                    padding: 0 7px;
-                                                }
-                                            </style>
-                                            <style data-emotion="css 1yxmk4u">
-                                                .css-1yxmk4u {
-                                                    display: -webkit-inline-box;
-                                                    display: -webkit-inline-flex;
-                                                    display: -ms-inline-flexbox;
-                                                    display: inline-flex;
-                                                    -webkit-align-items: center;
-                                                    -webkit-box-align: center;
-                                                    -ms-flex-align: center;
-                                                    align-items: center;
-                                                    -webkit-box-pack: center;
-                                                    -ms-flex-pack: center;
-                                                    -webkit-justify-content: center;
-                                                    justify-content: center;
-                                                    position: relative;
-                                                    box-sizing: border-box;
-                                                    -webkit-tap-highlight-color: transparent;
-                                                    background-color: transparent;
-                                                    outline: 0;
-                                                    border: 0;
-                                                    margin: 0;
-                                                    border-radius: 0;
-                                                    padding: 0;
-                                                    cursor: pointer;
-                                                    -webkit-user-select: none;
-                                                    -moz-user-select: none;
-                                                    -ms-user-select: none;
-                                                    user-select: none;
-                                                    vertical-align: middle;
-                                                    -moz-appearance: none;
-                                                    -webkit-appearance: none;
-                                                    -webkit-text-decoration: none;
-                                                    text-decoration: none;
-                                                    color: inherit;
-                                                    padding: 9px;
-                                                    border-radius: 50%;
-                                                    color: #293241;
-                                                    padding: 0 7px;
-                                                }
-        
-                                                .css-1yxmk4u::-moz-focus-inner {
-                                                    border-style: none;
-                                                }
-        
-                                                .css-1yxmk4u.Mui-disabled {
-                                                    pointer-events: none;
-                                                    cursor: default;
-                                                }
-        
-                                                @media print {
-                                                    .css-1yxmk4u {
-                                                        -webkit-print-color-adjust: exact;
-                                                        color-adjust: exact;
-                                                    }
-                                                }
-                                            </style>
-                                            <span><input type="checkbox" class="checkbox-seacrh"></span><span class="opasasas">Renting a box office</span>
-                                        </label>
+                                        </style>
                                         <style data-emotion="css oi0fdz">
                                             .css-oi0fdz {
                                                 font-size: var(--font-md);
@@ -6123,85 +5926,7 @@ ymaps.ready(init);
                                             .css-5vspnf.MuiCheckbox-colorError {
                                                 background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 18 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M15 16H3c-.55 0-1-.45-1-1V3c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1Zm1-16H2C.9 0 0 .9 0 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V2c0-1.1-.9-2-2-2Z' fill='%23EE6C4D'/%3E%3C/svg%3E");
                                             }
-                                        </style><label
-                                            class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-5vspnf">
-                                            <style data-emotion="css zf7d16">
-                                                .css-zf7d16 {
-                                                    padding: 0 7px;
-                                                }
-                                            </style>
-                                            <style data-emotion="css 1c7h8lr">
-                                                .css-1c7h8lr {
-                                                    color: #293241;
-                                                    padding: 0 7px;
-                                                }
-                                            </style>
-                                            <style data-emotion="css ski1p">
-                                                .css-ski1p {
-                                                    padding: 9px;
-                                                    border-radius: 50%;
-                                                    color: #293241;
-                                                    padding: 0 7px;
-                                                }
-                                            </style>
-                                            <style data-emotion="css 1yxmk4u">
-                                                .css-1yxmk4u {
-                                                    display: -webkit-inline-box;
-                                                    display: -webkit-inline-flex;
-                                                    display: -ms-inline-flexbox;
-                                                    display: inline-flex;
-                                                    -webkit-align-items: center;
-                                                    -webkit-box-align: center;
-                                                    -ms-flex-align: center;
-                                                    align-items: center;
-                                                    -webkit-box-pack: center;
-                                                    -ms-flex-pack: center;
-                                                    -webkit-justify-content: center;
-                                                    justify-content: center;
-                                                    position: relative;
-                                                    box-sizing: border-box;
-                                                    -webkit-tap-highlight-color: transparent;
-                                                    background-color: transparent;
-                                                    outline: 0;
-                                                    border: 0;
-                                                    margin: 0;
-                                                    border-radius: 0;
-                                                    padding: 0;
-                                                    cursor: pointer;
-                                                    -webkit-user-select: none;
-                                                    -moz-user-select: none;
-                                                    -ms-user-select: none;
-                                                    user-select: none;
-                                                    vertical-align: middle;
-                                                    -moz-appearance: none;
-                                                    -webkit-appearance: none;
-                                                    -webkit-text-decoration: none;
-                                                    text-decoration: none;
-                                                    color: inherit;
-                                                    padding: 9px;
-                                                    border-radius: 50%;
-                                                    color: #293241;
-                                                    padding: 0 7px;
-                                                }
-        
-                                                .css-1yxmk4u::-moz-focus-inner {
-                                                    border-style: none;
-                                                }
-        
-                                                .css-1yxmk4u.Mui-disabled {
-                                                    pointer-events: none;
-                                                    cursor: default;
-                                                }
-        
-                                                @media print {
-                                                    .css-1yxmk4u {
-                                                        -webkit-print-color-adjust: exact;
-                                                        color-adjust: exact;
-                                                    }
-                                                }
-                                            </style>
-                                            <span><input type="checkbox" class="checkbox-seacrh"></span><span class="opasasas">Waiting area for guests</span>
-                                        </label>
+                                        </style>
                                         <style data-emotion="css oi0fdz">
                                             .css-oi0fdz {
                                                 font-size: var(--font-md);
@@ -6266,85 +5991,7 @@ ymaps.ready(init);
                                             .css-5vspnf.MuiCheckbox-colorError {
                                                 background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 18 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M15 16H3c-.55 0-1-.45-1-1V3c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1Zm1-16H2C.9 0 0 .9 0 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V2c0-1.1-.9-2-2-2Z' fill='%23EE6C4D'/%3E%3C/svg%3E");
                                             }
-                                        </style><label
-                                            class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-5vspnf">
-                                            <style data-emotion="css zf7d16">
-                                                .css-zf7d16 {
-                                                    padding: 0 7px;
-                                                }
-                                            </style>
-                                            <style data-emotion="css 1c7h8lr">
-                                                .css-1c7h8lr {
-                                                    color: #293241;
-                                                    padding: 0 7px;
-                                                }
-                                            </style>
-                                            <style data-emotion="css ski1p">
-                                                .css-ski1p {
-                                                    padding: 9px;
-                                                    border-radius: 50%;
-                                                    color: #293241;
-                                                    padding: 0 7px;
-                                                }
-                                            </style>
-                                            <style data-emotion="css 1yxmk4u">
-                                                .css-1yxmk4u {
-                                                    display: -webkit-inline-box;
-                                                    display: -webkit-inline-flex;
-                                                    display: -ms-inline-flexbox;
-                                                    display: inline-flex;
-                                                    -webkit-align-items: center;
-                                                    -webkit-box-align: center;
-                                                    -ms-flex-align: center;
-                                                    align-items: center;
-                                                    -webkit-box-pack: center;
-                                                    -ms-flex-pack: center;
-                                                    -webkit-justify-content: center;
-                                                    justify-content: center;
-                                                    position: relative;
-                                                    box-sizing: border-box;
-                                                    -webkit-tap-highlight-color: transparent;
-                                                    background-color: transparent;
-                                                    outline: 0;
-                                                    border: 0;
-                                                    margin: 0;
-                                                    border-radius: 0;
-                                                    padding: 0;
-                                                    cursor: pointer;
-                                                    -webkit-user-select: none;
-                                                    -moz-user-select: none;
-                                                    -ms-user-select: none;
-                                                    user-select: none;
-                                                    vertical-align: middle;
-                                                    -moz-appearance: none;
-                                                    -webkit-appearance: none;
-                                                    -webkit-text-decoration: none;
-                                                    text-decoration: none;
-                                                    color: inherit;
-                                                    padding: 9px;
-                                                    border-radius: 50%;
-                                                    color: #293241;
-                                                    padding: 0 7px;
-                                                }
-        
-                                                .css-1yxmk4u::-moz-focus-inner {
-                                                    border-style: none;
-                                                }
-        
-                                                .css-1yxmk4u.Mui-disabled {
-                                                    pointer-events: none;
-                                                    cursor: default;
-                                                }
-        
-                                                @media print {
-                                                    .css-1yxmk4u {
-                                                        -webkit-print-color-adjust: exact;
-                                                        color-adjust: exact;
-                                                    }
-                                                }
-                                            </style>
-                                            <span><input type="checkbox" class="checkbox-seacrh"></span><span class="opasasas">Tea and coffee free of charge</span>
-                                        </label>
+                                        </style>
                                         <style data-emotion="css oi0fdz">
                                             .css-oi0fdz {
                                                 font-size: var(--font-md);
@@ -6409,85 +6056,7 @@ ymaps.ready(init);
                                             .css-5vspnf.MuiCheckbox-colorError {
                                                 background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 18 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M15 16H3c-.55 0-1-.45-1-1V3c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1Zm1-16H2C.9 0 0 .9 0 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V2c0-1.1-.9-2-2-2Z' fill='%23EE6C4D'/%3E%3C/svg%3E");
                                             }
-                                        </style><label
-                                            class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-5vspnf">
-                                            <style data-emotion="css zf7d16">
-                                                .css-zf7d16 {
-                                                    padding: 0 7px;
-                                                }
-                                            </style>
-                                            <style data-emotion="css 1c7h8lr">
-                                                .css-1c7h8lr {
-                                                    color: #293241;
-                                                    padding: 0 7px;
-                                                }
-                                            </style>
-                                            <style data-emotion="css ski1p">
-                                                .css-ski1p {
-                                                    padding: 9px;
-                                                    border-radius: 50%;
-                                                    color: #293241;
-                                                    padding: 0 7px;
-                                                }
-                                            </style>
-                                            <style data-emotion="css 1yxmk4u">
-                                                .css-1yxmk4u {
-                                                    display: -webkit-inline-box;
-                                                    display: -webkit-inline-flex;
-                                                    display: -ms-inline-flexbox;
-                                                    display: inline-flex;
-                                                    -webkit-align-items: center;
-                                                    -webkit-box-align: center;
-                                                    -ms-flex-align: center;
-                                                    align-items: center;
-                                                    -webkit-box-pack: center;
-                                                    -ms-flex-pack: center;
-                                                    -webkit-justify-content: center;
-                                                    justify-content: center;
-                                                    position: relative;
-                                                    box-sizing: border-box;
-                                                    -webkit-tap-highlight-color: transparent;
-                                                    background-color: transparent;
-                                                    outline: 0;
-                                                    border: 0;
-                                                    margin: 0;
-                                                    border-radius: 0;
-                                                    padding: 0;
-                                                    cursor: pointer;
-                                                    -webkit-user-select: none;
-                                                    -moz-user-select: none;
-                                                    -ms-user-select: none;
-                                                    user-select: none;
-                                                    vertical-align: middle;
-                                                    -moz-appearance: none;
-                                                    -webkit-appearance: none;
-                                                    -webkit-text-decoration: none;
-                                                    text-decoration: none;
-                                                    color: inherit;
-                                                    padding: 9px;
-                                                    border-radius: 50%;
-                                                    color: #293241;
-                                                    padding: 0 7px;
-                                                }
-        
-                                                .css-1yxmk4u::-moz-focus-inner {
-                                                    border-style: none;
-                                                }
-        
-                                                .css-1yxmk4u.Mui-disabled {
-                                                    pointer-events: none;
-                                                    cursor: default;
-                                                }
-        
-                                                @media print {
-                                                    .css-1yxmk4u {
-                                                        -webkit-print-color-adjust: exact;
-                                                        color-adjust: exact;
-                                                    }
-                                                }
-                                            </style>
-                                            <span><input type="checkbox" class="checkbox-seacrh"></span><span class="opasasas">Kitchen for employees</span>
-                                        </label>
+                                        </style>
                                         <style data-emotion="css oi0fdz">
                                             .css-oi0fdz {
                                                 font-size: var(--font-md);
@@ -6552,85 +6121,7 @@ ymaps.ready(init);
                                             .css-5vspnf.MuiCheckbox-colorError {
                                                 background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 18 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M15 16H3c-.55 0-1-.45-1-1V3c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1Zm1-16H2C.9 0 0 .9 0 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V2c0-1.1-.9-2-2-2Z' fill='%23EE6C4D'/%3E%3C/svg%3E");
                                             }
-                                        </style><label
-                                            class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-5vspnf">
-                                            <style data-emotion="css zf7d16">
-                                                .css-zf7d16 {
-                                                    padding: 0 7px;
-                                                }
-                                            </style>
-                                            <style data-emotion="css 1c7h8lr">
-                                                .css-1c7h8lr {
-                                                    color: #293241;
-                                                    padding: 0 7px;
-                                                }
-                                            </style>
-                                            <style data-emotion="css ski1p">
-                                                .css-ski1p {
-                                                    padding: 9px;
-                                                    border-radius: 50%;
-                                                    color: #293241;
-                                                    padding: 0 7px;
-                                                }
-                                            </style>
-                                            <style data-emotion="css 1yxmk4u">
-                                                .css-1yxmk4u {
-                                                    display: -webkit-inline-box;
-                                                    display: -webkit-inline-flex;
-                                                    display: -ms-inline-flexbox;
-                                                    display: inline-flex;
-                                                    -webkit-align-items: center;
-                                                    -webkit-box-align: center;
-                                                    -ms-flex-align: center;
-                                                    align-items: center;
-                                                    -webkit-box-pack: center;
-                                                    -ms-flex-pack: center;
-                                                    -webkit-justify-content: center;
-                                                    justify-content: center;
-                                                    position: relative;
-                                                    box-sizing: border-box;
-                                                    -webkit-tap-highlight-color: transparent;
-                                                    background-color: transparent;
-                                                    outline: 0;
-                                                    border: 0;
-                                                    margin: 0;
-                                                    border-radius: 0;
-                                                    padding: 0;
-                                                    cursor: pointer;
-                                                    -webkit-user-select: none;
-                                                    -moz-user-select: none;
-                                                    -ms-user-select: none;
-                                                    user-select: none;
-                                                    vertical-align: middle;
-                                                    -moz-appearance: none;
-                                                    -webkit-appearance: none;
-                                                    -webkit-text-decoration: none;
-                                                    text-decoration: none;
-                                                    color: inherit;
-                                                    padding: 9px;
-                                                    border-radius: 50%;
-                                                    color: #293241;
-                                                    padding: 0 7px;
-                                                }
-        
-                                                .css-1yxmk4u::-moz-focus-inner {
-                                                    border-style: none;
-                                                }
-        
-                                                .css-1yxmk4u.Mui-disabled {
-                                                    pointer-events: none;
-                                                    cursor: default;
-                                                }
-        
-                                                @media print {
-                                                    .css-1yxmk4u {
-                                                        -webkit-print-color-adjust: exact;
-                                                        color-adjust: exact;
-                                                    }
-                                                }
-                                            </style>
-                                            <span><input type="checkbox" class="checkbox-seacrh"></span><span class="opasasas">Free test drive (1 hour)</span>
-                                        </label>
+                                        </style>
                                         <style data-emotion="css oi0fdz">
                                             .css-oi0fdz {
                                                 font-size: var(--font-md);
@@ -6695,85 +6186,7 @@ ymaps.ready(init);
                                             .css-5vspnf.MuiCheckbox-colorError {
                                                 background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 18 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M15 16H3c-.55 0-1-.45-1-1V3c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1Zm1-16H2C.9 0 0 .9 0 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V2c0-1.1-.9-2-2-2Z' fill='%23EE6C4D'/%3E%3C/svg%3E");
                                             }
-                                        </style><label
-                                            class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-5vspnf">
-                                            <style data-emotion="css zf7d16">
-                                                .css-zf7d16 {
-                                                    padding: 0 7px;
-                                                }
-                                            </style>
-                                            <style data-emotion="css 1c7h8lr">
-                                                .css-1c7h8lr {
-                                                    color: #293241;
-                                                    padding: 0 7px;
-                                                }
-                                            </style>
-                                            <style data-emotion="css ski1p">
-                                                .css-ski1p {
-                                                    padding: 9px;
-                                                    border-radius: 50%;
-                                                    color: #293241;
-                                                    padding: 0 7px;
-                                                }
-                                            </style>
-                                            <style data-emotion="css 1yxmk4u">
-                                                .css-1yxmk4u {
-                                                    display: -webkit-inline-box;
-                                                    display: -webkit-inline-flex;
-                                                    display: -ms-inline-flexbox;
-                                                    display: inline-flex;
-                                                    -webkit-align-items: center;
-                                                    -webkit-box-align: center;
-                                                    -ms-flex-align: center;
-                                                    align-items: center;
-                                                    -webkit-box-pack: center;
-                                                    -ms-flex-pack: center;
-                                                    -webkit-justify-content: center;
-                                                    justify-content: center;
-                                                    position: relative;
-                                                    box-sizing: border-box;
-                                                    -webkit-tap-highlight-color: transparent;
-                                                    background-color: transparent;
-                                                    outline: 0;
-                                                    border: 0;
-                                                    margin: 0;
-                                                    border-radius: 0;
-                                                    padding: 0;
-                                                    cursor: pointer;
-                                                    -webkit-user-select: none;
-                                                    -moz-user-select: none;
-                                                    -ms-user-select: none;
-                                                    user-select: none;
-                                                    vertical-align: middle;
-                                                    -moz-appearance: none;
-                                                    -webkit-appearance: none;
-                                                    -webkit-text-decoration: none;
-                                                    text-decoration: none;
-                                                    color: inherit;
-                                                    padding: 9px;
-                                                    border-radius: 50%;
-                                                    color: #293241;
-                                                    padding: 0 7px;
-                                                }
-        
-                                                .css-1yxmk4u::-moz-focus-inner {
-                                                    border-style: none;
-                                                }
-        
-                                                .css-1yxmk4u.Mui-disabled {
-                                                    pointer-events: none;
-                                                    cursor: default;
-                                                }
-        
-                                                @media print {
-                                                    .css-1yxmk4u {
-                                                        -webkit-print-color-adjust: exact;
-                                                        color-adjust: exact;
-                                                    }
-                                                }
-                                            </style>
-                                            <span><input type="checkbox" class="checkbox-seacrh"></span><span class="opasasas">Separate office</span>
-                                        </label>
+                                        </style>
                                         <style data-emotion="css oi0fdz">
                                             .css-oi0fdz {
                                                 font-size: var(--font-md);
@@ -6838,89 +6251,12 @@ ymaps.ready(init);
                                             .css-5vspnf.MuiCheckbox-colorError {
                                                 background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 18 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M15 16H3c-.55 0-1-.45-1-1V3c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1Zm1-16H2C.9 0 0 .9 0 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V2c0-1.1-.9-2-2-2Z' fill='%23EE6C4D'/%3E%3C/svg%3E");
                                             }
-                                        </style><label
-                                            class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-5vspnf">
-                                            <style data-emotion="css zf7d16">
-                                                .css-zf7d16 {
-                                                    padding: 0 7px;
-                                                }
-                                            </style>
-                                            <style data-emotion="css 1c7h8lr">
-                                                .css-1c7h8lr {
-                                                    color: #293241;
-                                                    padding: 0 7px;
-                                                }
-                                            </style>
-                                            <style data-emotion="css ski1p">
-                                                .css-ski1p {
-                                                    padding: 9px;
-                                                    border-radius: 50%;
-                                                    color: #293241;
-                                                    padding: 0 7px;
-                                                }
-                                            </style>
-                                            <style data-emotion="css 1yxmk4u">
-                                                .css-1yxmk4u {
-                                                    display: -webkit-inline-box;
-                                                    display: -webkit-inline-flex;
-                                                    display: -ms-inline-flexbox;
-                                                    display: inline-flex;
-                                                    -webkit-align-items: center;
-                                                    -webkit-box-align: center;
-                                                    -ms-flex-align: center;
-                                                    align-items: center;
-                                                    -webkit-box-pack: center;
-                                                    -ms-flex-pack: center;
-                                                    -webkit-justify-content: center;
-                                                    justify-content: center;
-                                                    position: relative;
-                                                    box-sizing: border-box;
-                                                    -webkit-tap-highlight-color: transparent;
-                                                    background-color: transparent;
-                                                    outline: 0;
-                                                    border: 0;
-                                                    margin: 0;
-                                                    border-radius: 0;
-                                                    padding: 0;
-                                                    cursor: pointer;
-                                                    -webkit-user-select: none;
-                                                    -moz-user-select: none;
-                                                    -ms-user-select: none;
-                                                    user-select: none;
-                                                    vertical-align: middle;
-                                                    -moz-appearance: none;
-                                                    -webkit-appearance: none;
-                                                    -webkit-text-decoration: none;
-                                                    text-decoration: none;
-                                                    color: inherit;
-                                                    padding: 9px;
-                                                    border-radius: 50%;
-                                                    color: #293241;
-                                                    padding: 0 7px;
-                                                }
-        
-                                                .css-1yxmk4u::-moz-focus-inner {
-                                                    border-style: none;
-                                                }
-        
-                                                .css-1yxmk4u.Mui-disabled {
-                                                    pointer-events: none;
-                                                    cursor: default;
-                                                }
-        
-                                                @media print {
-                                                    .css-1yxmk4u {
-                                                        -webkit-print-color-adjust: exact;
-                                                        color-adjust: exact;
-                                                    }
-                                                }
-                                            </style>
-                                            <span><input type="checkbox" class="checkbox-seacrh"></span><span class="opasasas">Долгосрочная аренда</span>
-                                        </label>
+                                        </style>
                                     </div>
                                 </div><button
+                                    onclick="allFilter();sessionStorage.clear()"
                                     class="sticky bottom-3 mt-2 inline-flex relative justify-center items-center disabled:opacity-50 min-h-sm lg:min-h-md p-2 text-xl md:text-3xl bg-primary text-white font-bold hover:bg-blue-300 disabled:hover:bg-primary rounded-lg"
-                                    tabindex="0" type="submit">Найти</button>
+                                    tabindex="0" type="button">Search</button>
                             </form>
                         </div>
                     </div>
@@ -6960,7 +6296,7 @@ ymaps.ready(init);
     </div>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <script src="./script.js"></script>
-    <script src="./search.js"></script>
+    <!-- <script src="./search.js"></script> -->
     <link rel="stylesheet" href="./allstyle.css">
     <link rel="stylesheet" href="./voqtincha.css">
     <div id="connectModal" class="connect_with_us">
@@ -7051,8 +6387,7 @@ ymaps.ready(init);
       }).catch(err=>{console.log(err)})
     </script>
 
-    <script id="__NEXT_DATA__"
-        type="application/json">{"props":{"pageProps":{"coworkings":{"current_page":1,"items_per_page":115,"total_pages":1,"total_items":115,"data":[{"unid":"b241effd-f73b-4e39-b7fb-cb111f96b872","latitude":55.927109,"longitude":37.606092},{"unid":"544e632c-ad3e-44d6-affe-defbbc58049f","latitude":55.821811,"longitude":37.514473},{"unid":"15bdd115-d99b-4a33-b5f3-7a1d2fd86072","latitude":55.845657,"longitude":37.433857},{"unid":"89fdfe5d-cf0f-49b2-b3e7-922552f13fad","latitude":55.733705,"longitude":37.857926},{"unid":"9bc80da5-0fdd-4a92-ad47-4d5595830f02","latitude":55.709302,"longitude":37.483373},{"unid":"4a07b1da-e1f6-41b3-9bdc-72551e995cf4","latitude":55.730785,"longitude":37.631424},{"unid":"19cd52b1-cfbd-41ad-8728-7d1b49a7263a","latitude":55.716924,"longitude":37.787794},{"unid":"a4d7795c-4f10-420c-8c39-53e791f3fc54","latitude":55.753838,"longitude":37.588314},{"unid":"de27e015-b43d-4877-b737-f267875ef47f","latitude":55.733265,"longitude":37.416492},{"unid":"d1b9fd22-594d-4da3-b9a3-ac9be7e63da3","latitude":55.76406,"longitude":37.683285},{"unid":"ae6f274e-b8bd-49b9-9473-e317b48cc3ac","latitude":55.626518,"longitude":37.743633},{"unid":"8e4d0dd9-f891-418a-bc69-f30defd1b8f6","latitude":55.7752,"longitude":37.624138},{"unid":"a82a6837-249e-404a-bcf8-1b00f330014a","latitude":55.653055,"longitude":37.748008},{"unid":"fc44c50b-3d13-4b0d-aa7d-eb7bea1af7b4","latitude":55.7330665,"longitude":37.6264217},{"unid":"1a1c1629-b694-4828-93ac-90e5a5f73db6","latitude":55.7552732,"longitude":37.6550724},{"unid":"280d1558-6c52-4288-b685-7dc127ba2fee","latitude":55.648677,"longitude":37.532771},{"unid":"e39fcfb3-069e-4422-8664-0436596e35f7","latitude":55.766106,"longitude":37.559245},{"unid":"6e795237-ed70-4e66-90a5-6fa9a0f7cdb2","latitude":55.775798,"longitude":37.59692},{"unid":"6df220e9-5d9f-4f4c-b804-b4c7def9e40d","latitude":55.757896,"longitude":37.656119},{"unid":"86eb2410-8ef5-4cdd-89d7-a9536f87e2c7","latitude":55.740887,"longitude":37.650621},{"unid":"51a555c4-c691-4fc5-be9e-222b59dc6046","latitude":55.713562,"longitude":37.757476},{"unid":"b46fee4b-18a2-40f3-943b-a01adc55506a","latitude":55.764988,"longitude":37.590523},{"unid":"dd13019b-2ad8-4ff6-97ad-32fc5ab8c67a","latitude":55.76264,"longitude":37.573456},{"unid":"9cf4ad5e-3a8a-4dc5-a401-8063258be55c","latitude":55.807658,"longitude":37.635045},{"unid":"d2ce6001-e569-4dc4-bc03-6477bdad2446","latitude":55.800084,"longitude":37.637497},{"unid":"0bd6dcda-ea8d-4c05-8431-3835fc9b6718","latitude":55.713562,"longitude":37.757476},{"unid":"dfc73c72-2ecd-4b58-b741-78e431090a9a","latitude":55.865253,"longitude":37.392526},{"unid":"ee29ed72-4238-4abc-ab3f-30129c8b0e7f","latitude":55.636529,"longitude":37.757296},{"unid":"122a0683-eeaa-4c13-9b4e-3aa15d9a3a01","latitude":55.73889,"longitude":37.66663},{"unid":"4ab3db7d-1302-4d7c-b7ae-007dc88850ca","latitude":55.75626,"longitude":37.634793},{"unid":"ed301f19-74b0-43f7-b36e-b75b56d33010","latitude":55.77315,"longitude":37.588171},{"unid":"d81a9082-3be5-4bf0-aadb-b8d783cd782a","latitude":55.860549,"longitude":37.488943},{"unid":"1a5e60e1-053c-44bd-b543-e8c1a07d8877","latitude":55.701719,"longitude":37.512236},{"unid":"98373b7a-b011-41d9-a2c6-4ef68fa8ad6e","latitude":55.899472,"longitude":37.38746},{"unid":"c17f0db6-2576-4391-aaa9-649a3a074987","latitude":55.847797,"longitude":37.36005},{"unid":"a9c7f733-8c34-4091-a7ae-ce6a76a0097f","latitude":55.756898,"longitude":37.63341},{"unid":"2e1d6dca-9b83-4bb3-8957-6587e1414f60","latitude":55.719536,"longitude":37.609326},{"unid":"343f368c-91cb-430a-a8ae-b17351eb0e74","latitude":55.818375,"longitude":37.58933},{"unid":"6cefe0c0-1d05-4d14-a932-cf4a5e59f1ca","latitude":55.76018,"longitude":37.631739},{"unid":"3e3a1427-dc90-4957-87d1-9ccf5a4fec8d","latitude":55.690846,"longitude":37.548869},{"unid":"c7df6c5c-aa9b-4a32-a8af-2cdc313d3cc9","latitude":55.741783,"longitude":37.596634},{"unid":"cc9fc3cd-2b42-45bb-93c0-94c9a0667f7f","latitude":55.7668276,"longitude":37.7056534},{"unid":"75b8a635-5658-4c7b-8d2c-045a9779f007","latitude":55.739554,"longitude":37.651735},{"unid":"92a2ca77-4dd3-477e-9a7b-6066c910e6ee","latitude":55.748072,"longitude":37.690462},{"unid":"adb508b7-1df4-45fe-82ac-d2068b16d057","latitude":55.76002,"longitude":37.64115},{"unid":"ce560b94-eb7f-450b-b83d-af4ca1b1dcdd","latitude":55.802185,"longitude":37.582863},{"unid":"8ee3598f-d586-4e12-b0c3-71f9d1e13f1b","latitude":55.792265,"longitude":37.600693},{"unid":"3727801e-e0ca-4712-9f8f-0d8d94bf8056","latitude":55.7022995,"longitude":37.8129973},{"unid":"f1cb3e9d-b5a8-47a6-b15f-5cd33be718cd","latitude":55.642199,"longitude":37.60452},{"unid":"54fc06dc-8ae3-476d-aa0a-5cc3ab95c429","latitude":55.678971,"longitude":37.263609},{"unid":"29deff5d-2a18-43ce-a1ca-f8e8c2cd91cf","latitude":55.832095,"longitude":37.651493},{"unid":"af36205e-4109-4b3e-9ce0-063814da9d2c","latitude":55.710509,"longitude":37.587164},{"unid":"f54c96af-9bf8-463f-8c57-b8f718ff1b18","latitude":55.765848,"longitude":37.575603},{"unid":"e6ec1fb6-7ac3-4f4d-b34f-91f7157dcb74","latitude":55.895477,"longitude":37.445095},{"unid":"f1547e30-92b2-4fa2-99e2-54494de9024e","latitude":55.794831,"longitude":37.71115},{"unid":"c013c90b-16d2-40f1-8097-08e97e5a6366","latitude":55.873541,"longitude":37.679305},{"unid":"0b4dc7be-db81-4a77-8d0f-c6ed31f0685f","latitude":55.759933,"longitude":37.64817},{"unid":"907f0e18-ae7a-45c3-9e91-5646d64abbe4","latitude":55.750494,"longitude":37.592761},{"unid":"d4ec3b8b-276b-468a-9129-74483527bc69","latitude":55.7705125,"longitude":37.6154024},{"unid":"3fa05f1a-f526-421e-848e-d41b7b1591c0","latitude":55.75396,"longitude":37.620393},{"unid":"699e516a-4846-4997-a593-beeb23d927ae","latitude":55.8103,"longitude":37.506325},{"unid":"5b2b6138-36ca-4246-9ec0-0c0ad9dfacdf","latitude":55.770309,"longitude":37.6327},{"unid":"826a315c-369d-4fd2-8080-c6d09f95b82c","latitude":55.773018,"longitude":37.602301},{"unid":"e095b4bd-6730-4456-95d3-8fa5398de672","latitude":55.699943,"longitude":37.619683},{"unid":"f646552c-3009-4b07-8eaf-321718b5c5da","latitude":55.746544,"longitude":37.586285},{"unid":"5847c0dd-fc03-44bc-8c25-3b4c2eba05ff","latitude":55.735738,"longitude":37.499435},{"unid":"1fb70f9b-3739-4175-81c1-3de495a36478","latitude":55.73674,"longitude":37.615963},{"unid":"90c452d6-2537-4201-b747-cbb79e9f434a","latitude":55.771358,"longitude":37.6312},{"unid":"8f1da23c-2dfa-4463-8849-f71263f0ad12","latitude":55.726142,"longitude":37.608185},{"unid":"838e4b14-cbe3-46a1-8052-99ddb8bcc32c","latitude":55.731465,"longitude":37.583796},{"unid":"eddd75cd-13f0-4353-b0a7-f6299e46ca42","latitude":55.819029,"longitude":37.649759},{"unid":"bd28cd77-30d1-4890-8f09-03a7cf6b0631","latitude":55.766727,"longitude":37.60292},{"unid":"e814e919-b19b-43ae-a3db-bc55aa75a0d8","latitude":55.81708,"longitude":37.64959},{"unid":"49c7a881-4ab7-4247-a0dd-30c8a5f7d63a","latitude":55.796471,"longitude":37.609919},{"unid":"4f94ad5d-554f-4831-ba1b-0af3470aa3b6","latitude":55.758159,"longitude":37.712578},{"unid":"130f99dc-d821-47ce-8831-a2586966d05d","latitude":55.817906,"longitude":37.815292},{"unid":"4ec5183c-ff56-4dc7-a711-8a0e096fe2aa","latitude":55.780633,"longitude":37.558275},{"unid":"63cacdad-d7c2-48d2-bbd5-2e7013fe482e","latitude":55.76527,"longitude":37.627014},{"unid":"240437b5-7907-42f3-aca7-426bb2f89eb1","latitude":55.7607106,"longitude":37.5736542},{"unid":"ac537fd3-c9bb-4ed6-95bb-2879dd627cdf","latitude":55.740532,"longitude":37.65857},{"unid":"33958970-91cd-450e-b906-55fd251d4ab9","latitude":55.816728,"longitude":37.647352},{"unid":"05ca6228-813a-42ae-842f-14aa367d65e6","latitude":55.749615,"longitude":37.60512},{"unid":"151419a4-5c8d-4667-a8e5-44388440ea91","latitude":55.741389,"longitude":37.657314},{"unid":"5f050044-2e14-41a7-ab59-3871d18af2b8","latitude":55.750074,"longitude":37.652122},{"unid":"e8876c8a-6d08-4927-83bf-8d72c9615495","latitude":55.833046,"longitude":37.595123},{"unid":"d7374f34-41cd-48db-a000-29a377d202e2","latitude":55.785731,"longitude":37.594899},{"unid":"f482d069-9e8c-4d1e-93c8-89de52e51a41","latitude":55.787148,"longitude":37.686977},{"unid":"ed2542a2-4241-4d7a-9565-d489b68211b9","latitude":55.619599,"longitude":37.417167},{"unid":"6cec2ae5-4141-4adb-a7d1-03bbc2b48fbd","latitude":55.772831,"longitude":37.598169},{"unid":"15a6fb3e-3d1e-426d-a7e2-e27f2297cede","latitude":55.77441,"longitude":37.677895},{"unid":"ac87e5f6-d195-453b-99d4-55b5820725b3","latitude":55.741389,"longitude":37.657314},{"unid":"0d5d5488-aa5c-4320-b320-9e59912afe29","latitude":55.756974,"longitude":37.651295},{"unid":"69ff05df-4933-4aec-a200-152c5842c418","latitude":55.608272,"longitude":37.583239},{"unid":"1c1475b8-ab27-4649-828f-ace06516d615","latitude":55.73032,"longitude":37.618946},{"unid":"2ef4eb66-5eeb-4997-a1ec-4cbafa71332c","latitude":55.768765,"longitude":37.628505},{"unid":"14b9a394-d54c-4519-888c-21ef16e62764","latitude":55.780304,"longitude":37.696373},{"unid":"c5fc84ea-fc48-4e9b-911e-e05110df72c5","latitude":55.678966,"longitude":37.547288},{"unid":"b9339527-f880-4add-b0b8-1c3d5e788fd1","latitude":55.7703819,"longitude":37.5991604},{"unid":"8bc21667-4ddb-4bec-98cc-ab41247517b8","latitude":55.839021,"longitude":37.4895},{"unid":"630669fd-354e-4ec8-92d4-1cfb78b04f07","latitude":55.765372,"longitude":37.608553},{"unid":"651f1ea4-b134-4879-be1a-e1d28366f29c","latitude":55.66309,"longitude":37.873035},{"unid":"b0688846-c0ca-42a1-9663-b38c803df6ce","latitude":55.70745,"longitude":37.582817},{"unid":"4883d5d4-fcdc-41b0-9148-983448efbb33","latitude":55.824368,"longitude":37.62238},{"unid":"815ada68-9b36-46b6-80ac-77cc7bd8b8df","latitude":55.737451,"longitude":37.635485},{"unid":"9c2d9075-2882-4361-a784-ab0097a2fd48","latitude":55.96025,"longitude":37.525326},{"unid":"77f4f5c3-3bd9-4971-b73b-95d9e01e6347","latitude":55.62857,"longitude":37.600388},{"unid":"bad4ce27-fd10-4149-85e9-5bc72b762f6d","latitude":55.770461,"longitude":37.622199},{"unid":"044bc0fb-ffd8-4c09-b361-5f877b7899ce","latitude":55.78795,"longitude":37.592106},{"unid":"8d842f9c-dbd7-42e5-92cd-9750de76e929","latitude":55.80529,"longitude":37.585089},{"unid":"f327208b-993d-433b-a5ca-aaa8baa3d01f","latitude":55.737495,"longitude":37.629303},{"unid":"6719f2ca-36b4-4d2b-bbb0-fcaf1d86f5c4","latitude":55.741475,"longitude":37.535826},{"unid":"0b43f169-8805-4bf7-9533-2f328fa5b690","latitude":55.75033,"longitude":37.59348},{"unid":"29f50be5-a6ed-4b5e-9b0e-9fa4e9b5118c","latitude":55.767246,"longitude":37.575163},{"unid":"09b1b62f-8359-4eb1-8703-a8b92464061d","latitude":55.693292,"longitude":37.471524},{"unid":"b80536c2-b189-471b-acb4-ff1e68f690e8","latitude":55.69587,"longitude":37.664894}]},"isMap":true,"params":{"map":true},"specialties":[{"id":1,"name":"Стилист-парикмахер"},{"id":2,"name":"Визажист"},{"id":3,"name":"Косметолог"},{"id":4,"name":"Мастер ногтевого сервиса"},{"id":5,"name":"Специалист по наращиванию ресниц"},{"id":6,"name":"Массажист"},{"id":7,"name":"Мастер перманентного макияжа"},{"id":8,"name":"Барбер"}],"featuresList":[{"slug":"has_parking","name":"Есть парковка","read_only":false},{"slug":"in_zhk","name":"Находится в ЖК","read_only":false},{"slug":"prof_materials","name":"Профессиональные материалы по запросу","read_only":false},{"slug":"uborka","name":"Уборка рабочих мест","read_only":false},{"slug":"administrator","name":"Есть администратор","read_only":false},{"slug":"card_payment","name":"Аренду можно оплатить картой","read_only":false},{"slug":"cash_rent","name":"Аренда кассы","read_only":false},{"slug":"guest_welcome","name":"Зона ожидания для гостей","read_only":false},{"slug":"drinks","name":"Чай и кофе бесплатно","read_only":false},{"slug":"kitchen","name":"Кухня для сотрудников","read_only":false},{"slug":"free_hour","name":"Бесплатный тест-драйв (1 час)","read_only":false},{"slug":"separate_room","name":"Отдельный кабинет","read_only":true}],"placeFeatureList":[{"slug":"separate_room","name":"Отдельный кабинет","read_only":false},{"slug":"has_shower","name":"Душ в массажном кабинете","read_only":false},{"slug":"near_window","name":"У окна","read_only":false},{"slug":"equip_rent","name":"Аренда аппаратов для косметологии","read_only":false}]},"__N_SSP":true},"page":"/search","query":{"map":"true"},"buildId":"G6UULUO7CzhXqobddKZQh","isFallback":false,"dynamicIds":[320,3062],"gssp":true,"scriptLoader":[]}</sc>
+  
 </body>
 
 </html>
