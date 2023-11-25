@@ -406,7 +406,7 @@
         var superadmin=""
         var user=0
         var password=""
-        fetch("https://salonca.onrender.com/api/users",{
+        fetch("https://fre.abbas.uz/api/users",{
         method:'GET'
         }).then(response=>response.json()).then(res=>{
         const Filter=res.filter(item=>item.email==localStorage.getItem("email"))
@@ -416,7 +416,7 @@
           password=item.password
           localStorage.setItem("user",item.id)
           if(item.category!==0){
-             fetch('https://salonca.onrender.com/api/category',{
+             fetch('https://fre.abbas.uz/api/category',{
               method:'GET'
              }).then(category=>category.json()).then(cat=>{
                const Filter2=cat.filter(item1=>item1.id==item.category)
@@ -442,7 +442,7 @@
         superadmin:superadmin,
         password:password
         }
-        fetch(`https://salonca.onrender.com/api/users/${user}`,{
+        fetch(`https://fre.abbas.uz/api/users/${user}`,{
         method:'PUT',
         headers: {
         'Content-Type': 'application/json'

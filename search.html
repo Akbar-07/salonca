@@ -801,7 +801,8 @@
             </div>
             <div class="container">
                 <div class="grid lg:grid-cols-[312px,1fr] lg:items-start lg:gap-6 lg:mt-6">
-                    <form class="hidden lg:grid grid gap-4 pt-4 pb-5">
+                    <div id="filtir_search_media_big">
+                    <form id="filtir_search_media" class="hidden lg:grid grid gap-4 pt-4 pb-5">
                         <style data-emotion="css 11f40o3">
                             .css-11f40o3 {
                                 display: -webkit-inline-box;
@@ -827,7 +828,7 @@
                                 }
                             }
                         </style>
-                        <div class="MuiFormControl-root css-11f40o3">
+                        <div  class="MuiFormControl-root css-11f40o3">
                             <div class="input-top_root__qC8ZD grid items-center justify-between mb-1 md:mb-0">
                                 <style data-emotion="css 1p6tn6p">
                                     .css-1p6tn6p {
@@ -1472,7 +1473,7 @@
                                 </style>
                             </div>
                         </div>
-                        <div id="select_index1" class="select_index">
+                        <div  id="select_index1" class="select_index">
                           </div>
                         </div>
                         <div>
@@ -4666,7 +4667,7 @@
 	outline: none;
 	content: none;	
     border: 2px solid #5ea2b9 !important;
-    border-radius: 5px;
+    border-radius: 5px; 
 }
 .opasasas{
     padding-left: 5px;
@@ -5474,6 +5475,7 @@ color: #5ea2b9 !important;
                             class="sticky bottom-3 mt-2 inline-flex relative justify-center items-center disabled:opacity-50 min-h-sm lg:min-h-md p-2 text-xl md:text-3xl bg-primary text-white font-bold hover:bg-blue-300 disabled:hover:bg-primary rounded-lg"
                             tabindex="0" type="button">Search</button>
                     </form>
+                </div>
                     <div>
                         <script src="./search.js"></script>
                         <div class="card-list_list__kV3IG grid gap-4 sm:gap-x-3 my-4 sm:mb-8 sm:mt-0" id="seacrhmapjoy">
@@ -5767,7 +5769,7 @@ color: #5ea2b9 !important;
        </div>
 
        <script>
-        fetch("https://salonca.onrender.com/api/users",{
+        fetch("https://fre.abbas.uz/api/users",{
         method:'GET'
         }).then(response=>response.json()).then(res=>{
         const Filter=res.filter(item=>item.email==localStorage.getItem("email"))

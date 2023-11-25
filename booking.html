@@ -4453,7 +4453,7 @@
     </div>
 
       <script>
-        fetch("https://salonca.onrender.com/api/users",{
+        fetch("https://fre.abbas.uz/api/users",{
         method:'GET'
         }).then(response=>response.json()).then(res=>{
         const Filter=res.filter(item=>item.email==localStorage.getItem("email"))
@@ -4475,7 +4475,7 @@
         })
         }).catch(err=>{console.log(err)})
 
-        fetch('https://salonca.onrender.com/api/filyal',{
+        fetch('https://fre.abbas.uz/api/filyal',{
             method:'GET'
         }).then(response=>response.json()).then(data=>{
         const Filter=data.filter(item=>item.id==localStorage.getItem("FilialId"))
@@ -4524,7 +4524,7 @@
         message:document.querySelector("#booking-comment").value,
         user_id:localStorage.getItem("user")
         }
-        fetch('https://salonca.onrender.com/api/zakaz',{
+        fetch('https://fre.abbas.uz/api/zakaz',{
             method:'POST',
             headers:{
                 'Content-Type':'application/json'

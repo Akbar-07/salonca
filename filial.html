@@ -4448,7 +4448,7 @@
             ymaps.ready(init);
     
             function init() {
-                fetch("https://salonca.onrender.com/api/filyal",{
+                fetch("https://fre.abbas.uz/api/filyal",{
                     method:'GET'
                 }).
                 then(response=>response.json())
@@ -4556,7 +4556,7 @@
             });
 </script>
 <script>
-    fetch("https://salonca.onrender.com/api/users",{
+    fetch("https://fre.abbas.uz/api/users",{
     method:'GET'
     }).then(response=>response.json()).then(res=>{
     const Filter=res.filter(item=>item.email==localStorage.getItem("email"))

@@ -25,7 +25,7 @@ function Login() {
         email:document.querySelector("#login_email").value,
         password:document.querySelector("#login_password").value
        }
-       fetch('https://salonca.onrender.com/api/login',{
+       fetch('https://fre.abbas.uz/api/login',{
         method:'POST',
         headers:{
           'Content-Type': 'application/json'
@@ -76,7 +76,7 @@ function Login() {
           const verify={
            code:document.querySelector("#login_verify").value
           }
-         fetch('https://salonca.onrender.com/api/verify',{
+         fetch('https://fre.abbas.uz/api/verify',{
          method:'POST',
          headers:{
            'Content-Type': 'application/json'
@@ -189,7 +189,7 @@ function LoginPostTimer(){
       email:document.querySelector("#login_email").value,
       password:document.querySelector("#login_password").value
     }
-    fetch("https://salonca.onrender.com/api/register",{
+    fetch("https://fre.abbas.uz/api/register",{
       method:'POST',
       headers:{
         'Content-Type': 'application/json'
@@ -236,7 +236,7 @@ function LoginPost(){
     email:document.querySelector("#login_email").value,
     password:document.querySelector("#login_password").value
   }
-  fetch("https://salonca.onrender.com/api/register",{
+  fetch("https://fre.abbas.uz/api/register",{
     method:'POST',
     headers:{
       'Content-Type': 'application/json'
@@ -311,7 +311,7 @@ function closeNavbarMolad(){
   document.querySelector("body").style=`overflow: scroll;`
 }
 
-fetch('https://salonca.onrender.com/api/category', {
+fetch('https://fre.abbas.uz/api/category', {
   method: 'GET'
 })
 .then(response => response.json())
@@ -382,7 +382,7 @@ function DataOpen() {
 function map(){
   document.querySelector(".qora-oyna-indi").style=`display:block`
 }
-fetch('https://salonca.onrender.com/api/filyal', {
+fetch('https://fre.abbas.uz/api/filyal', {
   method: 'GET'
 })
 .then(response => response.json())
@@ -513,7 +513,7 @@ fetch('https://salonca.onrender.com/api/filyal', {
 
 
 
-fetch('https://salonca.onrender.com/api/filyal', {
+fetch('https://fre.abbas.uz/api/filyal', {
   method: 'GET'
 })
 .then(response => response.json())
@@ -538,7 +538,7 @@ fetch('https://salonca.onrender.com/api/filyal', {
 
 
 var category=[]
-fetch('https://salonca.onrender.com/api/category', {
+fetch('https://fre.abbas.uz/api/category', {
   method: 'GET'
 })
 .then(response => response.json())
@@ -572,7 +572,7 @@ function SelectOpen(id,name) {
   }
 }
 
-// fetch('https://salonca.onrender.com/api/category', {
+// fetch('https://fre.abbas.uz/api/category', {
 //   method: 'GET'
 // })
 // .then(response => response.json())
@@ -603,7 +603,7 @@ function SelectOpen(id,name) {
 
 var filial_masterM=[]
 
-fetch('https://salonca.onrender.com/api/filyal', {
+fetch('https://fre.abbas.uz/api/filyal', {
   method: 'GET'
 })
 .then(response => response.json())
@@ -921,7 +921,7 @@ function filial_master(id){
       }
       if(item.xususiyat_mutahasis.length>0){
       item.xususiyat_mutahasis.map(xusuyat=>{
-        fetch("https://salonca.onrender.com/api/xususiyatlar",{
+        fetch("https://fre.abbas.uz/api/xususiyatlar",{
           method:'GET'
         }).then(response=>response.json()).then(res=>{
           const Filter10=res.filter(res1=>res1.id==xusuyat.xususiyat_id)
@@ -960,7 +960,7 @@ function filial_master_close(){
 
 
 
-fetch('https://salonca.onrender.com/api/rayon/',{
+fetch('https://fre.abbas.uz/api/rayon/',{
   method:'GET'
 }).then(response=>response.json()).then(res=>{
   document.querySelector("#countries").innerHTML=""
@@ -972,7 +972,7 @@ res.map((item,key)=>{
 }).catch(err=>console.log(err))
 
 
-fetch('https://salonca.onrender.com/api/metro/',{
+fetch('https://fre.abbas.uz/api/metro/',{
   method:'GET'
 }).then(response=>response.json()).then(res=>{
   document.querySelector("#countries1").innerHTML=""
@@ -1227,13 +1227,13 @@ function MultiSelectTag (el, customs = {shadow: false, rounded:true}) {
       })
   }
 
-}, 8000);
+}, 1500);
 
 }
 
 
 
-fetch("https://salonca.onrender.com/api/users",{
+fetch("https://fre.abbas.uz/api/users",{
   method:'GET'
 }).then(response=>response.json()).then(res=>{
 const Filter=res.filter(item=>item.email==localStorage.getItem("email"))
@@ -1267,7 +1267,7 @@ function zakazFilial(key){
   }
 }
 
-fetch('https://salonca.onrender.com/api/filyal',{
+fetch('https://fre.abbas.uz/api/filyal',{
   method:'GET'
 }).then(response=>response.json()).then(res=>{
   const filial=res.filter(item=>item.id==localStorage.getItem("FilialId"))
@@ -1307,7 +1307,7 @@ function bookingSelect(id,name,img) {
       setTimeout(() => {
         document.querySelector("#booking_select").style.display = "none";
       }, 100);
-      fetch("https://salonca.onrender.com/api/filyal",{
+      fetch("https://fre.abbas.uz/api/filyal",{
         method:'GET'
       }).then(response=>response.json()).then(res=>{
       res.map(master1=>{
@@ -1341,7 +1341,7 @@ function bookingSelect(id,name,img) {
   }
 }
 
-fetch('https://salonca.onrender.com/api/filyal',{
+fetch('https://fre.abbas.uz/api/filyal',{
   method:'GET'
 }).then(response=>response.json()).then(res=>{
   const filial=res.filter(item=>item.id==localStorage.getItem("FilialId"))
@@ -1460,10 +1460,10 @@ function InputIndexFilter(){
   document.querySelector("#index_filter_disrit_div1").innerHTML=""
   if(document.querySelector("#home-address").value!==""){
     // document.querySelector("#index_filter_disrit").style="display:block"
-  fetch('https://salonca.onrender.com/api/rayon',{
+  fetch('https://fre.abbas.uz/api/rayon',{
     method:'GET'
   }).then(response=>response.json()).then(res=>{
-    fetch('https://salonca.onrender.com/api/metro',{
+    fetch('https://fre.abbas.uz/api/metro',{
       method:'GET'
   }).then(response1=>response1.json()).then(res1=>{
     const Filter1=res1.filter(item=>(item.title).includes(document.querySelector("#home-address").value))

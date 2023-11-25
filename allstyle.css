@@ -31,6 +31,27 @@ scroll-behavior: smooth !important;
   #coworking_icon {
     font-size: 30px;
   }
+  #filtir_search_media{
+    display: grid;
+    width: 671px;
+    height: 100vw;
+    margin-top: 180px;
+  }
+  #filtir_search_media_big{
+    /* width: 100%; */
+    position: fixed;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    top: 70px;
+    bottom: 0px;
+    z-index: 1000;
+    overflow-y: scroll;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
 .connect_with_us label div {
   display: flex;
@@ -844,3 +865,4 @@ height: 50px;
   padding-top: 0.5px;
   cursor: pointer;
 }
+

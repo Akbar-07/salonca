@@ -1,6 +1,6 @@
 var Data=[]
 
-fetch('https://salonca.onrender.com/api/zakaz',{
+fetch('https://fre.abbas.uz/api/zakaz',{
   method:'GET'
 }).then(response=>response.json()).then(res=>{
    const Filter=res.filter(item=>item.user_id==localStorage.getItem("user"))
@@ -15,8 +15,8 @@ fetch('https://salonca.onrender.com/api/zakaz',{
       Filter[i].allDay=false
     }
    })
-   fetch('https://salonca.onrender.com/api/mutahasis',{method:'GET'}).then(response1=>response1.json()).then(res1=>{
-    fetch('https://salonca.onrender.com/api/filyal',{method:'GET'}).then(response2=>response2.json()).then(res2=>{
+   fetch('https://fre.abbas.uz/api/mutahasis',{method:'GET'}).then(response1=>response1.json()).then(res1=>{
+    fetch('https://fre.abbas.uz/api/filyal',{method:'GET'}).then(response2=>response2.json()).then(res2=>{
       for (let j = 0; j < Filter.length; j++) {
         for (let d = 0; d < res1.length; d++) {
           if(Filter[j].mutahasis_id==res1[d].id){

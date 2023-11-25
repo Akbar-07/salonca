@@ -9,7 +9,7 @@ var  rayon=[]
 var  rayon1=[]
 var  metro1=[]
 
-fetch('https://salonca.onrender.com/api/filyal', {
+fetch('https://fre.abbas.uz/api/filyal', {
   method: 'GET'
 }).catch(err=>{
  
@@ -139,7 +139,7 @@ fetch('https://salonca.onrender.com/api/filyal', {
 
 
 
-fetch('https://salonca.onrender.com/api/filyal_mark/',{
+fetch('https://fre.abbas.uz/api/filyal_mark/',{
   method:'GET'
 }).then(response=>response.json()).then(res=>{
   const Filter=res.filter(item=>item.filyal_id==localStorage.getItem("FilialId"))
@@ -173,7 +173,7 @@ fetch('https://salonca.onrender.com/api/filyal_mark/',{
 
 
 function postbec(){
-  fetch('https://salonca.onrender.com/api/contact',{
+  fetch('https://fre.abbas.uz/api/contact',{
   method: 'POST',
   headers:{
     'Content-Type': 'application/json'
@@ -208,7 +208,7 @@ function SearchFilterPost(){
    sessionStorage.setItem("categoryId",SearchDistritId)
 }
 
-fetch('https://salonca.onrender.com/api/xususiyatlar',{
+fetch('https://fre.abbas.uz/api/xususiyatlar',{
   method:'GET'
 }).then(response=>response.json()).then(res=>{
   res.map(item=>{
@@ -313,14 +313,14 @@ function SelectOpen2(id,name) {
 
 
 
-fetch('https://salonca.onrender.com/api/category',{
+fetch('https://fre.abbas.uz/api/category',{
 method:"GET"
 }).then(response=>response.json()).then(res=>{
   res.map(item=>{
     category.push(item)
   })
 })
-fetch('https://salonca.onrender.com/api/filyal',{
+fetch('https://fre.abbas.uz/api/filyal',{
 method:"GET"
 }).then(response=>response.json()).then(res=>{
   for (let i = 0; i < res.length; i++) {
@@ -330,21 +330,21 @@ method:"GET"
     filyal.push(item)
   })
 })
-fetch('https://salonca.onrender.com/api/xususiyatlar',{
+fetch('https://fre.abbas.uz/api/xususiyatlar',{
 method:"GET"
 }).then(response=>response.json()).then(res=>{
 res.map(item=>{
   xususiyat.push(item)
 })
 })
-fetch('https://salonca.onrender.com/api/metro',{
+fetch('https://fre.abbas.uz/api/metro',{
 method:"GET"
 }).then(response=>response.json()).then(res=>{
 res.map(item=>{
   metro.push(item)
 })
 })
-fetch('https://salonca.onrender.com/api/rayon',{
+fetch('https://fre.abbas.uz/api/rayon',{
 method:"GET"
 }).then(response=>response.json()).then(res=>{
 res.map(item=>{
@@ -374,22 +374,35 @@ send_data.push(masiv[i])
 function filter_price(data){
 var min_price=document.querySelector('#filter-price-from').value
 var max_price=document.querySelector('#filter-price-to').value
-if(min_price.length===0){
-min_price=0
-}else{
-min_price=min_price*1
-}
-if(max_price.length===0){
-max_price=99999999999
-}else{
-  max_price=max_price*1
-}
 var result=[]
+if(max_price.length!==0 && min_price.length!==0){
 for (let i = 0; i < data.length; i++) {
-if(data[i].master.length>0 && data[i].master[0].price>=min_price && data[i].master[0].price<=max_price){
+if(data[i].master.length>0 && data[i].master[0].price>=min_price*1 && data[i].master[0].price<=max_price*1){
 result.push(data[i])
 }
 }
+}else{
+if(max_price.length!==0){
+  for (let i = 0; i < data.length; i++) {
+    if(data[i].master.length>0 && data[i].master[0].price<=max_price*1){
+    result.push(data[i])
+    }
+    }
+}
+if(min_price.length!==0){
+  for (let i = 0; i < data.length; i++) {
+    if(data[i].master.length>0 && data[i].master[0].price>=min_price*1){
+    result.push(data[i])
+    }
+    }
+}
+}
+if(max_price.length===0 && min_price.length===0){
+result=data
+}
+
+
+
 return result
 }
 function filter_date(data12){
@@ -478,7 +491,7 @@ function filter_rayon(data){
 }
 
 function allFilter(){
-  fetch('https://salonca.onrender.com/api/filyal',{
+  fetch('https://fre.abbas.uz/api/filyal',{
   method:'GET'
   }).then(response=>response.json()).then(res=>{
     var data=filter_master(res)
@@ -604,12 +617,14 @@ function allFilter(){
                 </div>
       `
     })
+    document.querySelector("#filyal_length").innerHTML=`
+    <span>Найдено: ${data.length}     салонов </span>`
     // this.setState({filyal:filter_price(data)})
   })
 }
 
 
-fetch('https://salonca.onrender.com/api/category',{
+fetch('https://fre.abbas.uz/api/category',{
 method:"GET"
 }).then(res=>{
   res.map((item,key)=>{
