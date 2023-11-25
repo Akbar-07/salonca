@@ -313,6 +313,7 @@ function SelectOpen2(id,name) {
 
 
 
+
 fetch('https://fre.abbas.uz/api/category',{
 method:"GET"
 }).then(response=>response.json()).then(res=>{
@@ -637,3 +638,6 @@ method:"GET"
    })
 })
 
+function SelectClose2(){
+  document.querySelector("#select_index1").style.display = "none";
+}
