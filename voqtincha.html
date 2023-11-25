@@ -476,17 +476,42 @@
             unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD
         }
     </style>
+    <script src="https://api-maps.yandex.ru/2.1/?lang=en_US" type="text/javascript"></script>
 </head>
 
 
 <script>
-    function init(){
-        let map = new ymaps.Map('map-test',{
-            center:[59.92975319089752,30.28962423526219],
-            zoom:16
-        })
+function init() {
+    let map = new ymaps.Map('map-test', {
+        center: [59.92975319089752, 30.28962423526219],
+        zoom: 16
+    });
+
+    // Locationlarni qoshib berish
+    var locations = [
+        { coordinates: [59.92975319089752, 30.28962423526219], hintContent: 'Location 1' },
+        { coordinates: [59.930000, 30.290000], hintContent: 'Location 2' },
+        { coordinates: [59.931000, 30.291000], hintContent: 'Location 3' },
+        // Qo'shimcha locationlarni qo'shing
+    ];
+
+    for (var i = 0; i < locations.length; i++) {
+        var location = locations[i];
+        var placemark = new ymaps.Placemark(location.coordinates, {
+            hintContent: location.hintContent
+        });
+
+        placemark.events.add('click', function (e) {
+            var targetPlacemark = e.get('target');
+            var hintContent = targetPlacemark.properties.get('hintContent');
+            console.log('Foydalanuvchi tugmasini bosdi. Ma\'lumot: ' + hintContent);
+        });
+
+        map.geoObjects.add(placemark);
     }
-    ymaps.ready(init)
+}
+
+ymaps.ready(init);
 </script>
 
 
