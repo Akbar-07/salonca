@@ -490,7 +490,7 @@
         <div><img src="../../counter?id=3305776;js=na" style="position:fixed;left:-999px" alt="Top.Mail.Ru"></div>
     </noscript>
     <div id="__next" data-reactroot="">
-        <header class="header_outer__oC_jP sticky top-0 bg-white">
+        <header  class="header_outer__oC_jP sticky top-0 bg-white">
             <div class="container">
               <div class="header_header__dliyZ flex items-center justify-between">
                 <a aria-label="Салонка" target="_top" href="index.html"
@@ -521,22 +521,22 @@
                       padding: 5px;
                       font-size: 1.125rem;
                     }
-    
+        
                     .css-q3v77a:hover {
                       background-color: rgba(0, 0, 0, 0.04);
                     }
-    
+        
                     @media (hover: none) {
                       .css-q3v77a:hover {
                         background-color: transparent;
                       }
                     }
-    
+        
                     .css-q3v77a.Mui-disabled {
                       background-color: transparent;
                       color: rgba(0, 0, 0, 0.26);
                     }
-    
+        
                     @media (min-width: 768px) {
                       .css-q3v77a {
                         display: none;
@@ -593,38 +593,38 @@
                       padding: 5px;
                       font-size: 1.125rem;
                     }
-    
+        
                     .css-vwcu3s::-moz-focus-inner {
                       border-style: none;
                     }
-    
+        
                     .css-vwcu3s.Mui-disabled {
                       pointer-events: none;
                       cursor: default;
                     }
-    
+        
                     @media print {
                       .css-vwcu3s {
                         -webkit-print-color-adjust: exact;
                         color-adjust: exact;
                       }
                     }
-    
+        
                     .css-vwcu3s:hover {
                       background-color: rgba(0, 0, 0, 0.04);
                     }
-    
+        
                     @media (hover: none) {
                       .css-vwcu3s:hover {
                         background-color: transparent;
                       }
                     }
-    
+        
                     .css-vwcu3s.Mui-disabled {
                       background-color: transparent;
                       color: rgba(0, 0, 0, 0.26);
                     }
-    
+        
                     @media (min-width: 768px) {
                       .css-vwcu3s {
                         display: none;
@@ -662,20 +662,24 @@
                       <div class="menu_menuBody__IfST1">
                         <nav class="menu_nav__GLRQp">
                           <ul class="menu_list__5oxIP">
-                            <button onclick="ConnectOpen()" class="menu_link__7Prly">Connect with us</button
-                            ><a class="menu_link__7Prly" href="coworking.html" target="_top"
-                              >Salons</a
+                            <a class="menu_link__7Prly"
+                               href="/"  ><span id="asdsadsadsadasdsaas">Main</span></a
+                            >
+                            <button onclick="ConnectOpen()" class="menu_link__7Prly"><span id="asdsadsadsadasdsaas">Connect with us</span></button
+                            >
+                            <a class="menu_link__7Prly" href="coworking.html" target="_top"
+                              ><span id="asdsadsadsadasdsaas">Salons</span></a
                             >
                           </ul>
                         </nav>
                         <div class="navbar_name">
                         <button
                         onclick="LoginOpen()"
-                          class="menu_button__0ReSs inline-flex relative justify-center items-center disabled:opacity-50 min-h-sm lg:min-h-md p-2 text-xl md:text-3xl bg-secondary text-primary font-semibold hover:bg-blue-100 hover:bg-opacity-50 rounded-lg"
+                          
                           tabindex="0"
                           type="button"
                         >
-                          Sign in
+                          <span id="asdsadsadsadasdsaas">Sign in</span>
                         </button>
                       </div>
                       </div>
@@ -689,14 +693,18 @@
                         .css-f101zn {
                           z-index: 1201;
                         }
-    
+        
                         .css-f101zn .MuiBackdrop-root {
                           background-color: rgba(41, 50, 65, 0.5);
                         }
-    
+        
                         .css-f101zn .MuiPaper-root {
                           border-radius: 0 0 12px 12px;
                           box-shadow: 0px 6px 24px rgba(26, 61, 107, 0.16);
+                        }
+                        #asdsadsadsadasdsaas{
+                          position: relative;
+                          top: 5px;
                         }
                       </style>
                       <style data-emotion="css i4xtmq">
@@ -704,11 +712,11 @@
                           z-index: 1200;
                           z-index: 1201;
                         }
-    
+        
                         .css-i4xtmq .MuiBackdrop-root {
                           background-color: rgba(41, 50, 65, 0.5);
                         }
-    
+        
                         .css-i4xtmq .MuiPaper-root {
                           border-radius: 0 0 12px 12px;
                           box-shadow: 0px 6px 24px rgba(26, 61, 107, 0.16);
@@ -723,7 +731,7 @@
               .css-1h8e8xi .MuiBackdrop-root {
                 background-color: rgba(41, 50, 65, 0.5);
               }
-    
+        
               .css-1h8e8xi .MuiPaper-root {
                 border-radius: 0 0 12px 12px;
                 box-shadow: 0px 6px 24px rgba(26, 61, 107, 0.16);
@@ -734,11 +742,11 @@
               .css-179d0mj {
                 z-index: 1200;
               }
-    
+        
               .css-179d0mj .MuiBackdrop-root {
                 background-color: rgba(41, 50, 65, 0.5);
               }
-    
+        
               .css-179d0mj .MuiPaper-root {
                 border-radius: 0 0 12px 12px;
                 box-shadow: 0px 6px 24px rgba(26, 61, 107, 0.16);
@@ -1589,7 +1597,7 @@
                                             }
                                         </style>
                                     </div>
-                                    <div id="booking_select" class="booking_select">
+                                    <div onmouseleave="booking_selectClose()" id="booking_select" class="booking_select">
                                     </div>
                                     </div>
                                 </div>
@@ -2848,7 +2856,7 @@
                                                     class="MuiInput-input MuiInputBase-input css-mnn31"> -->
                                             </div>
                                         </div>
-                                        <div  id="booking_time_div" class="booking_time_div">
+                                        <div onmouseleave="bookingSelectTimeClose()" id="booking_time_div" class="booking_time_div">
                                         </div>
                                         </div>
                                     </div>
@@ -3442,7 +3450,7 @@
                                                     readonly="" value="09.11.2023"
                                                     class="MuiInput-input MuiInputBase-input css-mnn31"> -->
                                             </div>
-                                            <div  id="booking_time_div_two" class="booking_time_div">
+                                            <div onmouseleave="bookingSelectTimeTwoClose()" id="booking_time_div_two" class="booking_time_div">
                                             
                                             </div>
                                            </div>
@@ -4231,7 +4239,7 @@
                                     </div><button
                                        onclick="ZakazPost()"
                                         class="inline-flex relative justify-center items-center disabled:opacity-50 min-h-sm lg:min-h-md p-2 text-xl md:text-3xl bg-primary text-white font-bold hover:bg-blue-300 disabled:hover:bg-primary rounded-lg"
-                                        tabindex="-1" type="button">Book</button>
+                                        tabindex="-1" type="button">Choose</button>
                                 </div>
                                 <p class=" text-lg text-primary">By clicking the Book button, you confirm your consent
                                     with the requirements of the salon. Payment is made on the spot according to the rules of the salon</p>
@@ -4365,20 +4373,22 @@
             <div class="connect_with_us_div_close"><i onclick="LoginOpen()" class='bx bx-x'></i></div>
             <h1 class="bla">Login or register</h1>
             <label id="login_email_one">
-              <div><p>*Email</p></div>
-              <input id="login_email" type="email" placeholder="@gmail.com" /> 
-              <span id="email_xato" class="login_xato_red">Enter the email incorrectly , correctly</span>
               <div style="display: block;" id="login_and_register">
               <p style="margin-top: 10px;" class="register-p" >*Name</p>
                <input id="login_username" type="text" placeholder="name">
                <span id="name_xato" class="login_xato_red">Fill in the name</span>
               </div>
+              <p></p>
+              <div><p>*Email</p></div>
+              <input id="login_email" type="email" placeholder="" /> 
+              <span id="email_xato" class="login_xato_red">Enter the email incorrectly , correctly</span>
+      
                <p style="margin-top: 10px;" class="register-p">*Password</p>
                <input id="login_password" style="margin-bottom: 20px;" placeholder="password" type="password">
                <span id="password_xato" class="login_xato_red">Password is incorrect or less than 8 characters</span>
             </label>
             <label id="sms_login">
-              <div><p>Code from sms</p><p id="numberEdit" onclick="LoginClose()" class="nomerEdit">To change number</p></div>
+              <div><p>Code from sms</p><p id="numberEdit" onclick="LoginClose()" class="nomerEdit">To change Login or register</p></div>
               <input id="login_verify" type="number" /> 
               <span id="login_verify_div" class="login_xato_red">Verification error</span>
               <p style="margin-left: auto !important;margin: 0;margin-top: 10px;margin-bottom: 10px;" class="link_mas">Timer : <span id="code_timer">01:00</span></p> 

@@ -645,6 +645,11 @@ res.map((item,key)=>{
 <option value=${item.id}>${item.title}</option>
 `
 })
+setTimeout(()=>{
+    sessionStorage.getItem("dataMaplength")?
+    document.querySelector("#filyal_length").innerHTML=`
+    <span>Найдено: ${sessionStorage.getItem("dataMaplength")}     салонов </span>`:""
+},2000)
 }).catch(err=>console.log(err))
 
 function SelectClose2(){
@@ -798,22 +803,17 @@ function allFilter(){
     data=filter_metro(data)
     data=filter_rayon(data)
     data=filter_price(data)
-    dataFilyal=[]
-    data.map(item=>{
-        dataFilyal.push(item)
-    })
-    setTimeout(()=>{
-    ymaps.ready(function() {
-        // ymaps obyektini qayta yuklash
-    });
-    },1000)
+    for (let i = 0; i < data.length; i++) {
+        data[i].coordinates=[data[i].location,data[i].longuage]
+        data[i].hintContent=`Location.${data[i].id}`
+    }
+    sessionStorage.setItem("dataMap",JSON.stringify(data))
+    sessionStorage.setItem("dataMaplength",data.length)  
+    window.location.reload()  
     
-    console.log(data,"salom");
-    document.querySelector("#filyal_length").innerHTML=`
-    <span>Найдено: ${data.length}     салонов </span>`
     // this.setState({filyal:filter_price(data)})
     })
-}
+}   
 
 function SelectOpen2(id,name) {
   if (document.querySelector("#select_index1").style.display == "block") {
@@ -835,7 +835,7 @@ function SelectOpen2(id,name) {
 function init() {
     for (let i = 0; i < dataFilyal.length; i++) {
         dataFilyal[i].coordinates=[dataFilyal[i].location,dataFilyal[i].longuage]
-        dataFilyal[i].hintContent=`Location ,${dataFilyal[i].id}`
+        dataFilyal[i].hintContent=`Location.${dataFilyal[i].id}`
     }
     let map = new ymaps.Map('map-test', {
         center: dataFilyal[0].coordinates,
@@ -843,7 +843,7 @@ function init() {
     });
 
     // Locationlarni qoshib berish
-    var locations = dataFilyal
+    var locations = JSON.parse(sessionStorage.getItem("dataMap"))?JSON.parse(sessionStorage.getItem("dataMap")):dataFilyal;
 
     for (var i = 0; i < locations.length; i++) {
         var location = locations[i];
@@ -854,7 +854,125 @@ function init() {
         placemark.events.add('click', function (e) {
             var targetPlacemark = e.get('target');
             var hintContent = targetPlacemark.properties.get('hintContent');
-            console.log('Foydalanuvchi tugmasini bosdi. Ma\'lumot: ' + hintContent);
+            var a=hintContent
+            console.log(a);
+            const Filter=dataFilyal.filter(item=>item.id==1)
+            document.querySelector(".filialFiltirmap").style="display:block"
+            Filter.map(item=>{
+                document.querySelector(".filialFiltirmapcard").innerHTML=`
+                <div
+                class="grid relative grid-rows-[1fr,152px] rounded-xl overflow-hidden bg-white shadow"
+                onclick='localStorage.setItem("FilialId",${item.id})'
+              >
+                <div class="grid gap-1 px-4 pt-3 pb-1.5">
+                  <h2 class="text-xl leading-5 truncate text-black font-bold">
+                    ${item.name}
+                  </h2>
+                  <div class="grid gap-2 grid-flow-col justify-start">
+                    <div
+                      class="w-2.5 h-2.5 rounded-full mt-[5px]"
+                      style="background-color: #915133"
+                    ></div>
+                    <div
+                      class="text-xl font-light leading-5 text-black-900 truncate"
+                      itemprop="address"
+                    >${item.address}</div>
+                  </div>
+                  <div class="flex gap-1 h-[26px]">
+                    <p class="text-xl leading-5 text-primary">from ${item.master.length>0?item.master[0].price:"0"} ₽/hour</p>
+                    <div class="text-xl leading-5 text-blue-100">
+                      · from ${item.min_time} hour
+                    </div>
+                  </div>
+                </div>
+                <a
+                  aria-label='${item.name}'
+                  class="grid before:content-[&quot;&quot;] before:absolute before:top-0 before:left-0 before:z-10 before:w-full before:h-full image-placeholder"
+                  href="/filial.html"
+                  target="_top"
+                  ><span
+                    style="
+                      box-sizing: border-box;
+                      display: block;
+                      overflow: hidden;
+                      width: initial;
+                      height: initial;
+                      background: none;
+                      opacity: 1;
+                      border: 0;
+                      margin: 0;
+                      padding: 0;
+                      position: relative;
+                    "
+                    ><span
+                      style="
+                        box-sizing: border-box;
+                        display: block;
+                        width: initial;
+                        height: initial;
+                        background: none;
+                        opacity: 1;
+                        border: 0;
+                        margin: 0;
+                        padding: 0;
+                        padding-top: 60.97560975609756%;
+                      "
+                    ></span
+                    ><img
+                      alt='${item.name}'
+                      src='${item.image}'
+                      decoding="async"
+                      data-nimg="responsive"
+                      style="
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        bottom: 0;
+                        right: 0;
+                        box-sizing: border-box;
+                        padding: 0;
+                        border: none;
+                        margin: auto;
+                        display: block;
+                        width: 0;
+                        height: 0;
+                        min-width: 100%;
+                        max-width: 100%;
+                        min-height: 100%;
+                        max-height: 100%;
+                        object-fit: cover;
+                        object-position: center;
+                      " /><noscript
+                      ><img
+                        alt='${item.name}'
+                        sizes="100vw"
+                        src="_next/czM6Ly9zYWxvbmNhLWRldi1idWNrZXQvaW1hZ2VzLzEyMmEwNjgzLWVlYWEtNGMxMy05YjRlLTNhYTE1ZDlhM2EwMS9iMzRhNzU3NS1iOTM3LTRhZDEtODNkMi1mODlmOWE2ZDA1N2YuanBn.jpeg?url=https%3A%2F%2Fsalonca.ru%2Fimages%2Fy9Nqkao9c_fgHkVORA5Q8ivq8yqs8zTBBj2FlA9ZBf8%2Frs%3Afill%3A327%3A200%3A1%2Fmh%3A420%2Fdpr%3A2%2Fg%3Ace%2FczM6Ly9zYWxvbmNhLWRldi1idWNrZXQvaW1hZ2VzLzEyMmEwNjgzLWVlYWEtNGMxMy05YjRlLTNhYTE1ZDlhM2EwMS9iMzRhNzU3NS1iOTM3LTRhZDEtODNkMi1mODlmOWE2ZDA1N2YuanBn.jpg&amp;w=3840&amp;q=75"
+                        decoding="async"
+                        data-nimg="responsive"
+                        style="
+                          position: absolute;
+                          top: 0;
+                          left: 0;
+                          bottom: 0;
+                          right: 0;
+                          box-sizing: border-box;
+                          padding: 0;
+                          border: none;
+                          margin: auto;
+                          display: block;
+                          width: 0;
+                          height: 0;
+                          min-width: 100%;
+                          max-width: 100%;
+                          min-height: 100%;
+                          max-height: 100%;
+                          object-fit: cover;
+                          object-position: center;
+                        "
+                        loading="lazy" /></noscript></span
+                ></a>
+              </div>`
+            })
         });
 
         map.geoObjects.add(placemark);
@@ -862,6 +980,11 @@ function init() {
 }
 
 ymaps.ready(init);
+
+function FilialFilterClose(){
+document.querySelector(".filialFiltirmap").style="display:none"
+}
+
 </script>
 
 
@@ -873,7 +996,7 @@ ymaps.ready(init);
                 alt="Top.Mail.Ru" /></div>
     </noscript>
     <div id="__next" data-reactroot="">
-        <header class="header_outer__oC_jP sticky top-0 bg-white">
+        <header  class="header_outer__oC_jP sticky top-0 bg-white">
             <div class="container">
               <div class="header_header__dliyZ flex items-center justify-between">
                 <a aria-label="Салонка" target="_top" href="index.html"
@@ -1045,20 +1168,24 @@ ymaps.ready(init);
                       <div class="menu_menuBody__IfST1">
                         <nav class="menu_nav__GLRQp">
                           <ul class="menu_list__5oxIP">
-                            <button onclick="ConnectOpen()" class="menu_link__7Prly">Connect with us</button
-                            ><a class="menu_link__7Prly" href="coworking.html" target="_top"
-                              >Salons</a
+                            <a class="menu_link__7Prly"
+                               href="/"  ><span id="asdsadsadsadasdsaas">Main</span></a
+                            >
+                            <button onclick="ConnectOpen()" class="menu_link__7Prly"><span id="asdsadsadsadasdsaas">Connect with us</span></button
+                            >
+                            <a class="menu_link__7Prly" href="coworking.html" target="_top"
+                              ><span id="asdsadsadsadasdsaas">Salons</span></a
                             >
                           </ul>
                         </nav>
                         <div class="navbar_name">
                         <button
                         onclick="LoginOpen()"
-                          class="menu_button__0ReSs inline-flex relative justify-center items-center disabled:opacity-50 min-h-sm lg:min-h-md p-2 text-xl md:text-3xl bg-secondary text-primary font-semibold hover:bg-blue-100 hover:bg-opacity-50 rounded-lg"
+                          
                           tabindex="0"
                           type="button"
                         >
-                          Sign in
+                          <span id="asdsadsadsadasdsaas">Sign in</span>
                         </button>
                       </div>
                       </div>
@@ -1080,6 +1207,10 @@ ymaps.ready(init);
                         .css-f101zn .MuiPaper-root {
                           border-radius: 0 0 12px 12px;
                           box-shadow: 0px 6px 24px rgba(26, 61, 107, 0.16);
+                        }
+                        #asdsadsadsadasdsaas{
+                          position: relative;
+                          top: 5px;
                         }
                       </style>
                       <style data-emotion="css i4xtmq">
@@ -1368,6 +1499,14 @@ ymaps.ready(init);
                                 tabindex="0" type="button" aria-label="Закрыть фильтр" onclick="closemapMenu()"><i class='bx bx-x'></i></button>
                         </div>
                         <div class="container lg:px-4"></div>
+                    </div>
+                    <div class="filialFiltirmap">
+                        <div style="display: flex;justify-content: end;"><button
+                            class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-1yxmbwk"
+                            tabindex="0" type="button" aria-label="Закрыть фильтр" onclick="FilialFilterClose()"><i class='bx bx-x'></i></button></div>
+                            <div class="filialFiltirmapcard">
+
+                            </div>
                     </div>
                 </div>
                 <style data-emotion="css 1tu59u4">
@@ -6260,6 +6399,7 @@ ymaps.ready(init);
                             </form>
                         </div>
                     </div>
+
                 </div>
             </div>
         </main>
@@ -6308,45 +6448,47 @@ ymaps.ready(init);
       </div>
     </div>
     <div id="loginModal" class="connect_with_us">
-      <div class="connect_with_us_div">
-      <div class="connect_with_us_div_close"><i onclick="LoginOpen()" class='bx bx-x'></i></div>
-      <h1 class="bla">Login or register</h1>
-      <label id="login_email_one">
-        <div><p>*Email</p></div>
-        <input id="login_email" type="email" placeholder="@gmail.com" /> 
-        <span id="email_xato" class="login_xato_red">Enter the email incorrectly , correctly</span>
-        <div style="display: block;" id="login_and_register">
-        <p style="margin-top: 10px;" class="register-p" >*Name</p>
-         <input id="login_username" type="text" placeholder="name">
-         <span id="name_xato" class="login_xato_red">Fill in the name</span>
+        <div class="connect_with_us_div">
+        <div class="connect_with_us_div_close"><i onclick="LoginOpen()" class='bx bx-x'></i></div>
+        <h1 class="bla">Login or register</h1>
+        <label id="login_email_one">
+          <div style="display: block;" id="login_and_register">
+          <p style="margin-top: 10px;" class="register-p" >*Name</p>
+           <input id="login_username" type="text" placeholder="name">
+           <span id="name_xato" class="login_xato_red">Fill in the name</span>
+          </div>
+          <p></p>
+          <div><p>*Email</p></div>
+          <input id="login_email" type="email" placeholder="" /> 
+          <span id="email_xato" class="login_xato_red">Enter the email incorrectly , correctly</span>
+  
+           <p style="margin-top: 10px;" class="register-p">*Password</p>
+           <input id="login_password" style="margin-bottom: 20px;" placeholder="password" type="password">
+           <span id="password_xato" class="login_xato_red">Password is incorrect or less than 8 characters</span>
+        </label>
+        <label id="sms_login">
+          <div><p>Code from sms</p><p id="numberEdit" onclick="LoginClose()" class="nomerEdit">To change Login or register</p></div>
+          <input id="login_verify" type="number" /> 
+          <span id="login_verify_div" class="login_xato_red">Verification error</span>
+          <p style="margin-left: auto !important;margin: 0;margin-top: 10px;margin-bottom: 10px;" class="link_mas">Timer : <span id="code_timer">01:00</span></p> 
+        </label>
+        <label id="login_info">
+          <label  id="login_info_p">
+           <p class="register-p">Specialization</p>
+           <input type="text">
+           <div class="login-ttt">
+            <div class="login-var-inoput"><input type="checkbox" id="sdadsdad"> </div><div class="login-ichi-sozla"> <p>Я согласен с <a href="#">политикой конфиденциальности и <br> условиями использования</a></p> </div> 
+            </div>
+            <div class="login-ttt">
+            <div class="login-var-inoput"><input type="checkbox" id="sdadsdad"> </div><div class="login-ichi-sozla1"> <p>Я согласен получать рассылку с новостями и акциями</p> </div> 
+            </div>
+           </label>
+        </label>
+        
+        <button id="login_button" onclick="Login()" class="connect_with_us_div_buuton1">Login for masters</button>
+        <p id="login_p" onclick="Signin()" class="link_mas">Salon entrance</p>
         </div>
-         <p style="margin-top: 10px;" class="register-p">*Password</p>
-         <input id="login_password" style="margin-bottom: 20px;" placeholder="password" type="password">
-         <span id="password_xato" class="login_xato_red">Password is incorrect or less than 8 characters</span>
-      </label>
-      <label id="sms_login">
-        <div><p>Code from sms</p><p id="numberEdit" onclick="LoginClose()" class="nomerEdit">To change number</p></div>
-        <input id="login_verify" type="number" /> 
-        <span id="login_verify_div" class="login_xato_red">Verification error</span>
-        <p style="margin-left: auto !important;margin: 0;margin-top: 10px;margin-bottom: 10px;" class="link_mas">Timer : <span id="code_timer">01:00</span></p> 
-      </label>
-      <label id="login_info">
-        <label  id="login_info_p">
-         <p class="register-p">Specialization</p>
-         <input type="text">
-         <div class="login-ttt">
-          <div class="login-var-inoput"><input type="checkbox" id="sdadsdad"> </div><div class="login-ichi-sozla"> <p>Я согласен с <a href="#">политикой конфиденциальности и <br> условиями использования</a></p> </div> 
-          </div>
-          <div class="login-ttt">
-          <div class="login-var-inoput"><input type="checkbox" id="sdadsdad"> </div><div class="login-ichi-sozla1"> <p>Я согласен получать рассылку с новостями и акциями</p> </div> 
-          </div>
-         </label>
-      </label>
-      
-      <button onclick="Login()" class="connect_with_us_div_buuton1">Salon entrance</button>
-      <p id="login_p" onclick="Signin()" class="link_mas">Salon entrance</p>
       </div>
-    </div>
     <div class="navbar__modal id="navbar__modal">
       <div class="container">
           <div class="header_header__dliyZ flex items-center justify-between">

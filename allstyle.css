@@ -380,6 +380,7 @@ scroll-behavior: smooth !important;
   justify-content: center;
   overflow: hidden;
   position: relative;
+  /* background-size: 100% !important; */
 }
 .filial_master_big_img_div img {
   width: 100%;
@@ -430,6 +431,15 @@ scroll-behavior: smooth !important;
   width: 100%;
 }
 .filial_master_big_div_time_number {
+  padding: 3px 8px 3px 8px;
+  color: #3d5a80;
+  border-radius: 10px;
+  border: 1px solid #98c1d9;
+  font-size: 15px;
+  margin-top: 5px;
+  cursor: pointer;
+}
+.filial_master_big_div_time_number12 {
   padding: 3px 8px 3px 8px;
   color: #3d5a80;
   border-radius: 10px;
@@ -500,6 +510,7 @@ scroll-behavior: smooth !important;
     padding-bottom: 10px;
     border: 0;
     border-radius: 10px;
+    opacity: 0.5;
   }
   #filtir_search_media{
     width: 550px;
@@ -777,6 +788,7 @@ scroll-behavior: smooth !important;
 .booking_select_option img{
   width: 40px;
   height: 40px;
+  object-fit: cover;
   border-radius: 5px;
 }
 .booking_select_option:hover {
@@ -789,6 +801,8 @@ scroll-behavior: smooth !important;
 }
 .booking_select_map img{
 width:60px;
+min-width: 60px;
+object-fit: cover;
 height: 50px;
 }
 .notranslate{
@@ -886,3 +900,19 @@ height: 50px;
   cursor: pointer;
 }
 
+.filialFiltirmap{
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0px;
+  bottom: 0px;
+  max-width: 100%;
+  width: 350px;
+  background-color: #fff;
+  border-right: 1px solid #98c1d9;
+}
+.filialFiltirmapcard{
+  margin-top: 10px;
+  margin-left: 20px;
+  margin-right: 20px;
+}

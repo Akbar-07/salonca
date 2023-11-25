@@ -517,7 +517,17 @@ fetch('https://fre.abbas.uz/api/filyal', {
 
 
 
+function booking_selectClose(){
+  document.querySelector("#booking_select").style="display:none"
+}
 
+function bookingSelectTimeClose(){
+  document.querySelector("#booking_time_div").style="display:none"
+}
+
+function bookingSelectTimeTwoClose(){
+  document.querySelector("#booking_time_div_two").style="display:none"
+}
 
 
 
@@ -558,34 +568,11 @@ function SelectOpen(id,name) {
   }
 }
 
-// fetch('https://fre.abbas.uz/api/category', {
-//   method: 'GET'
-// })
-// .then(response => response.json())
-// .then(data => {
-//   data.map((item,key)=>{
-//     document.querySelector(".select_index").innerHTML+=`<h1 onclick="SelectOpenUser('${item.id}','${item.category}')" id="select_index_h1" value=${item.id}>${item.category}</h1>`
-//    })
-// })
-// .catch(error => {
-//   console.error(error);
-// });
+function SelectAllClose(){
+  document.querySelector("#select_index").style.display = "none";
+}
 
-// function SelectOpenUser(id,name) {
-//   if (document.querySelector(".select_index").style.display == "block") {
-//     if (id) {
-//       alert("1")
-//       // document.querySelector("#user_spesilation").innerHTML=`${name}`;
-//       setTimeout(() => {
-//         document.querySelector(".select_index").style.display = "none";
-//       }, 100);
-//     } else {
-//       document.querySelector(".select_index").style.display = "none";
-//     }
-//   } else {
-//     document.querySelector(".select_index").style.display = "block";
-//   }
-// }
+
 
 var filial_masterM=[]
 
@@ -674,8 +661,8 @@ fetch('https://fre.abbas.uz/api/filyal', {
           <div id="filial_big">
           <div>
               <p class="filial_big_title">Photo</p>
-              <div  class="filial_master_big_img_div">
-                  <img src='${master.mutahasis_image.length>0?master.mutahasis_image[0].image:"salom"}' alt=${master.tavsif}>
+              <div style="background:url('${master.mutahasis_image.length>0?master.mutahasis_image[0].image:"salom"}') center center / cover;"  class="filial_master_big_img_div">
+
                   <div onclick="filial_master('${master.id}')"
                   class="filial_master_big_img_div_text">
                   <p>More details</p>
@@ -695,14 +682,14 @@ fetch('https://fre.abbas.uz/api/filyal', {
               <p class="filial_master_big_div_money">${master.price} ₽</p>
           </div>
               <button onclick="zakazFilial('${key}')"
-              id="button_mutaxasis_link" class="filial_master_big_div_button">Choose</button>
+              class="filial_master_big_div_button">Choose</button>
           </div><hr/>`
           master.mutahasis_time.map((time,key1)=>{
             var date=new Date()
             var hours=date.getHours()+":"+date.getMinutes()
             if(time.time>=hours){
               a++
-              document.querySelectorAll(".filial_master_big_div_time")[key].innerHTML+=`<div onclick="time_fon('${a-1}','${master.id}','${time.id}','${item.id}')" class="filial_master_big_div_time_number">${time.time}</div>`
+              document.querySelectorAll(".filial_master_big_div_time")[key].innerHTML+=`<div onclick="time_fon('${a-1}','${master.id}','${time.id}','${item.id}','${key}')" class="filial_master_big_div_time_number">${time.time}</div>`
             }
           })
         })
@@ -833,7 +820,8 @@ fetch('https://fre.abbas.uz/api/filyal', {
 });
 
 var buttun_zakaz=0
-function time_fon(key,masterid,id,filialid){
+function time_fon(key,masterid,id,filialid,masterkey){
+  document.querySelectorAll(".filial_master_big_div_button")[masterkey].style="opacity:1;"
   document.querySelector("#button_mutaxasis_link").style="opacity:1;"
   for (let i = 0; i < document.querySelectorAll(".filial_master_big_div_time_number").length; i++) {
   if(key==i){
@@ -899,8 +887,12 @@ function filial_master(id){
       }
       document.querySelector("#filial_master_destcription").innerHTML=item.description?item.description:"No description"
       if(item.mutahasis_time.length>0){
-        item.mutahasis_time.map(mutahasis_time=>{
-          document.querySelector("#filial_master_time").innerHTML+=`<div class="filial_master_big_div_time_number">${mutahasis_time.time}</div>`
+        var a=0
+        item.mutahasis_time.map((mutahasis_time,key)=>{
+          a++
+          document.querySelector("#filial_master_time").innerHTML+=`<div 
+          onclick="FilialzakazTime('${item.id}','${mutahasis_time.id}','${a-1}')" 
+          class="filial_master_big_div_time_number12">${mutahasis_time.time}</div>`
           })
       }else{
         document.querySelector("#filial_master_time").innerHTML="No time"
@@ -923,6 +915,19 @@ function filial_master(id){
      
   })
 }
+
+function FilialzakazTime(masterid,id,key){
+  for (let i = 0; i < document.querySelectorAll(".filial_master_big_div_time_number12").length; i++) {
+    if(key==i){
+      localStorage.setItem("time_filial_master",id)
+      localStorage.setItem("filial_master_id",masterid)
+      document.querySelectorAll(`.filial_master_big_div_time_number12`)[i].style="color:white;background:#98c1d9;"
+    }else{
+      document.querySelectorAll(`.filial_master_big_div_time_number12`)[i].style="color:#3D5A80;background:none;"
+    }
+  }
+}
+
 
 function filial_master_close(){
   document.querySelector("body").style="overflow:scroll;"
@@ -1251,6 +1256,11 @@ function zakazFilial(key){
       window.location="/booking.html"
     }
   }
+}
+
+function zakazFilialModal(){
+    localStorage.setItem("filial_date",document.querySelector(".filial_big_input").value)
+    window.location="/booking.html"
 }
 
 fetch('https://fre.abbas.uz/api/filyal',{
