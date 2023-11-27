@@ -101,7 +101,7 @@ setTimeout(() => {
     });
   });
 })(jQuery);  
-}, 20000);
+}, 1000);
 
 
 function SelectOpenUser(id) {

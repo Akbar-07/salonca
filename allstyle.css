@@ -791,6 +791,9 @@ scroll-behavior: smooth !important;
   object-fit: cover;
   border-radius: 5px;
 }
+#hover_user{
+  margin-top: 10px;
+}
 .booking_select_option:hover {
   background-color: #dcdcdc;
 }

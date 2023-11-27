@@ -1777,6 +1777,7 @@ h2 {
   font-size: 25px;
   background-color: rgb(61 90 128 / var(--tw-bg-opacity));
 }
+
 #hover_user:hover {
   color: #002147 !important;
 }

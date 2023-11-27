@@ -9,6 +9,9 @@ var  rayon=[]
 var  rayon1=[]
 var  metro1=[]
 
+
+
+
 fetch('https://fre.abbas.uz/api/filyal', {
   method: 'GET'
 }).catch(err=>{

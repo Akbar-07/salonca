@@ -917,6 +917,8 @@ function filial_master(id){
 }
 
 function FilialzakazTime(masterid,id,key){
+  zakazFilialModal1=id
+  document.querySelector(".filial_big_div_mutahasis_div_button").style="opacity:1;"
   for (let i = 0; i < document.querySelectorAll(".filial_master_big_div_time_number12").length; i++) {
     if(key==i){
       localStorage.setItem("time_filial_master",id)
@@ -1258,9 +1260,13 @@ function zakazFilial(key){
   }
 }
 
+var zakazFilialModal1=0
+
 function zakazFilialModal(){
-    localStorage.setItem("filial_date",document.querySelector(".filial_big_input").value)
-    window.location="/booking.html"
+    if(zakazFilialModal1!==0){
+      localStorage.setItem("filial_date",document.querySelector(".filial_big_input").value)
+      window.location="/booking.html"
+    }
 }
 
 fetch('https://fre.abbas.uz/api/filyal',{
